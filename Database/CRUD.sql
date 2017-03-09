@@ -11,8 +11,7 @@ if exists(select*
 begin
 	if exists(select*
 			from dbo.Punto_venta Pv
-			where Pv.ID = @idPuntoVenta
-	)
+			where Pv.ID = @idPuntoVenta)
 	begin 
 		if exists(select* from dbo.Orden O where O.ID = @idOrden)
 		begin 
@@ -40,8 +39,7 @@ if exists (select*
 begin
 	if exists (select*
 				from dbo.Producto P
-				where P.ID = @idProducto
-	)
+				where P.ID = @idProducto)
 	begin
 		insert dbo.Detalle_Orden values(@idOrden, @idProducto, @subtotal, @total, @descuento)
 	end
@@ -81,6 +79,8 @@ else
 		else
 			insert dbo.Empleado values (@idEmpleado, @RTN, @sueldo, @direccion, @fecha_inicio, @telefono, @nombre)
 
+EXEC stb_insertEmpleado 'IRT90', '12345678910111', 3000, 'por ahi', '2012-07-20', '98811354', 'Juan'
+
 -------------------------------------------------------------------------------------------------------------------------
 
 go
@@ -94,16 +94,17 @@ create procedure stb_insertProducto
 @idProveedor varchar(10)
 as
 if exists(select* from dbo.Producto P where P.ID = @idProducto)
-begin 
-print 'producto existente'
-end
-else
-	if exists(select* 
-	from dbo.Proveedor_Producto PP 
-	where PP.ID_Producto = @idProducto and PP.ID_Proveedor = @idProveedor)
 	begin 
+	print 'producto ya existente'
+	end
+else
+	if exists(select* from dbo.Proveedor_Producto PP 
+	where PP.ID_Producto = @idProducto and PP.ID_Proveedor = @idProveedor)
+		begin 
 		insert dbo.Producto values(@idProducto, @nombreProducto, @precioVenta, @precioCompra,@unidades, @descripcion, @idProveedor)	
-	end 
+		end 
+
+EXEC stb_insertProducto '1234abcd', 'zapatos caros', 2400, 3600, 50, 'de buena calidad', 'RT1'
 --------------------------------------------------------------------------------------------------------------------------------------
 
 go
@@ -139,7 +140,7 @@ if exists(select*
 		print 'Id de proveedor existente'
 	  end
 else	
-	insert  dbo.Punto_venta values (@idProveedores, @Nombre, @Telefono, @Correo)
+	insert  dbo.Proveedores values (@idProveedores, @Nombre, @Telefono, @Correo)
 --------------------------------------------------------------------------------------------------------------------------------
 -------------------------------------------MODIFICADO----------------------------------------
 
@@ -161,11 +162,11 @@ begin
 	begin
 		if exists(select* from dbo.Orden O where O.ID = @idOrden)
 		begin 
-			print 'Id de orden existente'
-		end
-		else
 			UPDATE Orden SET ID = @idOrden, Fecha = @Fecha, ID_Empleado = @idEmpleado, ID_PuntoVenta = @idPuntoVenta
 						 WHERE @idOrden = ID
+		end
+		else
+			print 'ID de orden inexistente'
 	end
 end
 ---------------------------------------------------------------------------------------------------------------------------
@@ -181,10 +182,8 @@ if exists (select*
 			from dbo.Orden O 
 			where O.ID = @idOrden)
 begin
-	if exists (select*
-				from dbo.Producto P
-				where P.ID = @idProducto
-	)
+	if exists (select* from dbo.Producto P
+				where P.ID = @idProducto)
 	begin
 		UPDATE Detalle_Orden SET ID_Orden = @idOrden, ID_Producto = @idProducto, Subtotal = @subtotal, Total = @total, Descuento = @descuento
 							 WHERE @idOrden = ID_Orden
@@ -208,22 +207,19 @@ create procedure stb_ActualizarEmpleado
 as
 if exists(select* from dbo.Empleado E where E.ID = @idEmpleado)
 begin 
-	print 'Id repetido'
-end 
-else
 	if exists(select* from dbo.Empleado E where E.RTN = @RTN)
 	begin 
-		print 'RTN no puede ser el mismo para dos empleados'
-	end 
-	else
 		if exists(select* from dbo.Empleado E where E.Telefono = @telefono)
 		begin 
-			print 'El teléfono no debería ser el mismo'
-		end
-		else
 			UPDATE Empleado SET ID = @idEmpleado, RTN = @RTN, Sueldo = @Sueldo, Direccion = @direccion, 
 						        Fecha_inicio = @fecha_inicio, Telefono = @telefono, Nombre = @nombre
 						    WHERE ID = @idEmpleado
+		end
+	end 
+end 
+		
+
+		
 -----------------------------------------------------------------------------------------------------------------
 go
 create procedure stb_ActualizarProducto
@@ -237,15 +233,58 @@ create procedure stb_ActualizarProducto
 as
 if exists(select* from dbo.Producto P where P.ID = @idProducto)
 begin 
-print 'producto existente'
+	UPDATE Producto SET ID = @idProducto, Nombre = @nombreProducto, Precio_Venta = @precioVenta, Precio_Compra = @precioCompra, 
+	Unidades = @unidades, Descripcion = @descripcion, ID_Proveedor = @idProveedor
+	WHERE ID = @idProducto
 end
-else
-	if exists(select* 
-	from dbo.Proveedor_Producto PP 
-	where PP.ID_Producto = @idProducto and PP.ID_Proveedor = @idProveedor)
-	begin 
-		UPDATE Producto SET ID = @idProducto, Nombre = @nombreProducto, Precio_Venta = @precioVenta, Precio_Compra = @precioCompra, 
-						    Unidades = @unidades, Descripcion = @descripcion, ID_Proveedor = @idProveedor
-						WHERE ID = @idProducto
-	end
----falta punto de venta y proveedores (actualizar) ademas de procesos de listado y eliminado
+----------------------------------------------------------------------------------------------------------
+go
+create procedure stb_ActualizarPuntoVenta
+@idPuntoVenta varchar(10),
+@Direccion varchar(max),
+@Ciudad varchar(50),
+@Telefono char(9),
+@Correo varchar(50)
+as
+if exists(select*
+	  from dbo.Punto_venta PV
+	  where PV.ID = @idPuntoVenta)
+	  begin
+		UPDATE Punto_venta SET ID = @idPuntoVenta, Direccion = @Direccion, Ciudad = @Ciudad, Telefono = @Telefono,
+							   Correo = @Correo
+	  end
+else	
+	print 'Id de punto de venta inexistente'
+-------------------------------------------------------------------------------------------------------------------
+go
+create procedure stb_ActualizarProveedores
+@idProveedores varchar(10),
+@Nombre varchar(50),
+@Telefono char(9),
+@Correo varchar(50)
+as
+if exists(select*
+	  from dbo.Proveedores P
+	  where P.ID = @idProveedores)
+	  begin
+		UPDATE Proveedores SET ID = @idProveedores, Nombre = @Nombre, Telefono = @Telefono, Correo = @Correo
+	  end
+else	
+	print 'Id de proveedor inexistente'
+---------------------------------------------ELIMINADO------------------------------------------------------------
+---procesos de listado y eliminado faltan
+
+SELECT* FROM dbo.Orden
+SELECT* FROM dbo.Detalle_Orden
+SELECT* FROM dbo.Empleado
+SELECT* FROM dbo.Producto
+SELECT* FROM dbo.Proveedores
+SELECT* FROM dbo.Punto_venta
+SELECT* FROM dbo.Proveedor_Producto
+
+DELETE FROM dbo.Orden
+DELETE FROM dbo.Detalle_Orden
+DELETE FROM dbo.Empleado
+DELETE FROM dbo.Producto
+DELETE FROM dbo.Proveedores
+DELETE FROM dbo.Punto_venta
