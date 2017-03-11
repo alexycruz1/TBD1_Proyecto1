@@ -5,9 +5,11 @@
  */
 package mobilesapp;
 
+import java.sql.CallableStatement;
 import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.SQLException;
+import java.sql.CallableStatement;
 
 /**
  *
@@ -903,6 +905,7 @@ public class MobilesApp extends javax.swing.JFrame {
     private javax.swing.JDialog puntos_ventas;
     // End of variables declaration//GEN-END:variables
     Connection Conect;
+
     public void Conectar() {
         try {
             String connectionUrl = "jdbc:sqlserver://;database=MovilDB;integratedSecurity=true;";
@@ -910,6 +913,297 @@ public class MobilesApp extends javax.swing.JFrame {
             System.out.println("Conectado!");
         } catch (SQLException ex) {
             System.out.println("Error de conexión...");
+        }
+    }
+
+    //----------------------------------METODOS DE AGREGAR-----------------------------------------------------
+    public void InsertarProveedorEnDB(String ID, String Nombre, String Telefono, String Correo) {
+        CallableStatement CT = null;
+        boolean Resp = true;
+        try {
+            Conect.setAutoCommit(false);
+            CT = Conect.prepareCall("{Call stb_insertProveedores(?, ?, ?, ?)}");
+            CT.setString("ID", ID);
+            CT.setString("Nombre", Nombre);
+            CT.setString("Telefono", Telefono);
+            CT.setString("Correo", Correo);
+            Resp = CT.execute();
+            Conect.commit();
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+    }
+
+    public void InsertarDetalleOrdenEnDB(String ID, String IDProducto, double Subtotal, double Total, double Descuento) {
+        CallableStatement CT = null;
+        boolean Resp = true;
+        try {
+            Conect.setAutoCommit(false);
+            CT = Conect.prepareCall("{Call stb_insertarDetalle(?, ?, ?, ?, ?)}");
+            CT.setString("ID_Orden", ID);
+            CT.setString("ID_Producto", IDProducto);
+            CT.setString("Subtotal", Double.toString(Subtotal));
+            CT.setString("Total", Double.toString(Total));
+            CT.setString("Descuento", Double.toString(Descuento));
+            Resp = CT.execute();
+            Conect.commit();
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+    }
+
+    public void InsertarEmpleadoEnDB(String ID, String RTN, double Sueldo, String Direccion, String Fecha, String Telefono, String Nombre) {
+        CallableStatement CT = null;
+        boolean Resp = true;
+        try {
+            Conect.setAutoCommit(false);
+            CT = Conect.prepareCall("{Call stb_insertEmpleado(?, ?, ?, ?, ?, ?, ?)}");
+            CT.setString("ID", ID);
+            CT.setString("RTN", RTN);
+            CT.setString("Sueldo", Double.toString(Sueldo));
+            CT.setString("Direccion", Direccion);
+            CT.setString("Fecha_Inicio", Fecha);
+            CT.setString("Telefono", Telefono);
+            CT.setString("Nombre", Nombre);
+            Resp = CT.execute();
+            Conect.commit();
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+    }
+
+    public void InsertarOrdenEnDB(String ID, String IDEmpleado, String IDPuntoDeVenta) {
+        CallableStatement CT = null;
+        boolean Resp = true;
+        try {
+            Conect.setAutoCommit(false);
+            CT = Conect.prepareCall("{Call stb_insertOrden(?, ?, ?)}");
+            CT.setString("ID", ID);
+            CT.setString("ID_Empleado", IDEmpleado);
+            CT.setString("ID_PuntoVenta", IDPuntoDeVenta);
+            Resp = CT.execute();
+            Conect.commit();
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+    }
+
+    public void InsertarProductoEnDB(String ID, String Nombre, double PrecioVenta, double PrecioCompra, int Unidades, String Descripcion, String IDProveedor) {
+        CallableStatement CT = null;
+        boolean Resp = true;
+        try {
+            Conect.setAutoCommit(false);
+            CT = Conect.prepareCall("{Call stb_insertProducto(?, ?, ?, ?, ?, ?, ?)}");
+            CT.setString("ID", ID);
+            CT.setString("Nombre", Nombre);
+            CT.setString("Precio_Venta", Double.toString(PrecioVenta));
+            CT.setString("Precio_Compra", Double.toString(PrecioCompra));
+            CT.setString("Unidades", Double.toString(Unidades));
+            CT.setString("Descripcion", Descripcion);
+            CT.setString("ID_Proveedor", IDProveedor);
+            Resp = CT.execute();
+            Conect.commit();
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+    }
+
+    public void InsertarPuntoVentaEnDB(String ID, String Direccion, String Ciudad, String Telefono, String Correo) {
+        CallableStatement CT = null;
+        boolean Resp = true;
+        try {
+            Conect.setAutoCommit(false);
+            CT = Conect.prepareCall("{Call stb_insertPuntoVenta(?, ?, ?, ?, ?)}");
+            CT.setString("ID", ID);
+            CT.setString("Direccion", Direccion);
+            CT.setString("Ciudad", Ciudad);
+            CT.setString("Telefono", Telefono);
+            CT.setString("Correo", Correo);
+            Resp = CT.execute();
+            Conect.commit();
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+    }
+
+//------------------------------------------------------METODOS DE MODIFICAR----------------------------
+    public void ActualizarDetalleOrdenEnDB(String ID, String IDProducto, double Subtotal, double Total, double Descuento) {
+        CallableStatement CT = null;
+        boolean Resp = true;
+        try {
+            Conect.setAutoCommit(false);
+            CT = Conect.prepareCall("{Call stb_ActualizarDetalleOrden(?, ?, ?, ?, ?)}");
+            CT.setString("ID_Orden", ID);
+            CT.setString("ID_Producto", IDProducto);
+            CT.setString("Subtotal", Double.toString(Subtotal));
+            CT.setString("Total", Double.toString(Total));
+            CT.setString("Descuento", Double.toString(Descuento));
+            Resp = CT.execute();
+            Conect.commit();
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+    }
+
+    public void ActualizarEmpleadoEnDB(String ID, String RTN, double Sueldo, String Direccion, String Fecha, String Telefono, String Nombre) {
+        CallableStatement CT = null;
+        boolean Resp = true;
+        try {
+            Conect.setAutoCommit(false);
+            CT = Conect.prepareCall("{Call stb_ActualizarEmpleado(?, ?, ?, ?, ?, ?, ?)}");
+            CT.setString("ID", ID);
+            CT.setString("RTN", RTN);
+            CT.setString("Sueldo", Double.toString(Sueldo));
+            CT.setString("Direccion", Direccion);
+            CT.setString("Fecha_Inicio", Fecha);
+            CT.setString("Telefono", Telefono);
+            CT.setString("Nombre", Nombre);
+            Resp = CT.execute();
+            Conect.commit();
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+    }
+
+    public void ActualizarOrdenEnDB(String ID, String IDEmpleado, String IDPuntoDeVenta) {
+        CallableStatement CT = null;
+        boolean Resp = true;
+        try {
+            Conect.setAutoCommit(false);
+            CT = Conect.prepareCall("{Call stb_ActualizarOrden(?, ?, ?)}");
+            CT.setString("ID", ID);
+            CT.setString("ID_Empleado", IDEmpleado);
+            CT.setString("ID_PuntoVenta", IDPuntoDeVenta);
+            Resp = CT.execute();
+            Conect.commit();
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+    }
+
+    public void ActualizarProductoEnDB(String ID, String Nombre, double PrecioVenta, double PrecioCompra, int Unidades, String Descripcion, String IDProveedor) {
+        CallableStatement CT = null;
+        boolean Resp = true;
+        try {
+            Conect.setAutoCommit(false);
+            CT = Conect.prepareCall("{Call stb_ActualizarProducto(?, ?, ?, ?, ?, ?, ?)}");
+            CT.setString("ID", ID);
+            CT.setString("Nombre", Nombre);
+            CT.setString("Precio_Venta", Double.toString(PrecioVenta));
+            CT.setString("Precio_Compra", Double.toString(PrecioCompra));
+            CT.setString("Unidades", Double.toString(Unidades));
+            CT.setString("Descripcion", Descripcion);
+            CT.setString("ID_Proveedor", IDProveedor);
+            Resp = CT.execute();
+            Conect.commit();
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+    }
+
+    public void ActualizarProveedorEnDB(String ID, String Nombre, String Telefono, String Correo) {
+        CallableStatement CT = null;
+        boolean Resp = true;
+        try {
+            Conect.setAutoCommit(false);
+            CT = Conect.prepareCall("{Call stb_ActualizarProveedores(?, ?, ?, ?)}");
+            CT.setString("ID", ID);
+            CT.setString("Nombre", Nombre);
+            CT.setString("Telefono", Telefono);
+            CT.setString("Correo", Correo);
+            Resp = CT.execute();
+            Conect.commit();
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+    }
+
+    public void ActualizarPuntoVentaEnDB(String ID, String Direccion, String Ciudad, String Telefono, String Correo) {
+        CallableStatement CT = null;
+        boolean Resp = true;
+        try {
+            Conect.setAutoCommit(false);
+            CT = Conect.prepareCall("{Call stb_ActualizarPuntoVenta(?, ?, ?, ?, ?)}");
+            CT.setString("ID", ID);
+            CT.setString("Direccion", Direccion);
+            CT.setString("Ciudad", Ciudad);
+            CT.setString("Telefono", Telefono);
+            CT.setString("Correo", Correo);
+            Resp = CT.execute();
+            Conect.commit();
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+    }
+
+//----------------------------METODOS DE ELIMINAR--------------------------------------------------------
+    public void BorrarProductoPorID(String ID) {
+        CallableStatement CT = null;
+        boolean Resp = true;
+        try {
+            Conect.setAutoCommit(false);
+            CT = Conect.prepareCall("{Call stb_deletbyID(?)}");
+            CT.setString("ID", ID);
+            Resp = CT.execute();
+            Conect.commit();
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+    }
+
+    public void BorrarOrdenPorID(String ID) {
+        CallableStatement CT = null;
+        boolean Resp = true;
+        try {
+            Conect.setAutoCommit(false);
+            CT = Conect.prepareCall("{Call stb_deleteOrdenbyID(?)}");
+            CT.setString("ID", ID);
+            Resp = CT.execute();
+            Conect.commit();
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+    }
+
+    public void BorrarEmpleadoPorID(String ID) {
+        CallableStatement CT = null;
+        boolean Resp = true;
+        try {
+            Conect.setAutoCommit(false);
+            CT = Conect.prepareCall("{Call stb_deleteEmpleadobyID(?)}");
+            CT.setString("ID", ID);
+            Resp = CT.execute();
+            Conect.commit();
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+    }
+
+    public void BorrarProveedorPorID(String ID) {
+        CallableStatement CT = null;
+        boolean Resp = true;
+        try {
+            Conect.setAutoCommit(false);
+            CT = Conect.prepareCall("{Call stb_deleteProveedorbyID(?)}");
+            CT.setString("ID", ID);
+            Resp = CT.execute();
+            Conect.commit();
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+    }
+
+    public void BorrarPuntoVentaPorID(String ID) {
+        CallableStatement CT = null;
+        boolean Resp = true;
+        try {
+            Conect.setAutoCommit(false);
+            CT = Conect.prepareCall("{Call stb_deletePuntoVentabyID(?)}");
+            CT.setString("ID", ID);
+            Resp = CT.execute();
+            Conect.commit();
+        } catch (Exception e) {
+            e.printStackTrace();
         }
     }
 }
