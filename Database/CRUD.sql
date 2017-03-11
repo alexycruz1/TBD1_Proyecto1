@@ -274,32 +274,15 @@ if exists(select*
 else	
 	print 'Id de proveedor inexistente'
 ---------------------------------------------ELIMINADO------------------------------------------------------------
----procesos de listado y eliminado faltan
-
-SELECT* FROM dbo.Orden
-SELECT* FROM dbo.Detalle_Orden
-SELECT* FROM dbo.Empleado
-SELECT* FROM dbo.Producto
-SELECT* FROM dbo.Proveedores
-SELECT* FROM dbo.Punto_venta
-SELECT* FROM dbo.Proveedor_Producto
-
 --Eliminado por ID PRODUCTO
-
-alter procedure stb_deletebyID
+create procedure stb_deletebyID
 @idProducto varchar(10)
 as
 if exists(select* from dbo.Producto P where P.ID = @idProducto)
-	begin 
-		if exists(select* from dbo.Proveedor_Producto PP where PP.ID_Producto = @idProducto)
-		begin 
-			delete dbo.Proveedor_Producto
-			select* from dbo.Proveedor_Producto PP where PP.ID_Producto = @idProducto
-		end
-		else
-			delete dbo.Producto
-			where ID = @idProducto
-	end
+begin 
+	update dbo.Producto set Activo = 0
+	where ID = @idProducto
+end
 
 create procedure stb_deleteOrdenbyID
 @idOrden varchar(10)
@@ -315,32 +298,30 @@ begin
 	where ID = @idOrden
 end
 
-DELETE FROM dbo.Orden
-DELETE FROM dbo.Detalle_Orden
+create procedure stb_deleteEmpledobyID
+@idEmpleado varchar(10)
+as
+if exists (select* from dbo.Empleado E where E.ID = @idEmpleado)
+begin 
+	update dbo.Empleado set Activo = 0
+	where @idEmpleado = ID
+end
 
-DELETE FROM dbo.Empleado
-DELETE FROM dbo.Proveedores
-DELETE FROM dbo.Punto_venta
+create procedure stb_deleteProveedorbyID
+@idProveedor varchar(10)
+as
+if exists(select* from dbo.Proveedores P where P.ID = @idProveedor)
+begin
+	update dbo.Proveedores set Activo = 0
+	where @idProveedor = ID
+end
 
+create procedure stb_deletePuntoVentebyID
+@idPuntoVenta varchar(10)
+as 
+if exists(select* from dbo.Punto_venta PV where PV.ID = @idPuntoVenta)
+begin
+	update dbo.Punto_venta set Activo = 0
+	where @idPuntoVenta = ID
+end
 
-EXEC stb_insertEmpleado 'IRT90', '12345678910111', 3000, 'por ahi', '2012-07-20', '98811354', 'Juan'
-exec stb_insertOrden 1,'euceda', 'pepsi'
-exec stb_insertDetalle 1,2,3,4,5
-exec dbo.stb_insertProducto 'mango','MANGO', 10,5,12,'ASFGJHAGSJ', 'mario'
-EXEC stb_insertProducto '1234bcd', 'zapatos caros', 2400, 3600, 50, 'de buena calidad', 'marios'
-exec stb_deleteOrdenbyID 1
-
-
-use MovilDB
-select* from dbo.Producto 
-select* from dbo.Punto_venta
-select* from dbo.Proveedor_Producto
-select* from dbo.Proveedores
-select* from dbo.Orden
-select* from dbo.Empleado
-select* from dbo.Detalle_Orden
-
-insert into dbo.Empleado values('euceda','asfdasf',123,'asfg',GETDATE(),'12343','maria')
-insert into dbo.Proveedores values ('pedro', 'jota', 9485,'sag')
-insert into dbo.Punto_venta values ('pepsi', 'askjghkj','tegucigalpa', 825483,'asfnbv')
-insert into dbo.Detalle_Orden values(1,'pera',400,200,200)
