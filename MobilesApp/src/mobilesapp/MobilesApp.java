@@ -5,6 +5,10 @@
  */
 package mobilesapp;
 
+import java.sql.Connection;
+import java.sql.DriverManager;
+import java.sql.SQLException;
+
 /**
  *
  * @author xyto_
@@ -16,6 +20,7 @@ public class MobilesApp extends javax.swing.JFrame {
      */
     public MobilesApp() {
         initComponents();
+        Conectar();
     }
 
     /**
@@ -897,4 +902,14 @@ public class MobilesApp extends javax.swing.JFrame {
     private javax.swing.JDialog producto;
     private javax.swing.JDialog puntos_ventas;
     // End of variables declaration//GEN-END:variables
+    Connection Conect;
+    public void Conectar() {
+        try {
+            String connectionUrl = "jdbc:sqlserver://;database=MovilDB;integratedSecurity=true;";
+            Conect = DriverManager.getConnection(connectionUrl);
+            System.out.println("Conectado!");
+        } catch (SQLException ex) {
+            System.out.println("Error de conexión...");
+        }
+    }
 }
