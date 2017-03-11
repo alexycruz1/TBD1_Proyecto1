@@ -1,13 +1,11 @@
 -------------------------------------------AGREGADO----------------------------------------
 go
-create procedure stb_insertOrden
+alter procedure stb_insertOrden
 @idOrden varchar(10),
 @idEmpleado varchar(10),
 @idPuntoVenta varchar(10)
 as
-if exists(select* 
-		from dbo.Empleado E
-		where E.ID = @idEmpleado)
+if exists(select* from dbo.Empleado E where E.ID = @idEmpleado)
 begin
 	if exists(select*
 			from dbo.Punto_venta Pv
@@ -22,7 +20,6 @@ begin
 	end
 end
 
-exec stb_insertOrden 1,'IRT90', 'AR0'
 -------------------------------------------------------------------------------------------
 
 go 
@@ -49,7 +46,6 @@ end
 else
 	print 'No existe la orden'
 
-exec stb_insertDetalle 1,2,3,4,5
 ------------------------------------------------------------------------------------------------------
 go
 create procedure stb_insertEmpleado
@@ -79,12 +75,11 @@ else
 		else
 			insert dbo.Empleado values (@idEmpleado, @RTN, @sueldo, @direccion, @fecha_inicio, @telefono, @nombre)
 
-EXEC stb_insertEmpleado 'IRT90', '12345678910111', 3000, 'por ahi', '2012-07-20', '98811354', 'Juan'
-
 -------------------------------------------------------------------------------------------------------------------------
 
+use MovilDB
 go
-create procedure stb_insertProducto
+alter procedure stb_insertProducto
 @idProducto varchar(10),
 @nombreProducto varchar(50),
 @precioVenta money,
@@ -95,16 +90,22 @@ create procedure stb_insertProducto
 as
 if exists(select* from dbo.Producto P where P.ID = @idProducto)
 	begin 
-	print 'producto ya existente'
+		if exists(select* from dbo.Proveedor_Producto PP 
+				  where PP.ID_Producto = @idProducto and PP.ID_Proveedor = @idProveedor)
+		begin
+			print 'producto ya existente'
+		end 
+		else
+			insert dbo.Proveedor_Producto values (@idProveedor,@idProducto)
 	end
 else
-	if exists(select* from dbo.Proveedor_Producto PP 
-	where PP.ID_Producto = @idProducto and PP.ID_Proveedor = @idProveedor)
+	if exists(select* from dbo.Proveedores PP 
+	where  PP.ID = @idProveedor)
 		begin 
 		insert dbo.Producto values(@idProducto, @nombreProducto, @precioVenta, @precioCompra,@unidades, @descripcion, @idProveedor)	
+		insert dbo.Proveedor_Producto values (@idProveedor,@idProducto)
 		end 
 
-EXEC stb_insertProducto '1234abcd', 'zapatos caros', 2400, 3600, 50, 'de buena calidad', 'RT1'
 --------------------------------------------------------------------------------------------------------------------------------------
 
 go
@@ -141,6 +142,7 @@ if exists(select*
 	  end
 else	
 	insert  dbo.Proveedores values (@idProveedores, @Nombre, @Telefono, @Correo)
+
 --------------------------------------------------------------------------------------------------------------------------------
 -------------------------------------------MODIFICADO----------------------------------------
 
@@ -282,9 +284,63 @@ SELECT* FROM dbo.Proveedores
 SELECT* FROM dbo.Punto_venta
 SELECT* FROM dbo.Proveedor_Producto
 
+--Eliminado por ID PRODUCTO
+
+alter procedure stb_deletebyID
+@idProducto varchar(10)
+as
+if exists(select* from dbo.Producto P where P.ID = @idProducto)
+	begin 
+		if exists(select* from dbo.Proveedor_Producto PP where PP.ID_Producto = @idProducto)
+		begin 
+			delete dbo.Proveedor_Producto
+			select* from dbo.Proveedor_Producto PP where PP.ID_Producto = @idProducto
+		end
+		else
+			delete dbo.Producto
+			where ID = @idProducto
+	end
+
+create procedure stb_deleteOrdenbyID
+@idOrden varchar(10)
+as
+if exists(select* from dbo.Orden O where O.ID = @idOrden)
+begin 
+	if exists(select* from dbo.Detalle_Orden do where do.ID_Orden = @idOrden)
+	begin
+		delete from dbo.Detalle_Orden
+		where ID_Orden = @idOrden
+	end
+	DELETE FROM DBO.Orden 
+	where ID = @idOrden
+end
+
 DELETE FROM dbo.Orden
 DELETE FROM dbo.Detalle_Orden
+
 DELETE FROM dbo.Empleado
-DELETE FROM dbo.Producto
 DELETE FROM dbo.Proveedores
 DELETE FROM dbo.Punto_venta
+
+
+EXEC stb_insertEmpleado 'IRT90', '12345678910111', 3000, 'por ahi', '2012-07-20', '98811354', 'Juan'
+exec stb_insertOrden 1,'euceda', 'pepsi'
+exec stb_insertDetalle 1,2,3,4,5
+exec dbo.stb_insertProducto 'mango','MANGO', 10,5,12,'ASFGJHAGSJ', 'mario'
+EXEC stb_insertProducto '1234bcd', 'zapatos caros', 2400, 3600, 50, 'de buena calidad', 'marios'
+exec stb_deleteOrdenbyID 1
+
+
+use MovilDB
+select* from dbo.Producto 
+select* from dbo.Punto_venta
+select* from dbo.Proveedor_Producto
+select* from dbo.Proveedores
+select* from dbo.Orden
+select* from dbo.Empleado
+select* from dbo.Detalle_Orden
+
+insert into dbo.Empleado values('euceda','asfdasf',123,'asfg',GETDATE(),'12343','maria')
+insert into dbo.Proveedores values ('pedro', 'jota', 9485,'sag')
+insert into dbo.Punto_venta values ('pepsi', 'askjghkj','tegucigalpa', 825483,'asfnbv')
+insert into dbo.Detalle_Orden values(1,'pera',400,200,200)
