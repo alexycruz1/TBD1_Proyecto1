@@ -64,7 +64,7 @@ else
 		insert dbo.Empleado values (@RTN, @sueldo, @direccion, @fecha_inicio, @telefono, @nombre)
 
 -------------------------------------------------------------------------------------------------------------------------
-create trigger trg_InsertarProducto
+alter trigger trg_InsertarProducto
 on dbo.Producto
 instead of insert 
 as 
@@ -92,11 +92,19 @@ if exists(select* from dbo.Producto P where P.ID = @idProducto)
 	end
 else
 	if exists(select* from dbo.Proveedores PP 
-	where  PP.ID = @idProveedor)
+			  where  PP.ID = @idProveedor)
 		begin 
-		insert dbo.Producto values(@idProducto, @nombreProducto, @precioVenta, @precioCompra,@unidades, @descripcion, @idProveedor,1)	
-		insert dbo.Proveedor_Producto values (@idProveedor,@idProducto)
+			insert dbo.Producto values(@idProducto, @nombreProducto, @precioVenta, @precioCompra,@unidades, @descripcion, @idProveedor,1)	
+			insert dbo.Proveedor_Producto values (@idProveedor,@idProducto)
 		end 
+		else
+			print 'nada'
+
+insert into dbo.Producto values('sd','asfasr',123,123,123,'gwedgvwresfgv','mario',1)
+
+select* from dbo.Proveedor_Producto
+select* from dbo.Proveedores
+select* from dbo.Producto
 ---------------------
 
 
