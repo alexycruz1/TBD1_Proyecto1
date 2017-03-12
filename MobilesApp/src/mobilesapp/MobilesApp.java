@@ -58,7 +58,7 @@ public class MobilesApp extends javax.swing.JFrame {
         jt_Fecha_Empleado = new javax.swing.JTextField();
         jt_Sueldo_Empleado = new javax.swing.JTextField();
         jScrollPane3 = new javax.swing.JScrollPane();
-        jl_Empleados_Empleado = new javax.swing.JList<String>();
+        jl_Empleados_Empleado = new javax.swing.JList<>();
         jd_Producto = new javax.swing.JDialog();
         jLabel18 = new javax.swing.JLabel();
         jLabel19 = new javax.swing.JLabel();
@@ -78,7 +78,7 @@ public class MobilesApp extends javax.swing.JFrame {
         jButton16 = new javax.swing.JButton();
         jButton17 = new javax.swing.JButton();
         jScrollPane4 = new javax.swing.JScrollPane();
-        jl_Productos_Producto = new javax.swing.JList<String>();
+        jl_Productos_Producto = new javax.swing.JList<>();
         jd_Proveedor = new javax.swing.JDialog();
         jLabel24 = new javax.swing.JLabel();
         jLabel26 = new javax.swing.JLabel();
@@ -91,7 +91,7 @@ public class MobilesApp extends javax.swing.JFrame {
         jButton20 = new javax.swing.JButton();
         jButton21 = new javax.swing.JButton();
         jScrollPane2 = new javax.swing.JScrollPane();
-        jl_Proveedores_Proveedor = new javax.swing.JList<String>();
+        jl_Proveedores_Proveedor = new javax.swing.JList<>();
         jd_puntos_ventas = new javax.swing.JDialog();
         jLabel29 = new javax.swing.JLabel();
         jLabel31 = new javax.swing.JLabel();
@@ -106,7 +106,7 @@ public class MobilesApp extends javax.swing.JFrame {
         jButton24 = new javax.swing.JButton();
         jButton25 = new javax.swing.JButton();
         jScrollPane5 = new javax.swing.JScrollPane();
-        jl_Puntos_PuntoVenta = new javax.swing.JList<String>();
+        jl_Puntos_PuntoVenta = new javax.swing.JList<>();
         jd_Inventario = new javax.swing.JDialog();
         jScrollPane6 = new javax.swing.JScrollPane();
         jTable1 = new javax.swing.JTable();
@@ -123,7 +123,7 @@ public class MobilesApp extends javax.swing.JFrame {
         jb_AgregarOrden_Orden = new javax.swing.JButton();
         jButton2 = new javax.swing.JButton();
         jScrollPane7 = new javax.swing.JScrollPane();
-        jl_Ordenes_Orden = new javax.swing.JList<String>();
+        jl_Ordenes_Orden = new javax.swing.JList<>();
         jPanel4 = new javax.swing.JPanel();
         jTabbedPane2 = new javax.swing.JTabbedPane();
         jPanel2 = new javax.swing.JPanel();
@@ -746,6 +746,11 @@ public class MobilesApp extends javax.swing.JFrame {
 
         jButton7.setIcon(new javax.swing.ImageIcon(getClass().getResource("/icons/Clipboard_Full.png"))); // NOI18N
         jButton7.setText("Inventario");
+        jButton7.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                jButton7MouseClicked(evt);
+            }
+        });
 
         jButton1.setText("Productos");
         jButton1.addMouseListener(new java.awt.event.MouseAdapter() {
@@ -798,6 +803,11 @@ public class MobilesApp extends javax.swing.JFrame {
 
         jButton3.setIcon(new javax.swing.ImageIcon(getClass().getResource("/icons/basket_chart_32.png"))); // NOI18N
         jButton3.setText("Historial de ordenes");
+        jButton3.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                jButton3MouseClicked(evt);
+            }
+        });
 
         javax.swing.GroupLayout jPanel5Layout = new javax.swing.GroupLayout(jPanel5);
         jPanel5.setLayout(jPanel5Layout);
@@ -873,7 +883,7 @@ public class MobilesApp extends javax.swing.JFrame {
             IDPuntoVenta = Integer.parseInt(jt_IDPuntoVenta_Orden.getText());
 
             InsertarOrdenEnDB(IDEmpleado, IDPuntoVenta);
-            LlenarListas(jl_Ordenes_Orden, "ListarOrdenes");
+            LlenarListas(jl_Ordenes_Orden, "stb_listarOrden");
 
             JOptionPane.showMessageDialog(this, "Orden agregada con exito", "OPERACION EXITOSA", JOptionPane.INFORMATION_MESSAGE);
         } else {
@@ -889,7 +899,7 @@ public class MobilesApp extends javax.swing.JFrame {
             IDOrden = Integer.parseInt(jl_Ordenes_Orden.getSelectedValue());
 
             BorrarOrdenPorID(IDOrden);
-            LlenarListas(jl_Ordenes_Orden, "ListarOrdenes");
+            LlenarListas(jl_Ordenes_Orden, "stb_listarOrden");
 
             JOptionPane.showMessageDialog(this, "Orden eliminada con exito", "OPERACION EXITOSA", JOptionPane.INFORMATION_MESSAGE);
         } else {
@@ -1208,6 +1218,22 @@ public class MobilesApp extends javax.swing.JFrame {
         //Ordenes
         LlenarListas(jl_Ordenes_Orden, "stb_listarOrdenes");
     }//GEN-LAST:event_formWindowOpened
+
+    private void jButton7MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jButton7MouseClicked
+        // TODO add your handling code here:
+        jd_Inventario.setModal(false);
+        jd_Inventario.pack();
+        jd_Inventario.setLocationRelativeTo(this);
+        jd_Inventario.setVisible(true);
+    }//GEN-LAST:event_jButton7MouseClicked
+
+    private void jButton3MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jButton3MouseClicked
+        // TODO add your handling code here:
+        jd_HistorialOrdenes.setModal(false);
+        jd_HistorialOrdenes.pack();
+        jd_HistorialOrdenes.setLocationRelativeTo(this);
+        jd_HistorialOrdenes.setVisible(true);
+    }//GEN-LAST:event_jButton3MouseClicked
 
     /**
      * @param args the command line arguments
