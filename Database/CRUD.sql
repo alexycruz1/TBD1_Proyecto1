@@ -188,7 +188,7 @@ else
 	print 'No existe la orden'
 ----------------------------------------------------------------------------------------------------------------------------------------------------
 go
-create procedure stb_ActualizarEmpleado
+alter procedure stb_ActualizarEmpleado
 @idEmpleado int,
 @RTN char(14),
 @sueldo money,
@@ -196,14 +196,13 @@ create procedure stb_ActualizarEmpleado
 @fecha_inicio date,
 @telefono char(9),
 @nombre varchar(50)
-
 as
 if exists(select* from dbo.Empleado E where E.ID = @idEmpleado)
 begin 
 	if exists(select* from dbo.Empleado E where E.RTN = @RTN)
 	begin 
 		if exists(select* from dbo.Empleado E where E.Telefono = @telefono)
-		begin 
+		begin
 			UPDATE Empleado SET RTN = @RTN, Sueldo = @Sueldo, Direccion = @direccion, 
 						        Fecha_inicio = @fecha_inicio, Telefono = @telefono, Nombre = @nombre
 						    WHERE ID = @idEmpleado
@@ -232,7 +231,7 @@ begin
 end
 ----------------------------------------------------------------------------------------------------------
 go
-create procedure stb_ActualizarPuntoVenta
+alter procedure stb_ActualizarPuntoVenta
 @idPuntoVenta int,
 @Direccion varchar(max),
 @Ciudad varchar(50),
@@ -243,8 +242,9 @@ if exists(select*
 	  from dbo.Punto_venta PV
 	  where PV.ID = @idPuntoVenta)
 	  begin
-		UPDATE Punto_venta SET ID = @idPuntoVenta, Direccion = @Direccion, Ciudad = @Ciudad, Telefono = @Telefono,
-							   Correo = @Correo
+		UPDATE Punto_venta SET Direccion = @Direccion, Ciudad = @Ciudad, Telefono = @Telefono, Correo = @Correo
+		where @idPuntoVenta = ID
+
 	  end
 else	
 	print 'Id de punto de venta inexistente'
@@ -289,13 +289,13 @@ begin
 	where ID = @idOrden
 end
 
-create procedure stb_deleteEmpleadobyID
-@idEmpleado int
+alter procedure stb_deleteEmpleadobyID
+@ID int
 as
-if exists (select* from dbo.Empleado E where E.ID = @idEmpleado)
+if exists (select* from dbo.Empleado E where E.ID = @ID)
 begin 
 	update dbo.Empleado set Activo = 0
-	where @idEmpleado = ID
+	where @ID = ID
 end
 
 create procedure stb_deleteProveedorbyID
@@ -342,9 +342,12 @@ as
 select* from dbo.Orden
 
 ---Listar Empleados
+
 alter procedure stb_listartodosEmpleados
 as
 select* from dbo.Empleado E where E.Activo = 1
+
+exec stb_listartodosEmpleados 
 
 create procedure stb_listarEmpleado
 @idEmpleado int

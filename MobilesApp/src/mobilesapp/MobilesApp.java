@@ -49,7 +49,7 @@ public class MobilesApp extends javax.swing.JFrame {
         jLabel14 = new javax.swing.JLabel();
         jLabel15 = new javax.swing.JLabel();
         jButton10 = new javax.swing.JButton();
-        jButton12 = new javax.swing.JButton();
+        btn_borrarEmpleado = new javax.swing.JButton();
         jButton13 = new javax.swing.JButton();
         jt_RTN_Empleado = new javax.swing.JTextField();
         jt_Nombre_Empleado = new javax.swing.JTextField();
@@ -163,11 +163,11 @@ public class MobilesApp extends javax.swing.JFrame {
             }
         });
 
-        jButton12.setIcon(new javax.swing.ImageIcon(getClass().getResource("/icons/user_close_32.png"))); // NOI18N
-        jButton12.setText("Eliminar");
-        jButton12.addMouseListener(new java.awt.event.MouseAdapter() {
+        btn_borrarEmpleado.setIcon(new javax.swing.ImageIcon(getClass().getResource("/icons/user_close_32.png"))); // NOI18N
+        btn_borrarEmpleado.setText("Eliminar");
+        btn_borrarEmpleado.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
-                jButton12MouseClicked(evt);
+                btn_borrarEmpleadoMouseClicked(evt);
             }
         });
 
@@ -203,7 +203,7 @@ public class MobilesApp extends javax.swing.JFrame {
                         .addGap(18, 18, 18)
                         .addComponent(jButton13)
                         .addGap(18, 18, 18)
-                        .addComponent(jButton12))
+                        .addComponent(btn_borrarEmpleado))
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jd_EmpleadoLayout.createSequentialGroup()
                         .addGap(33, 33, 33)
                         .addGroup(jd_EmpleadoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -252,7 +252,7 @@ public class MobilesApp extends javax.swing.JFrame {
                         .addGap(56, 56, 56)
                         .addGroup(jd_EmpleadoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                             .addComponent(jButton10)
-                            .addComponent(jButton12)
+                            .addComponent(btn_borrarEmpleado)
                             .addComponent(jButton13)))
                     .addComponent(jScrollPane3, javax.swing.GroupLayout.DEFAULT_SIZE, 335, Short.MAX_VALUE))
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
@@ -909,7 +909,6 @@ public class MobilesApp extends javax.swing.JFrame {
             String RTN;
             double Sueldo;
             String Telefono;
-
             Direccion = jt_Direccion_Empleado.getText();
             Nombre = jt_Nombre_Empleado.getText();
             RTN = jt_RTN_Empleado.getText();
@@ -917,7 +916,7 @@ public class MobilesApp extends javax.swing.JFrame {
             Telefono = jt_Telefono_Empleado.getText();
             InsertarEmpleadoEnDB(RTN, Sueldo, Direccion, Fecha, Telefono, Nombre);
             LlenarListas(jl_Ordenes_Orden, "stb_listartodosEmpleados");
-            LlenarListas(jl_Empleados_Empleado,"stb_listartodosEmpleados");
+            LlenarListas(jl_Empleados_Empleado, "stb_listartodosEmpleados");
 
             JOptionPane.showMessageDialog(this, "Empleado agregado con exito", "OPERACION EXITOSA", JOptionPane.INFORMATION_MESSAGE);
         } else {
@@ -937,14 +936,17 @@ public class MobilesApp extends javax.swing.JFrame {
             String RTN;
             double Sueldo;
             String Telefono;
-
             Direccion = jt_Direccion_Empleado.getText();
             Nombre = jt_Nombre_Empleado.getText();
             RTN = jt_RTN_Empleado.getText();
             Sueldo = Double.parseDouble(jt_Sueldo_Empleado.getText());
             Telefono = jt_Telefono_Empleado.getText();
-
-            ActualizarEmpleadoEnDB(1, RTN, Sueldo, Direccion, Fecha, Telefono, Nombre);
+            int IDEmpleado = -1;
+            Object i = jl_Empleados_Empleado.getSelectedValue();
+            if (i instanceof Integer) {
+                IDEmpleado = ((Integer) i);
+            }
+            ActualizarEmpleadoEnDB(IDEmpleado, RTN, Sueldo, Direccion, Fecha, Telefono, Nombre);
 
             JOptionPane.showMessageDialog(this, "Empleado editado con exito", "OPERACION EXITOSA", JOptionPane.INFORMATION_MESSAGE);
         } else {
@@ -952,22 +954,24 @@ public class MobilesApp extends javax.swing.JFrame {
         }
     }//GEN-LAST:event_jButton13MouseClicked
 
-    private void jButton12MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jButton12MouseClicked
+    private void btn_borrarEmpleadoMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btn_borrarEmpleadoMouseClicked
         // TODO add your handling code here:
         if (jl_Empleados_Empleado.getSelectedIndex() != -1) {
-            int IDEmpleado;
+            int IDEmpleado = -1;
             //IDEmpleado = Integer.parseInt(jl_Empleados_Empleado.getSelectedValue
-            String i = jl_Empleados_Empleado.getSelectedValue();
-            IDEmpleado = Integer.parseInt(jl_Empleados_Empleado.getSelectedValue());
-
-            BorrarEmpleadoPorID(IDEmpleado);
-            LlenarListas(jl_Ordenes_Orden, "ListarEmpleados");
-
+            Object i = jl_Empleados_Empleado.getSelectedValue();
+            if (i instanceof Integer) {
+                IDEmpleado = ((Integer) i);
+            }
+            if (IDEmpleado > -1) {
+                BorrarEmpleadoPorID(IDEmpleado);
+                LlenarListas(jl_Empleados_Empleado, "stb_listartodosEmpleados");
+            }
             JOptionPane.showMessageDialog(this, "Empleado eliminadao con exito", "OPERACION EXITOSA", JOptionPane.INFORMATION_MESSAGE);
         } else {
             JOptionPane.showMessageDialog(this, "Seleccione un empleado", "ERROR", JOptionPane.ERROR_MESSAGE);
         }
-    }//GEN-LAST:event_jButton12MouseClicked
+    }//GEN-LAST:event_btn_borrarEmpleadoMouseClicked
 
     private void jButton14MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jButton14MouseClicked
         // TODO add your handling code here:
@@ -987,9 +991,9 @@ public class MobilesApp extends javax.swing.JFrame {
 
             InsertarProductoEnDB(1, Nombre, PrecioVenta, PrecioCompra, Unidades, Descripcion, IDProveedor);
             LlenarListas(jl_Ordenes_Orden, "ListarProductos");
-            
+
             JOptionPane.showMessageDialog(this, "Producto agregado con exito", "OPERACION EXITOSA", JOptionPane.INFORMATION_MESSAGE);
-            
+
         } else {
             JOptionPane.showMessageDialog(this, "Los campos no estan llenos", "ERROR", JOptionPane.ERROR_MESSAGE);
         }
@@ -1015,7 +1019,7 @@ public class MobilesApp extends javax.swing.JFrame {
 
             ActualizarProductoEnDB(ID, Nombre, PrecioVenta, PrecioCompra, Unidades, Descripcion, Nombre);
             LlenarListas(jl_Ordenes_Orden, "ListarProductos");
-            
+
             JOptionPane.showMessageDialog(this, "Producto actualizado con exito", "OPERACION EXITOSA", JOptionPane.INFORMATION_MESSAGE);
         } else {
             JOptionPane.showMessageDialog(this, "Los campos no estan llenos o no ha seleccionado un producto", "ERROR", JOptionPane.ERROR_MESSAGE);
@@ -1025,12 +1029,13 @@ public class MobilesApp extends javax.swing.JFrame {
     private void jButton17MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jButton17MouseClicked
         // TODO add your handling code here:
         if (jl_Productos_Producto.getSelectedIndex() != -1) {
-            int IDProducto;
-
-            IDProducto = Integer.parseInt(jl_Productos_Producto.getSelectedValue());
-
-            BorrarProductoPorID(IDProducto);
-
+            int IDProducto = -1;
+            Object i = jl_Productos_Producto.getSelectedValue();
+            IDProducto = ((Integer) i).intValue();
+            if (IDProducto > -1) {
+                BorrarProductoPorID(IDProducto);
+                LlenarListas(jl_Productos_Producto, "stb_listarProductos");
+            }
             JOptionPane.showMessageDialog(this, "Producto eliminadao con exito", "OPERACION EXITOSA", JOptionPane.INFORMATION_MESSAGE);
         } else {
             JOptionPane.showMessageDialog(this, "Seleccione un producto", "ERROR", JOptionPane.ERROR_MESSAGE);
@@ -1102,7 +1107,7 @@ public class MobilesApp extends javax.swing.JFrame {
             Direccion = jt_Direccion_PuntoVenta.getText();
 
             InsertarPuntoVentaEnDB(Direccion, Ciudad, Telefono, Correo);
-            LlenarListas(jl_Ordenes_Orden, "ListarPuntoVenta");
+            LlenarListas(jl_Puntos_PuntoVenta, "stb_ListarPuntosVenta");
 
             JOptionPane.showMessageDialog(this, "Punto de venta agregado con exito", "OPERACION EXITOSA", JOptionPane.INFORMATION_MESSAGE);
         } else {
@@ -1115,16 +1120,16 @@ public class MobilesApp extends javax.swing.JFrame {
         if (CampoLleno(jt_Ciudad_PuntoVenta) && CampoLleno(jt_Correo_PuntoVenta) && CampoLleno(jt_Direccion_PuntoVenta)
                 && CampoLleno(jt_Telefono_PuntoVenta) && jl_Puntos_PuntoVenta.getSelectedIndex() != -1) {
             String Ciudad, Correo, Telefono, Direccion;
-            int ID;
-
-            ID = Integer.parseInt(jl_Puntos_PuntoVenta.getSelectedValue());
+            int ID = -1;
+            Object i = jl_Puntos_PuntoVenta.getSelectedValue();
+            ID = ((Integer) i).intValue();
             Ciudad = jt_Ciudad_PuntoVenta.getText();
             Correo = jt_Correo_PuntoVenta.getText();
             Telefono = jt_Telefono_PuntoVenta.getText();
             Direccion = jt_Direccion_PuntoVenta.getText();
-
-            ActualizarPuntoVentaEnDB(ID, Direccion, Ciudad, Telefono, Correo);
-
+            if (ID > -1) {
+                ActualizarPuntoVentaEnDB(ID, Direccion, Ciudad, Telefono, Correo);
+            }
             JOptionPane.showMessageDialog(this, "Punto de venta actualizado con exito", "OPERACION EXITOSA", JOptionPane.INFORMATION_MESSAGE);
         } else {
             JOptionPane.showMessageDialog(this, "Los campos no estan llenos o no ha seleccionado un punto de venta", "ERROR", JOptionPane.ERROR_MESSAGE);
@@ -1134,13 +1139,13 @@ public class MobilesApp extends javax.swing.JFrame {
     private void jButton25MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jButton25MouseClicked
         // TODO add your handling code here:
         if (jl_Puntos_PuntoVenta.getSelectedIndex() != -1) {
-            int ID;
-
-            ID = Integer.parseInt(jl_Puntos_PuntoVenta.getSelectedValue());
-            
-            BorrarPuntoVentaPorID(ID);
-            LlenarListas(jl_Ordenes_Orden, "ListarPuntoVenta");
-
+            int ID = -1;
+            Object i = jl_Puntos_PuntoVenta.getSelectedValue();
+            ID = ((Integer) i).intValue();
+            if (ID > -1) {
+                BorrarPuntoVentaPorID(ID);
+                LlenarListas(jl_Puntos_PuntoVenta, "stb_ListarPuntosVenta");
+            }
             JOptionPane.showMessageDialog(this, "Punto de venta eliminadao con exito", "OPERACION EXITOSA", JOptionPane.INFORMATION_MESSAGE);
         } else {
             JOptionPane.showMessageDialog(this, "Seleccione un punto de venta", "ERROR", JOptionPane.ERROR_MESSAGE);
@@ -1149,7 +1154,7 @@ public class MobilesApp extends javax.swing.JFrame {
 
     private void jButton5MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jButton5MouseClicked
         // TODO add your handling code here:
-         jd_Proveedor.setModal(false);
+        jd_Proveedor.setModal(false);
         jd_Proveedor.pack();
         jd_Proveedor.setLocationRelativeTo(this);
         jd_Proveedor.setVisible(true);
@@ -1181,27 +1186,27 @@ public class MobilesApp extends javax.swing.JFrame {
 
     private void jd_EmpleadoWindowOpened(java.awt.event.WindowEvent evt) {//GEN-FIRST:event_jd_EmpleadoWindowOpened
         // Empleados
-        LlenarListas(jl_Empleados_Empleado,"stb_listartodosEmpleados");
+        LlenarListas(jl_Empleados_Empleado, "stb_listartodosEmpleados");
     }//GEN-LAST:event_jd_EmpleadoWindowOpened
 
     private void jd_ProductoWindowOpened(java.awt.event.WindowEvent evt) {//GEN-FIRST:event_jd_ProductoWindowOpened
         // Productos
-        LlenarListas(jl_Productos_Producto,"stb_listarProductos");
+        LlenarListas(jl_Productos_Producto, "stb_listarProductos");
     }//GEN-LAST:event_jd_ProductoWindowOpened
 
     private void jd_ProveedorWindowOpened(java.awt.event.WindowEvent evt) {//GEN-FIRST:event_jd_ProveedorWindowOpened
         // Proveedores
-        LlenarListas(jl_Proveedores_Proveedor,"stb_ListarProveedores");
+        LlenarListas(jl_Proveedores_Proveedor, "stb_ListarProveedores");
     }//GEN-LAST:event_jd_ProveedorWindowOpened
 
     private void jd_puntos_ventasWindowOpened(java.awt.event.WindowEvent evt) {//GEN-FIRST:event_jd_puntos_ventasWindowOpened
         // Puntos de venta
-        LlenarListas(jl_Puntos_PuntoVenta,"stb_ListarPuntosVenta");
+        LlenarListas(jl_Puntos_PuntoVenta, "stb_ListarPuntosVenta");
     }//GEN-LAST:event_jd_puntos_ventasWindowOpened
 
     private void formWindowOpened(java.awt.event.WindowEvent evt) {//GEN-FIRST:event_formWindowOpened
         //Ordenes
-        LlenarListas(jl_Ordenes_Orden,"stb_listarOrdenes");
+        LlenarListas(jl_Ordenes_Orden, "stb_listarOrdenes");
     }//GEN-LAST:event_formWindowOpened
 
     /**
@@ -1240,9 +1245,9 @@ public class MobilesApp extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JButton btn_borrarEmpleado;
     private javax.swing.JButton jButton1;
     private javax.swing.JButton jButton10;
-    private javax.swing.JButton jButton12;
     private javax.swing.JButton jButton13;
     private javax.swing.JButton jButton14;
     private javax.swing.JButton jButton16;
@@ -1343,7 +1348,7 @@ public class MobilesApp extends javax.swing.JFrame {
             Conect = DriverManager.getConnection(connectionUrl);
             System.out.println("Conectado!");
         } catch (SQLException ex) {
-            System.out.println("Error de conexión...\n"+ex);
+            System.out.println("Error de conexión...\n" + ex);
         }
     }
 
@@ -1392,7 +1397,7 @@ public class MobilesApp extends javax.swing.JFrame {
             CT.setString("Sueldo", Double.toString(Sueldo));
             CT.setString("Direccion", Direccion);
             java.sql.Date d = new java.sql.Date(2017, 3, 12);
-            CT.setDate("Fecha_Inicio",d);
+            CT.setDate("Fecha_Inicio", d);
             CT.setString("Telefono", Telefono);
             CT.setString("Nombre", Nombre);
             Resp = CT.execute();
@@ -1478,14 +1483,15 @@ public class MobilesApp extends javax.swing.JFrame {
         boolean Resp = true;
         try {
             Conect.setAutoCommit(false);
-            CT = Conect.prepareCall("{Call stb_ActualizarEmpleado(?, ?, ?, ?, ?, ?, ?)}");
-            CT.setInt("ID", ID);
-            CT.setString("RTN", RTN);
-            CT.setString("Sueldo", Double.toString(Sueldo));
-            CT.setString("Direccion", Direccion);
-            CT.setString("Fecha_Inicio", Fecha);
-            CT.setString("Telefono", Telefono);
-            CT.setString("Nombre", Nombre);
+            java.sql.Date d = new java.sql.Date(2017, 3, 12);
+            CT = Conect.prepareCall("{Call stb_ActualizarEmpleado(?,?,?,?,?,?,?)}");
+            CT.setInt(1, ID);
+            CT.setString(2, RTN);
+            CT.setString(3, Double.toString(Sueldo));
+            CT.setString(4, Direccion);
+            CT.setDate(5, d);
+            CT.setString(6, Telefono);
+            CT.setString(7, Nombre);
             Resp = CT.execute();
             Conect.commit();
         } catch (Exception e) {
@@ -1552,11 +1558,11 @@ public class MobilesApp extends javax.swing.JFrame {
         try {
             Conect.setAutoCommit(false);
             CT = Conect.prepareCall("{Call stb_ActualizarPuntoVenta(?, ?, ?, ?, ?)}");
-            CT.setInt("ID", ID);
-            CT.setString("Direccion", Direccion);
-            CT.setString("Ciudad", Ciudad);
-            CT.setString("Telefono", Telefono);
-            CT.setString("Correo", Correo);
+            CT.setInt(1, ID);
+            CT.setString(2, Direccion);
+            CT.setString(3, Ciudad);
+            CT.setString(4, Telefono);
+            CT.setString(5, Correo);
             Resp = CT.execute();
             Conect.commit();
         } catch (Exception e) {
@@ -1627,7 +1633,7 @@ public class MobilesApp extends javax.swing.JFrame {
         try {
             Conect.setAutoCommit(false);
             CT = Conect.prepareCall("{Call stb_deletePuntoVentabyID(?)}");
-            CT.setInt("ID", ID);
+            CT.setInt(1, ID);
             Resp = CT.execute();
             Conect.commit();
         } catch (Exception e) {
