@@ -1,7 +1,6 @@
 -------------------------------------------AGREGADO----------------------------------------
 go
 alter procedure stb_insertOrden
---@idOrden varchar(10),
 @idEmpleado varchar(10),
 @idPuntoVenta varchar(10)
 as
@@ -11,12 +10,7 @@ begin
 			from dbo.Punto_venta Pv
 			where Pv.ID = @idPuntoVenta)
 	begin 
-		--if exists(select* from dbo.Orden O where O.ID = @idOrden)
-		--begin 
-			--print 'Id de orden existente'
-		--end
-		--else
-			insert  dbo.Orden values (GETDATE(), @idEmpleado, @idPuntoVenta)
+		insert  dbo.Orden values (GETDATE(), @idEmpleado, @idPuntoVenta)
 	end
 end
 
