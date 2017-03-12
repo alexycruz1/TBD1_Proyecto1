@@ -1,8 +1,8 @@
 -------------------------------------------AGREGADO----------------------------------------
 go
 alter procedure stb_insertOrden
-@idEmpleado varchar(10),
-@idPuntoVenta varchar(10)
+@idEmpleado int,
+@idPuntoVenta int
 as
 if exists(select* from dbo.Empleado E where E.ID = @idEmpleado)
 begin
@@ -18,8 +18,8 @@ end
 
 go 
 create procedure stb_insertDetalle
-@idOrden varchar(10), 
-@idProducto varchar(10),
+@idOrden int, 
+@idProducto int,
 @subtotal money, 
 @total money,
 @descuento money
@@ -68,13 +68,13 @@ create trigger trg_InsertarProducto
 on dbo.Producto
 instead of insert 
 as 
-declare @idProducto varchar(10),
+declare @idProducto int,
 @nombreProducto varchar(50),
 @precioVenta money,
 @precioCompra money,
 @unidades bigint,
 @descripcion varchar(max),
-@idProveedor varchar(10)
+@idProveedor int
 
 select  @idProducto = i.ID, @nombreProducto = i.Nombre, @precioVenta = i.Precio_Venta, @precioCompra = i.Precio_Compra,
 		@unidades = i.Unidades, @descripcion = i.Descripcion, @idProveedor = i.ID_Proveedor
@@ -106,20 +106,12 @@ else
 
 go
 create procedure stb_insertPuntoVenta
-@idPuntoVenta varchar(10),
 @Direccion varchar(max),
 @Ciudad varchar(50),
 @Telefono char(9),
 @Correo varchar(50)
 as
-if exists(select*
-	  from dbo.Punto_venta PV
-	  where PV.ID = @idPuntoVenta)
-	  begin
-		print 'Id de punto de venta existente'
-	  end
-else	
-	insert  dbo.Punto_venta values (@idPuntoVenta, @Direccion, @Ciudad, @Telefono, @Correo)
+insert  dbo.Punto_venta values (@Direccion, @Ciudad, @Telefono, @Correo)
 ----------------------------------------------------------------------------------------------------------------------------------------
 
 
@@ -136,9 +128,9 @@ insert  dbo.Proveedores values (@Nombre, @Telefono, @Correo)
 
 GO
 CREATE PROCEDURE stb_ActualizarOrden
-@idOrden varchar(10),
-@idEmpleado varchar(10),
-@idPuntoVenta varchar(10),
+@idOrden int,
+@idEmpleado int,
+@idPuntoVenta int,
 @Fecha Date
 as
 if exists(select* 
@@ -162,8 +154,8 @@ end
 ---------------------------------------------------------------------------------------------------------------------------
 go 
 create procedure stb_ActualizarDetalleOrden
-@idOrden varchar(10), 
-@idProducto varchar(10),
+@idOrden int, 
+@idProducto int,
 @subtotal money, 
 @total money,
 @descuento money
@@ -186,7 +178,7 @@ else
 ----------------------------------------------------------------------------------------------------------------------------------------------------
 go
 create procedure stb_ActualizarEmpleado
-@idEmpleado varchar(10),
+@idEmpleado int,
 @RTN char(14),
 @sueldo money,
 @direccion varchar(max),
@@ -213,13 +205,13 @@ end
 -----------------------------------------------------------------------------------------------------------------
 go
 create procedure stb_ActualizarProducto
-@idProducto varchar(10),
+@idProducto int,
 @nombreProducto varchar(50),
 @precioVenta money,
 @precioCompra money,
 @unidades bigint,
 @descripcion varchar(max),
-@idProveedor varchar(10)
+@idProveedor int
 as
 if exists(select* from dbo.Producto P where P.ID = @idProducto)
 begin 
@@ -230,7 +222,7 @@ end
 ----------------------------------------------------------------------------------------------------------
 go
 create procedure stb_ActualizarPuntoVenta
-@idPuntoVenta varchar(10),
+@idPuntoVenta int,
 @Direccion varchar(max),
 @Ciudad varchar(50),
 @Telefono char(9),
@@ -248,7 +240,7 @@ else
 -------------------------------------------------------------------------------------------------------------------
 go
 create procedure stb_ActualizarProveedores
-@idProveedores varchar(10),
+@idProveedores int,
 @Nombre varchar(50),
 @Telefono char(9),
 @Correo varchar(50)
@@ -264,7 +256,7 @@ else
 ---------------------------------------------ELIMINADO------------------------------------------------------------
 --Eliminado por ID PRODUCTO
 create procedure stb_deletebyID
-@idProducto varchar(10)
+@idProducto int
 as
 if exists(select* from dbo.Producto P where P.ID = @idProducto)
 begin 
@@ -273,7 +265,7 @@ begin
 end
 
 create procedure stb_deleteOrdenbyID
-@idOrden varchar(10)
+@idOrden int
 as
 if exists(select* from dbo.Orden O where O.ID = @idOrden)
 begin 
@@ -287,7 +279,7 @@ begin
 end
 
 create procedure stb_deleteEmpleadobyID
-@idEmpleado varchar(10)
+@idEmpleado int
 as
 if exists (select* from dbo.Empleado E where E.ID = @idEmpleado)
 begin 
@@ -296,7 +288,7 @@ begin
 end
 
 create procedure stb_deleteProveedorbyID
-@idProveedor varchar(10)
+@idProveedor int
 as
 if exists(select* from dbo.Proveedores P where P.ID = @idProveedor)
 begin
@@ -305,7 +297,7 @@ begin
 end
 
 create procedure stb_deletePuntoVentabyID
-@idPuntoVenta varchar(10)
+@idPuntoVenta int
 as 
 if exists(select* from dbo.Punto_venta PV where PV.ID = @idPuntoVenta)
 begin
@@ -324,7 +316,7 @@ select* from dbo.Producto P where P.Nombre like '%'+@nombre+'%' and P.Activo = 1
 
 --Listar Orden
 create procedure stb_listarOrden
-@idOrden varchar(10)
+@idOrden int
 as
 if exists(select* from dbo.Orden O where O.ID = @idOrden )
 begin
@@ -338,7 +330,7 @@ as
 select* from dbo.Empleado E where E.Activo = 1
 
 create procedure stb_listarEmpleado
-@idEmpleado varchar(10)
+@idEmpleado int
 as
 if exists(select* from dbo.Empleado E where E.ID = @idEmpleado)
 begin
