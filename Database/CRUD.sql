@@ -43,11 +43,11 @@ else
 ------------------------------------------------------------------------------------------------------
 go
 alter procedure stb_insertEmpleado
-@RTN char(14),
+@RTN varchar(14),
 @sueldo money,
 @direccion varchar(max),
 @fecha_inicio Date,
-@telefono char(9),
+@telefono varchar(9),
 @nombre varchar(50)
 
 as
@@ -61,7 +61,7 @@ else
 		print 'El teléfono no debería ser el mismo'
 	end
 	else
-		insert dbo.Empleado values (@RTN, @sueldo, @direccion, @fecha_inicio, @telefono, @nombre,1)
+		insert dbo.Empleado values (@RTN, @sueldo, @direccion, @fecha_inicio, @telefono, @nombre)
 
 -------------------------------------------------------------------------------------------------------------------------
 alter trigger trg_InsertarProducto
@@ -190,11 +190,11 @@ else
 go
 create procedure stb_ActualizarEmpleado
 @idEmpleado int,
-@RTN char(14),
+@RTN varchar(14),
 @sueldo money,
 @direccion varchar(max),
 @fecha_inicio date,
-@telefono char(9),
+@telefono varchar(9),
 @nombre varchar(50)
 
 as
@@ -342,7 +342,7 @@ as
 select* from dbo.Orden
 
 ---Listar Empleados
-alter procedure stb_listartodosEmpleados
+create procedure stb_listartodosEmpleados
 as
 select* from dbo.Empleado E where E.Activo = 1
 
