@@ -324,4 +324,3 @@ begin
 	update dbo.Punto_venta set Activo = 0
 	where @idPuntoVenta = ID
 end
-
