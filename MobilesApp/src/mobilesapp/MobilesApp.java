@@ -5,9 +5,11 @@
  */
 package mobilesapp;
 
+import java.sql.CallableStatement;
 import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.SQLException;
+import java.sql.CallableStatement;
 
 /**
  *
@@ -674,7 +676,7 @@ public class MobilesApp extends javax.swing.JFrame {
                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                     .addComponent(jButton4, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addComponent(jButton6, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 71, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 135, Short.MAX_VALUE)
                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(jButton5, javax.swing.GroupLayout.PREFERRED_SIZE, 167, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jButton7, javax.swing.GroupLayout.PREFERRED_SIZE, 167, javax.swing.GroupLayout.PREFERRED_SIZE))
@@ -691,7 +693,7 @@ public class MobilesApp extends javax.swing.JFrame {
                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jButton7)
                     .addComponent(jButton6))
-                .addContainerGap(145, Short.MAX_VALUE))
+                .addContainerGap(210, Short.MAX_VALUE))
         );
 
         jTabbedPane2.addTab("Productos", jPanel2);
@@ -712,21 +714,21 @@ public class MobilesApp extends javax.swing.JFrame {
             .addGroup(jPanel5Layout.createSequentialGroup()
                 .addContainerGap()
                 .addGroup(jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                    .addComponent(jButton3, javax.swing.GroupLayout.PREFERRED_SIZE, 0, Short.MAX_VALUE)
+                    .addComponent(jButton3, javax.swing.GroupLayout.DEFAULT_SIZE, 195, Short.MAX_VALUE)
                     .addComponent(jButton9, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addComponent(jButton8, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                .addContainerGap(335, Short.MAX_VALUE))
+                .addContainerGap(371, Short.MAX_VALUE))
         );
         jPanel5Layout.setVerticalGroup(
             jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel5Layout.createSequentialGroup()
                 .addGap(26, 26, 26)
-                .addComponent(jButton8, javax.swing.GroupLayout.PREFERRED_SIZE, 35, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(38, 38, 38)
-                .addComponent(jButton9)
-                .addGap(47, 47, 47)
-                .addComponent(jButton3)
-                .addContainerGap(66, Short.MAX_VALUE))
+                .addComponent(jButton8, javax.swing.GroupLayout.PREFERRED_SIZE, 47, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(26, 26, 26)
+                .addComponent(jButton9, javax.swing.GroupLayout.PREFERRED_SIZE, 52, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(36, 36, 36)
+                .addComponent(jButton3, javax.swing.GroupLayout.PREFERRED_SIZE, 53, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(117, Short.MAX_VALUE))
         );
 
         jTabbedPane2.addTab("Empresa", jPanel5);
@@ -737,15 +739,15 @@ public class MobilesApp extends javax.swing.JFrame {
             jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel4Layout.createSequentialGroup()
                 .addContainerGap()
-                .addComponent(jTabbedPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 519, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(91, Short.MAX_VALUE))
+                .addComponent(jTabbedPane2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(27, Short.MAX_VALUE))
         );
         jPanel4Layout.setVerticalGroup(
             jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel4Layout.createSequentialGroup()
-                .addGap(31, 31, 31)
-                .addComponent(jTabbedPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 322, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addContainerGap()
+                .addComponent(jTabbedPane2)
+                .addContainerGap())
         );
 
         jTabbedPane1.addTab("Administracion", new javax.swing.ImageIcon(getClass().getResource("/icons/database_32.png")), jPanel4); // NOI18N
@@ -756,14 +758,14 @@ public class MobilesApp extends javax.swing.JFrame {
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
                 .addContainerGap()
-                .addComponent(jTabbedPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 627, Short.MAX_VALUE)
+                .addComponent(jTabbedPane1)
                 .addContainerGap())
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
                 .addContainerGap()
-                .addComponent(jTabbedPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 459, Short.MAX_VALUE)
+                .addComponent(jTabbedPane1)
                 .addContainerGap())
         );
 
@@ -903,6 +905,7 @@ public class MobilesApp extends javax.swing.JFrame {
     private javax.swing.JDialog puntos_ventas;
     // End of variables declaration//GEN-END:variables
     Connection Conect;
+
     public void Conectar() {
         try {
             String connectionUrl = "jdbc:sqlserver://;database=MovilDB;integratedSecurity=true;";
@@ -910,6 +913,297 @@ public class MobilesApp extends javax.swing.JFrame {
             System.out.println("Conectado!");
         } catch (SQLException ex) {
             System.out.println("Error de conexión...");
+        }
+    }
+
+    //----------------------------------METODOS DE AGREGAR-----------------------------------------------------
+    public void InsertarProveedorEnDB(String ID, String Nombre, String Telefono, String Correo) {
+        CallableStatement CT = null;
+        boolean Resp = true;
+        try {
+            Conect.setAutoCommit(false);
+            CT = Conect.prepareCall("{Call stb_insertProveedores(?, ?, ?, ?)}");
+            CT.setString("ID", ID);
+            CT.setString("Nombre", Nombre);
+            CT.setString("Telefono", Telefono);
+            CT.setString("Correo", Correo);
+            Resp = CT.execute();
+            Conect.commit();
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+    }
+
+    public void InsertarDetalleOrdenEnDB(String ID, String IDProducto, double Subtotal, double Total, double Descuento) {
+        CallableStatement CT = null;
+        boolean Resp = true;
+        try {
+            Conect.setAutoCommit(false);
+            CT = Conect.prepareCall("{Call stb_insertarDetalle(?, ?, ?, ?, ?)}");
+            CT.setString("ID_Orden", ID);
+            CT.setString("ID_Producto", IDProducto);
+            CT.setString("Subtotal", Double.toString(Subtotal));
+            CT.setString("Total", Double.toString(Total));
+            CT.setString("Descuento", Double.toString(Descuento));
+            Resp = CT.execute();
+            Conect.commit();
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+    }
+
+    public void InsertarEmpleadoEnDB(String ID, String RTN, double Sueldo, String Direccion, String Fecha, String Telefono, String Nombre) {
+        CallableStatement CT = null;
+        boolean Resp = true;
+        try {
+            Conect.setAutoCommit(false);
+            CT = Conect.prepareCall("{Call stb_insertEmpleado(?, ?, ?, ?, ?, ?, ?)}");
+            CT.setString("ID", ID);
+            CT.setString("RTN", RTN);
+            CT.setString("Sueldo", Double.toString(Sueldo));
+            CT.setString("Direccion", Direccion);
+            CT.setString("Fecha_Inicio", Fecha);
+            CT.setString("Telefono", Telefono);
+            CT.setString("Nombre", Nombre);
+            Resp = CT.execute();
+            Conect.commit();
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+    }
+
+    public void InsertarOrdenEnDB(String ID, String IDEmpleado, String IDPuntoDeVenta) {
+        CallableStatement CT = null;
+        boolean Resp = true;
+        try {
+            Conect.setAutoCommit(false);
+            CT = Conect.prepareCall("{Call stb_insertOrden(?, ?, ?)}");
+            CT.setString("ID", ID);
+            CT.setString("ID_Empleado", IDEmpleado);
+            CT.setString("ID_PuntoVenta", IDPuntoDeVenta);
+            Resp = CT.execute();
+            Conect.commit();
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+    }
+
+    public void InsertarProductoEnDB(String ID, String Nombre, double PrecioVenta, double PrecioCompra, int Unidades, String Descripcion, String IDProveedor) {
+        CallableStatement CT = null;
+        boolean Resp = true;
+        try {
+            Conect.setAutoCommit(false);
+            CT = Conect.prepareCall("{Call stb_insertProducto(?, ?, ?, ?, ?, ?, ?)}");
+            CT.setString("ID", ID);
+            CT.setString("Nombre", Nombre);
+            CT.setString("Precio_Venta", Double.toString(PrecioVenta));
+            CT.setString("Precio_Compra", Double.toString(PrecioCompra));
+            CT.setString("Unidades", Double.toString(Unidades));
+            CT.setString("Descripcion", Descripcion);
+            CT.setString("ID_Proveedor", IDProveedor);
+            Resp = CT.execute();
+            Conect.commit();
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+    }
+
+    public void InsertarPuntoVentaEnDB(String ID, String Direccion, String Ciudad, String Telefono, String Correo) {
+        CallableStatement CT = null;
+        boolean Resp = true;
+        try {
+            Conect.setAutoCommit(false);
+            CT = Conect.prepareCall("{Call stb_insertPuntoVenta(?, ?, ?, ?, ?)}");
+            CT.setString("ID", ID);
+            CT.setString("Direccion", Direccion);
+            CT.setString("Ciudad", Ciudad);
+            CT.setString("Telefono", Telefono);
+            CT.setString("Correo", Correo);
+            Resp = CT.execute();
+            Conect.commit();
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+    }
+
+//------------------------------------------------------METODOS DE MODIFICAR----------------------------
+    public void ActualizarDetalleOrdenEnDB(String ID, String IDProducto, double Subtotal, double Total, double Descuento) {
+        CallableStatement CT = null;
+        boolean Resp = true;
+        try {
+            Conect.setAutoCommit(false);
+            CT = Conect.prepareCall("{Call stb_ActualizarDetalleOrden(?, ?, ?, ?, ?)}");
+            CT.setString("ID_Orden", ID);
+            CT.setString("ID_Producto", IDProducto);
+            CT.setString("Subtotal", Double.toString(Subtotal));
+            CT.setString("Total", Double.toString(Total));
+            CT.setString("Descuento", Double.toString(Descuento));
+            Resp = CT.execute();
+            Conect.commit();
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+    }
+
+    public void ActualizarEmpleadoEnDB(String ID, String RTN, double Sueldo, String Direccion, String Fecha, String Telefono, String Nombre) {
+        CallableStatement CT = null;
+        boolean Resp = true;
+        try {
+            Conect.setAutoCommit(false);
+            CT = Conect.prepareCall("{Call stb_ActualizarEmpleado(?, ?, ?, ?, ?, ?, ?)}");
+            CT.setString("ID", ID);
+            CT.setString("RTN", RTN);
+            CT.setString("Sueldo", Double.toString(Sueldo));
+            CT.setString("Direccion", Direccion);
+            CT.setString("Fecha_Inicio", Fecha);
+            CT.setString("Telefono", Telefono);
+            CT.setString("Nombre", Nombre);
+            Resp = CT.execute();
+            Conect.commit();
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+    }
+
+    public void ActualizarOrdenEnDB(String ID, String IDEmpleado, String IDPuntoDeVenta) {
+        CallableStatement CT = null;
+        boolean Resp = true;
+        try {
+            Conect.setAutoCommit(false);
+            CT = Conect.prepareCall("{Call stb_ActualizarOrden(?, ?, ?)}");
+            CT.setString("ID", ID);
+            CT.setString("ID_Empleado", IDEmpleado);
+            CT.setString("ID_PuntoVenta", IDPuntoDeVenta);
+            Resp = CT.execute();
+            Conect.commit();
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+    }
+
+    public void ActualizarProductoEnDB(String ID, String Nombre, double PrecioVenta, double PrecioCompra, int Unidades, String Descripcion, String IDProveedor) {
+        CallableStatement CT = null;
+        boolean Resp = true;
+        try {
+            Conect.setAutoCommit(false);
+            CT = Conect.prepareCall("{Call stb_ActualizarProducto(?, ?, ?, ?, ?, ?, ?)}");
+            CT.setString("ID", ID);
+            CT.setString("Nombre", Nombre);
+            CT.setString("Precio_Venta", Double.toString(PrecioVenta));
+            CT.setString("Precio_Compra", Double.toString(PrecioCompra));
+            CT.setString("Unidades", Double.toString(Unidades));
+            CT.setString("Descripcion", Descripcion);
+            CT.setString("ID_Proveedor", IDProveedor);
+            Resp = CT.execute();
+            Conect.commit();
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+    }
+
+    public void ActualizarProveedorEnDB(String ID, String Nombre, String Telefono, String Correo) {
+        CallableStatement CT = null;
+        boolean Resp = true;
+        try {
+            Conect.setAutoCommit(false);
+            CT = Conect.prepareCall("{Call stb_ActualizarProveedores(?, ?, ?, ?)}");
+            CT.setString("ID", ID);
+            CT.setString("Nombre", Nombre);
+            CT.setString("Telefono", Telefono);
+            CT.setString("Correo", Correo);
+            Resp = CT.execute();
+            Conect.commit();
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+    }
+
+    public void ActualizarPuntoVentaEnDB(String ID, String Direccion, String Ciudad, String Telefono, String Correo) {
+        CallableStatement CT = null;
+        boolean Resp = true;
+        try {
+            Conect.setAutoCommit(false);
+            CT = Conect.prepareCall("{Call stb_ActualizarPuntoVenta(?, ?, ?, ?, ?)}");
+            CT.setString("ID", ID);
+            CT.setString("Direccion", Direccion);
+            CT.setString("Ciudad", Ciudad);
+            CT.setString("Telefono", Telefono);
+            CT.setString("Correo", Correo);
+            Resp = CT.execute();
+            Conect.commit();
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+    }
+
+//----------------------------METODOS DE ELIMINAR--------------------------------------------------------
+    public void BorrarProductoPorID(String ID) {
+        CallableStatement CT = null;
+        boolean Resp = true;
+        try {
+            Conect.setAutoCommit(false);
+            CT = Conect.prepareCall("{Call stb_deletbyID(?)}");
+            CT.setString("ID", ID);
+            Resp = CT.execute();
+            Conect.commit();
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+    }
+
+    public void BorrarOrdenPorID(String ID) {
+        CallableStatement CT = null;
+        boolean Resp = true;
+        try {
+            Conect.setAutoCommit(false);
+            CT = Conect.prepareCall("{Call stb_deleteOrdenbyID(?)}");
+            CT.setString("ID", ID);
+            Resp = CT.execute();
+            Conect.commit();
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+    }
+
+    public void BorrarEmpleadoPorID(String ID) {
+        CallableStatement CT = null;
+        boolean Resp = true;
+        try {
+            Conect.setAutoCommit(false);
+            CT = Conect.prepareCall("{Call stb_deleteEmpleadobyID(?)}");
+            CT.setString("ID", ID);
+            Resp = CT.execute();
+            Conect.commit();
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+    }
+
+    public void BorrarProveedorPorID(String ID) {
+        CallableStatement CT = null;
+        boolean Resp = true;
+        try {
+            Conect.setAutoCommit(false);
+            CT = Conect.prepareCall("{Call stb_deleteProveedorbyID(?)}");
+            CT.setString("ID", ID);
+            Resp = CT.execute();
+            Conect.commit();
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+    }
+
+    public void BorrarPuntoVentaPorID(String ID) {
+        CallableStatement CT = null;
+        boolean Resp = true;
+        try {
+            Conect.setAutoCommit(false);
+            CT = Conect.prepareCall("{Call stb_deletePuntoVentabyID(?)}");
+            CT.setString("ID", ID);
+            Resp = CT.execute();
+            Conect.commit();
+        } catch (Exception e) {
+            e.printStackTrace();
         }
     }
 }

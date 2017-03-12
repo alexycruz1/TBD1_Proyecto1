@@ -292,7 +292,7 @@ begin
 	where ID = @idOrden
 end
 
-create procedure stb_deleteEmpledobyID
+create procedure stb_deleteEmpleadobyID
 @idEmpleado varchar(10)
 as
 if exists (select* from dbo.Empleado E where E.ID = @idEmpleado)
@@ -310,7 +310,7 @@ begin
 	where @idProveedor = ID
 end
 
-create procedure stb_deletePuntoVentebyID
+create procedure stb_deletePuntoVentabyID
 @idPuntoVenta varchar(10)
 as 
 if exists(select* from dbo.Punto_venta PV where PV.ID = @idPuntoVenta)
