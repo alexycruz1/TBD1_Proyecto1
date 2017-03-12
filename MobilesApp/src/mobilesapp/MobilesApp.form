@@ -3,6 +3,9 @@
 <Form version="1.3" maxVersion="1.9" type="org.netbeans.modules.form.forminfo.JFrameFormInfo">
   <NonVisualComponents>
     <Container class="javax.swing.JDialog" name="jd_Empleado">
+      <Events>
+        <EventHandler event="windowOpened" listener="java.awt.event.WindowListener" parameters="java.awt.event.WindowEvent" handler="jd_EmpleadoWindowOpened"/>
+      </Events>
 
       <Layout>
         <DimensionLayout dim="0">
@@ -202,6 +205,9 @@
       </SubComponents>
     </Container>
     <Container class="javax.swing.JDialog" name="jd_Producto">
+      <Events>
+        <EventHandler event="windowOpened" listener="java.awt.event.WindowListener" parameters="java.awt.event.WindowEvent" handler="jd_ProductoWindowOpened"/>
+      </Events>
 
       <Layout>
         <DimensionLayout dim="0">
@@ -285,7 +291,6 @@
                                           <Component id="jLabel21" alignment="3" min="-2" max="-2" attributes="0"/>
                                       </Group>
                                   </Group>
-                                  <EmptySpace type="separate" max="-2" attributes="0"/>
                                   <Group type="103" groupAlignment="3" attributes="0">
                                       <Component id="jt_Unidades_Producto" alignment="3" min="-2" max="-2" attributes="0"/>
                                       <Component id="jLabel22" alignment="3" min="-2" max="-2" attributes="0"/>
@@ -427,6 +432,9 @@
       </SubComponents>
     </Container>
     <Container class="javax.swing.JDialog" name="jd_Proveedor">
+      <Events>
+        <EventHandler event="windowOpened" listener="java.awt.event.WindowListener" parameters="java.awt.event.WindowEvent" handler="jd_ProveedorWindowOpened"/>
+      </Events>
 
       <Layout>
         <DimensionLayout dim="0">
@@ -594,6 +602,9 @@
       </SubComponents>
     </Container>
     <Container class="javax.swing.JDialog" name="jd_puntos_ventas">
+      <Events>
+        <EventHandler event="windowOpened" listener="java.awt.event.WindowListener" parameters="java.awt.event.WindowEvent" handler="jd_puntos_ventasWindowOpened"/>
+      </Events>
 
       <Layout>
         <DimensionLayout dim="0">
@@ -836,6 +847,9 @@
     <SyntheticProperty name="formSizePolicy" type="int" value="1"/>
     <SyntheticProperty name="generateCenter" type="boolean" value="false"/>
   </SyntheticProperties>
+  <Events>
+    <EventHandler event="windowOpened" listener="java.awt.event.WindowListener" parameters="java.awt.event.WindowEvent" handler="formWindowOpened"/>
+  </Events>
   <AuxValues>
     <AuxValue name="FormSettings_autoResourcing" type="java.lang.Integer" value="0"/>
     <AuxValue name="FormSettings_autoSetComponentName" type="java.lang.Boolean" value="false"/>
@@ -939,9 +953,9 @@
                                   <Component id="jt_IDPuntoVenta_Orden" alignment="3" min="-2" max="-2" attributes="0"/>
                               </Group>
                               <EmptySpace min="-2" pref="31" max="-2" attributes="0"/>
-                              <Group type="103" groupAlignment="3" attributes="0">
-                                  <Component id="jLabel5" alignment="3" min="-2" max="-2" attributes="0"/>
+                              <Group type="103" groupAlignment="0" attributes="0">
                                   <Component id="jl_Fecha_Orden" alignment="0" min="-2" pref="23" max="-2" attributes="0"/>
+                                  <Component id="jLabel5" min="-2" max="-2" attributes="0"/>
                               </Group>
                               <EmptySpace min="-2" pref="62" max="-2" attributes="0"/>
                               <Group type="103" groupAlignment="0" max="-2" attributes="0">
@@ -1158,7 +1172,7 @@
                                   <Component id="jButton9" alignment="0" max="32767" attributes="0"/>
                                   <Component id="jButton8" alignment="0" max="32767" attributes="0"/>
                               </Group>
-                              <EmptySpace pref="371" max="32767" attributes="0"/>
+                              <EmptySpace pref="368" max="32767" attributes="0"/>
                           </Group>
                       </Group>
                     </DimensionLayout>

@@ -58,7 +58,7 @@ public class MobilesApp extends javax.swing.JFrame {
         jt_Fecha_Empleado = new javax.swing.JTextField();
         jt_Sueldo_Empleado = new javax.swing.JTextField();
         jScrollPane3 = new javax.swing.JScrollPane();
-        jl_Empleados_Empleado = new javax.swing.JList<>();
+        jl_Empleados_Empleado = new javax.swing.JList<String>();
         jd_Producto = new javax.swing.JDialog();
         jLabel18 = new javax.swing.JLabel();
         jLabel19 = new javax.swing.JLabel();
@@ -78,7 +78,7 @@ public class MobilesApp extends javax.swing.JFrame {
         jButton16 = new javax.swing.JButton();
         jButton17 = new javax.swing.JButton();
         jScrollPane4 = new javax.swing.JScrollPane();
-        jl_Productos_Producto = new javax.swing.JList<>();
+        jl_Productos_Producto = new javax.swing.JList<String>();
         jd_Proveedor = new javax.swing.JDialog();
         jLabel24 = new javax.swing.JLabel();
         jLabel26 = new javax.swing.JLabel();
@@ -91,7 +91,7 @@ public class MobilesApp extends javax.swing.JFrame {
         jButton20 = new javax.swing.JButton();
         jButton21 = new javax.swing.JButton();
         jScrollPane2 = new javax.swing.JScrollPane();
-        jl_Proveedores_Proveedor = new javax.swing.JList<>();
+        jl_Proveedores_Proveedor = new javax.swing.JList<String>();
         jd_puntos_ventas = new javax.swing.JDialog();
         jLabel29 = new javax.swing.JLabel();
         jLabel31 = new javax.swing.JLabel();
@@ -106,7 +106,7 @@ public class MobilesApp extends javax.swing.JFrame {
         jButton24 = new javax.swing.JButton();
         jButton25 = new javax.swing.JButton();
         jScrollPane5 = new javax.swing.JScrollPane();
-        jl_Puntos_PuntoVenta = new javax.swing.JList<>();
+        jl_Puntos_PuntoVenta = new javax.swing.JList<String>();
         jd_Inventario = new javax.swing.JDialog();
         jScrollPane6 = new javax.swing.JScrollPane();
         jTable1 = new javax.swing.JTable();
@@ -123,7 +123,7 @@ public class MobilesApp extends javax.swing.JFrame {
         jb_AgregarOrden_Orden = new javax.swing.JButton();
         jButton2 = new javax.swing.JButton();
         jScrollPane7 = new javax.swing.JScrollPane();
-        jl_Ordenes_Orden = new javax.swing.JList<>();
+        jl_Ordenes_Orden = new javax.swing.JList<String>();
         jPanel4 = new javax.swing.JPanel();
         jTabbedPane2 = new javax.swing.JTabbedPane();
         jPanel2 = new javax.swing.JPanel();
@@ -134,6 +134,12 @@ public class MobilesApp extends javax.swing.JFrame {
         jButton8 = new javax.swing.JButton();
         jButton9 = new javax.swing.JButton();
         jButton3 = new javax.swing.JButton();
+
+        jd_Empleado.addWindowListener(new java.awt.event.WindowAdapter() {
+            public void windowOpened(java.awt.event.WindowEvent evt) {
+                jd_EmpleadoWindowOpened(evt);
+            }
+        });
 
         jLabel8.setText("Recursos Humanos");
 
@@ -252,6 +258,12 @@ public class MobilesApp extends javax.swing.JFrame {
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
+        jd_Producto.addWindowListener(new java.awt.event.WindowAdapter() {
+            public void windowOpened(java.awt.event.WindowEvent evt) {
+                jd_ProductoWindowOpened(evt);
+            }
+        });
+
         jLabel18.setText("ID Proveedor");
 
         jLabel19.setText("Nombre");
@@ -363,7 +375,6 @@ public class MobilesApp extends javax.swing.JFrame {
                                     .addGroup(jd_ProductoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                                         .addComponent(jt_PrecioCompra_Producto, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                                         .addComponent(jLabel21)))
-                                .addGap(18, 18, 18)
                                 .addGroup(jd_ProductoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                                     .addComponent(jt_Unidades_Producto, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                                     .addComponent(jLabel22)))
@@ -379,6 +390,12 @@ public class MobilesApp extends javax.swing.JFrame {
                             .addComponent(jButton17))))
                 .addGap(36, 36, 36))
         );
+
+        jd_Proveedor.addWindowListener(new java.awt.event.WindowAdapter() {
+            public void windowOpened(java.awt.event.WindowEvent evt) {
+                jd_ProveedorWindowOpened(evt);
+            }
+        });
 
         jLabel24.setText("Gestion de Proveedores");
 
@@ -478,6 +495,12 @@ public class MobilesApp extends javax.swing.JFrame {
                             .addComponent(jButton21))))
                 .addContainerGap(43, Short.MAX_VALUE))
         );
+
+        jd_puntos_ventas.addWindowListener(new java.awt.event.WindowAdapter() {
+            public void windowOpened(java.awt.event.WindowEvent evt) {
+                jd_puntos_ventasWindowOpened(evt);
+            }
+        });
 
         jLabel29.setText("Gestion de Puntos de Venta");
 
@@ -621,6 +644,11 @@ public class MobilesApp extends javax.swing.JFrame {
         );
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        addWindowListener(new java.awt.event.WindowAdapter() {
+            public void windowOpened(java.awt.event.WindowEvent evt) {
+                formWindowOpened(evt);
+            }
+        });
 
         jLabel1.setText("Formulario de ordenes");
         jLabel1.setBorder(javax.swing.BorderFactory.createEtchedBorder());
@@ -695,9 +723,9 @@ public class MobilesApp extends javax.swing.JFrame {
                             .addComponent(jLabel4)
                             .addComponent(jt_IDPuntoVenta_Orden, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                         .addGap(31, 31, 31)
-                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                            .addComponent(jLabel5)
-                            .addComponent(jl_Fecha_Orden, javax.swing.GroupLayout.PREFERRED_SIZE, 23, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(jl_Fecha_Orden, javax.swing.GroupLayout.PREFERRED_SIZE, 23, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(jLabel5))
                         .addGap(62, 62, 62)
                         .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                             .addComponent(jb_AgregarOrden_Orden, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
@@ -781,7 +809,7 @@ public class MobilesApp extends javax.swing.JFrame {
                     .addComponent(jButton3, javax.swing.GroupLayout.DEFAULT_SIZE, 195, Short.MAX_VALUE)
                     .addComponent(jButton9, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addComponent(jButton8, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                .addContainerGap(371, Short.MAX_VALUE))
+                .addContainerGap(368, Short.MAX_VALUE))
         );
         jPanel5Layout.setVerticalGroup(
             jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -887,9 +915,9 @@ public class MobilesApp extends javax.swing.JFrame {
             RTN = jt_RTN_Empleado.getText();
             Sueldo = Double.parseDouble(jt_Sueldo_Empleado.getText());
             Telefono = jt_Telefono_Empleado.getText();
-
             InsertarEmpleadoEnDB(RTN, Sueldo, Direccion, Fecha, Telefono, Nombre);
-            LlenarListas(jl_Ordenes_Orden, "ListarEmpleados");
+            LlenarListas(jl_Ordenes_Orden, "stb_listartodosEmpleados");
+            LlenarListas(jl_Empleados_Empleado,"stb_listartodosEmpleados");
 
             JOptionPane.showMessageDialog(this, "Empleado agregado con exito", "OPERACION EXITOSA", JOptionPane.INFORMATION_MESSAGE);
         } else {
@@ -916,7 +944,7 @@ public class MobilesApp extends javax.swing.JFrame {
             Sueldo = Double.parseDouble(jt_Sueldo_Empleado.getText());
             Telefono = jt_Telefono_Empleado.getText();
 
-            ActualizarEmpleadoEnDB(WIDTH, RTN, Sueldo, Direccion, Fecha, Telefono, Nombre);
+            ActualizarEmpleadoEnDB(1, RTN, Sueldo, Direccion, Fecha, Telefono, Nombre);
 
             JOptionPane.showMessageDialog(this, "Empleado editado con exito", "OPERACION EXITOSA", JOptionPane.INFORMATION_MESSAGE);
         } else {
@@ -928,7 +956,8 @@ public class MobilesApp extends javax.swing.JFrame {
         // TODO add your handling code here:
         if (jl_Empleados_Empleado.getSelectedIndex() != -1) {
             int IDEmpleado;
-
+            //IDEmpleado = Integer.parseInt(jl_Empleados_Empleado.getSelectedValue
+            String i = jl_Empleados_Empleado.getSelectedValue();
             IDEmpleado = Integer.parseInt(jl_Empleados_Empleado.getSelectedValue());
 
             BorrarEmpleadoPorID(IDEmpleado);
@@ -1150,6 +1179,31 @@ public class MobilesApp extends javax.swing.JFrame {
         jd_puntos_ventas.setVisible(true);
     }//GEN-LAST:event_jButton9MouseClicked
 
+    private void jd_EmpleadoWindowOpened(java.awt.event.WindowEvent evt) {//GEN-FIRST:event_jd_EmpleadoWindowOpened
+        // Empleados
+        LlenarListas(jl_Empleados_Empleado,"stb_listartodosEmpleados");
+    }//GEN-LAST:event_jd_EmpleadoWindowOpened
+
+    private void jd_ProductoWindowOpened(java.awt.event.WindowEvent evt) {//GEN-FIRST:event_jd_ProductoWindowOpened
+        // Productos
+        LlenarListas(jl_Productos_Producto,"stb_listarProductos");
+    }//GEN-LAST:event_jd_ProductoWindowOpened
+
+    private void jd_ProveedorWindowOpened(java.awt.event.WindowEvent evt) {//GEN-FIRST:event_jd_ProveedorWindowOpened
+        // Proveedores
+        LlenarListas(jl_Proveedores_Proveedor,"stb_ListarProveedores");
+    }//GEN-LAST:event_jd_ProveedorWindowOpened
+
+    private void jd_puntos_ventasWindowOpened(java.awt.event.WindowEvent evt) {//GEN-FIRST:event_jd_puntos_ventasWindowOpened
+        // Puntos de venta
+        LlenarListas(jl_Puntos_PuntoVenta,"stb_ListarPuntosVenta");
+    }//GEN-LAST:event_jd_puntos_ventasWindowOpened
+
+    private void formWindowOpened(java.awt.event.WindowEvent evt) {//GEN-FIRST:event_formWindowOpened
+        //Ordenes
+        LlenarListas(jl_Ordenes_Orden,"stb_listarOrdenes");
+    }//GEN-LAST:event_formWindowOpened
+
     /**
      * @param args the command line arguments
      */
@@ -1289,7 +1343,7 @@ public class MobilesApp extends javax.swing.JFrame {
             Conect = DriverManager.getConnection(connectionUrl);
             System.out.println("Conectado!");
         } catch (SQLException ex) {
-            System.out.println("Error de conexión...");
+            System.out.println("Error de conexión...\n"+ex);
         }
     }
 
@@ -1337,7 +1391,8 @@ public class MobilesApp extends javax.swing.JFrame {
             CT.setString("RTN", RTN);
             CT.setString("Sueldo", Double.toString(Sueldo));
             CT.setString("Direccion", Direccion);
-            CT.setString("Fecha_Inicio", Fecha);
+            java.sql.Date d = new java.sql.Date(2017, 3, 12);
+            CT.setDate("Fecha_Inicio",d);
             CT.setString("Telefono", Telefono);
             CT.setString("Nombre", Nombre);
             Resp = CT.execute();
@@ -1601,6 +1656,7 @@ public class MobilesApp extends javax.swing.JFrame {
                 modelo.addElement(ID);
             }
         } catch (Exception e) {
+            e.printStackTrace();
         }
 
         Lista.setModel(modelo);

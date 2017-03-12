@@ -1,6 +1,6 @@
 -------------------------------------------AGREGADO----------------------------------------
 go
-alter procedure stb_insertOrden
+create procedure stb_insertOrden
 @idEmpleado int,
 @idPuntoVenta int
 as
@@ -42,11 +42,11 @@ else
 
 ------------------------------------------------------------------------------------------------------
 go
-create procedure stb_insertEmpleado
+alter procedure stb_insertEmpleado
 @RTN char(14),
 @sueldo money,
 @direccion varchar(max),
-@fecha_inicio date,
+@fecha_inicio Date,
 @telefono char(9),
 @nombre varchar(50)
 
@@ -61,7 +61,7 @@ else
 		print 'El teléfono no debería ser el mismo'
 	end
 	else
-		insert dbo.Empleado values (@RTN, @sueldo, @direccion, @fecha_inicio, @telefono, @nombre)
+		insert dbo.Empleado values (@RTN, @sueldo, @direccion, @fecha_inicio, @telefono, @nombre,1)
 
 -------------------------------------------------------------------------------------------------------------------------
 alter trigger trg_InsertarProducto
@@ -94,8 +94,11 @@ else
 	if exists(select* from dbo.Proveedores PP 
 			  where  PP.ID = @idProveedor)
 		begin 
-			insert dbo.Producto values(@idProducto, @nombreProducto, @precioVenta, @precioCompra,@unidades, @descripcion, @idProveedor,1)	
-			insert dbo.Proveedor_Producto values (@idProveedor,@idProducto)
+			set identity_insert dbo.Producto on
+				insert into dbo.Producto (ID,Nombre,Precio_Venta,Precio_Compra,Unidades,Descripcion,ID_Proveedor,Activo)
+				values(@idProducto, @nombreProducto, @precioVenta, @precioCompra,@unidades, @descripcion, @idProveedor,1)	
+			set identity_insert dbo.Producto off;
+			insert into dbo.Proveedor_Producto values (@idProveedor,@idProducto)
 		end 
 		else
 			print 'nada'
@@ -119,7 +122,7 @@ create procedure stb_insertPuntoVenta
 @Telefono char(9),
 @Correo varchar(50)
 as
-insert  dbo.Punto_venta values (@Direccion, @Ciudad, @Telefono, @Correo)
+insert  dbo.Punto_venta values (@Direccion, @Ciudad, @Telefono, @Correo,1)
 ----------------------------------------------------------------------------------------------------------------------------------------
 
 
@@ -129,7 +132,7 @@ create procedure stb_insertProveedores
 @Telefono char(9),
 @Correo varchar(50)
 as
-insert  dbo.Proveedores values (@Nombre, @Telefono, @Correo)
+insert  dbo.Proveedores values (@Nombre, @Telefono, @Correo,1)
 
 --------------------------------------------------------------------------------------------------------------------------------
 -------------------------------------------MODIFICADO----------------------------------------
@@ -152,7 +155,7 @@ begin
 	begin
 		if exists(select* from dbo.Orden O where O.ID = @idOrden)
 		begin 
-			UPDATE Orden SET ID = @idOrden, Fecha = @Fecha, ID_Empleado = @idEmpleado, ID_PuntoVenta = @idPuntoVenta
+			UPDATE Orden SET Fecha = @Fecha, ID_Empleado = @idEmpleado, ID_PuntoVenta = @idPuntoVenta
 						 WHERE @idOrden = ID
 		end
 		else
@@ -201,7 +204,7 @@ begin
 	begin 
 		if exists(select* from dbo.Empleado E where E.Telefono = @telefono)
 		begin 
-			UPDATE Empleado SET ID = @idEmpleado, RTN = @RTN, Sueldo = @Sueldo, Direccion = @direccion, 
+			UPDATE Empleado SET RTN = @RTN, Sueldo = @Sueldo, Direccion = @direccion, 
 						        Fecha_inicio = @fecha_inicio, Telefono = @telefono, Nombre = @nombre
 						    WHERE ID = @idEmpleado
 		end
@@ -223,7 +226,7 @@ create procedure stb_ActualizarProducto
 as
 if exists(select* from dbo.Producto P where P.ID = @idProducto)
 begin 
-	UPDATE Producto SET ID = @idProducto, Nombre = @nombreProducto, Precio_Venta = @precioVenta, Precio_Compra = @precioCompra, 
+	UPDATE Producto SET Nombre = @nombreProducto, Precio_Venta = @precioVenta, Precio_Compra = @precioCompra, 
 	Unidades = @unidades, Descripcion = @descripcion, ID_Proveedor = @idProveedor
 	WHERE ID = @idProducto
 end
@@ -257,7 +260,7 @@ if exists(select*
 	  from dbo.Proveedores P
 	  where P.ID = @idProveedores)
 	  begin
-		UPDATE Proveedores SET ID = @idProveedores, Nombre = @Nombre, Telefono = @Telefono, Correo = @Correo
+		UPDATE Proveedores SET Nombre = @Nombre, Telefono = @Telefono, Correo = @Correo
 	  end
 else	
 	print 'Id de proveedor inexistente'
@@ -311,8 +314,6 @@ if exists(select* from dbo.Punto_venta PV where PV.ID = @idPuntoVenta)
 begin
 	update dbo.Punto_venta set Activo = 0
 	where @idPuntoVenta = ID
-<<<<<<< HEAD
-=======
 end
 
 ------------------LISTAR
@@ -321,6 +322,10 @@ create procedure stb_listarProductoMarca
 @nombre varchar(50)
 as
 select* from dbo.Producto P where P.Nombre like '%'+@nombre+'%' and P.Activo = 1
+
+create procedure stb_listarProductos
+as 
+select* from dbo.Producto P where P.Activo = 1
 
 --Listar Orden
 create procedure stb_listarOrden
@@ -332,8 +337,12 @@ begin
 	from dbo.Orden O inner join dbo.Detalle_Orden Od on O.ID = Od.ID_Orden 
 end
 
+create procedure stb_listarOrdenes
+as
+select* from dbo.Orden
+
 ---Listar Empleados
-create procedure stb_listartodosEmpleados
+alter procedure stb_listartodosEmpleados
 as
 select* from dbo.Empleado E where E.Activo = 1
 
@@ -343,5 +352,12 @@ as
 if exists(select* from dbo.Empleado E where E.ID = @idEmpleado)
 begin
 	print ''
->>>>>>> a3fddf46d21ef06be8b8d8e82d1ab28bd7b66272
 end
+
+create procedure stb_ListarProveedores
+as
+select* from dbo.Proveedores P where P.Activo = 1
+
+create procedure stb_ListarPuntosVenta
+as
+select* from dbo.Punto_venta PV where PV.Activo = 1
