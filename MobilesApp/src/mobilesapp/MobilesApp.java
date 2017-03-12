@@ -10,6 +10,12 @@ import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.SQLException;
 import java.sql.CallableStatement;
+import java.sql.ResultSet;
+import java.util.Date;
+import javax.swing.DefaultListModel;
+import javax.swing.JList;
+import javax.swing.JOptionPane;
+import javax.swing.JTextField;
 
 /**
  *
@@ -34,9 +40,8 @@ public class MobilesApp extends javax.swing.JFrame {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
-        empleado = new javax.swing.JDialog();
+        jd_Empleado = new javax.swing.JDialog();
         jLabel8 = new javax.swing.JLabel();
-        jLabel9 = new javax.swing.JLabel();
         jLabel10 = new javax.swing.JLabel();
         jLabel11 = new javax.swing.JLabel();
         jLabel12 = new javax.swing.JLabel();
@@ -44,95 +49,93 @@ public class MobilesApp extends javax.swing.JFrame {
         jLabel14 = new javax.swing.JLabel();
         jLabel15 = new javax.swing.JLabel();
         jButton10 = new javax.swing.JButton();
-        jButton11 = new javax.swing.JButton();
         jButton12 = new javax.swing.JButton();
         jButton13 = new javax.swing.JButton();
-        jTextField3 = new javax.swing.JTextField();
-        jTextField4 = new javax.swing.JTextField();
-        jTextField5 = new javax.swing.JTextField();
-        jTextField6 = new javax.swing.JTextField();
-        jTextField7 = new javax.swing.JTextField();
-        jTextField8 = new javax.swing.JTextField();
-        jTextField9 = new javax.swing.JTextField();
-        producto = new javax.swing.JDialog();
-        jLabel17 = new javax.swing.JLabel();
+        jt_RTN_Empleado = new javax.swing.JTextField();
+        jt_Nombre_Empleado = new javax.swing.JTextField();
+        jt_Telefono_Empleado = new javax.swing.JTextField();
+        jt_Direccion_Empleado = new javax.swing.JTextField();
+        jt_Fecha_Empleado = new javax.swing.JTextField();
+        jt_Sueldo_Empleado = new javax.swing.JTextField();
+        jScrollPane3 = new javax.swing.JScrollPane();
+        jl_Empleados_Empleado = new javax.swing.JList<>();
+        jd_Producto = new javax.swing.JDialog();
         jLabel18 = new javax.swing.JLabel();
         jLabel19 = new javax.swing.JLabel();
         jLabel20 = new javax.swing.JLabel();
         jLabel21 = new javax.swing.JLabel();
         jLabel22 = new javax.swing.JLabel();
         jLabel23 = new javax.swing.JLabel();
-        jTextField10 = new javax.swing.JTextField();
-        jTextField11 = new javax.swing.JTextField();
-        jTextField12 = new javax.swing.JTextField();
-        jTextField13 = new javax.swing.JTextField();
-        jTextField14 = new javax.swing.JTextField();
-        jTextField15 = new javax.swing.JTextField();
+        jt_IDProveedor_Producto = new javax.swing.JTextField();
+        jt_Nombre_Producto = new javax.swing.JTextField();
+        jt_PrecioVenta_Producto = new javax.swing.JTextField();
+        jt_PrecioCompra_Producto = new javax.swing.JTextField();
+        jt_Unidades_Producto = new javax.swing.JTextField();
         jScrollPane1 = new javax.swing.JScrollPane();
-        jTextArea1 = new javax.swing.JTextArea();
+        jta_Descripcion_Producto = new javax.swing.JTextArea();
         jLabel16 = new javax.swing.JLabel();
         jButton14 = new javax.swing.JButton();
-        jButton15 = new javax.swing.JButton();
         jButton16 = new javax.swing.JButton();
         jButton17 = new javax.swing.JButton();
-        Proveedor = new javax.swing.JDialog();
+        jScrollPane4 = new javax.swing.JScrollPane();
+        jl_Productos_Producto = new javax.swing.JList<>();
+        jd_Proveedor = new javax.swing.JDialog();
         jLabel24 = new javax.swing.JLabel();
-        jLabel25 = new javax.swing.JLabel();
         jLabel26 = new javax.swing.JLabel();
         jLabel27 = new javax.swing.JLabel();
         jLabel28 = new javax.swing.JLabel();
-        jTextField16 = new javax.swing.JTextField();
-        jTextField17 = new javax.swing.JTextField();
-        jTextField18 = new javax.swing.JTextField();
-        jTextField19 = new javax.swing.JTextField();
+        jt_Nombre_Proveedor = new javax.swing.JTextField();
+        jt_Telefono_Proveedor = new javax.swing.JTextField();
+        jt_Correo_Proveedor = new javax.swing.JTextField();
         jButton18 = new javax.swing.JButton();
-        jButton19 = new javax.swing.JButton();
         jButton20 = new javax.swing.JButton();
         jButton21 = new javax.swing.JButton();
-        puntos_ventas = new javax.swing.JDialog();
+        jScrollPane2 = new javax.swing.JScrollPane();
+        jl_Proveedores_Proveedor = new javax.swing.JList<>();
+        jd_puntos_ventas = new javax.swing.JDialog();
         jLabel29 = new javax.swing.JLabel();
-        jLabel30 = new javax.swing.JLabel();
         jLabel31 = new javax.swing.JLabel();
         jLabel32 = new javax.swing.JLabel();
         jLabel33 = new javax.swing.JLabel();
         jLabel34 = new javax.swing.JLabel();
-        jTextField20 = new javax.swing.JTextField();
-        jTextField21 = new javax.swing.JTextField();
-        jTextField22 = new javax.swing.JTextField();
-        jTextField23 = new javax.swing.JTextField();
-        jTextField24 = new javax.swing.JTextField();
+        jt_Direccion_PuntoVenta = new javax.swing.JTextField();
+        jt_Ciudad_PuntoVenta = new javax.swing.JTextField();
+        jt_Correo_PuntoVenta = new javax.swing.JTextField();
+        jt_Telefono_PuntoVenta = new javax.swing.JTextField();
         jButton22 = new javax.swing.JButton();
-        jButton23 = new javax.swing.JButton();
         jButton24 = new javax.swing.JButton();
         jButton25 = new javax.swing.JButton();
+        jScrollPane5 = new javax.swing.JScrollPane();
+        jl_Puntos_PuntoVenta = new javax.swing.JList<>();
+        jd_Inventario = new javax.swing.JDialog();
+        jScrollPane6 = new javax.swing.JScrollPane();
+        jTable1 = new javax.swing.JTable();
+        jd_HistorialOrdenes = new javax.swing.JDialog();
         jTabbedPane1 = new javax.swing.JTabbedPane();
         jPanel1 = new javax.swing.JPanel();
         jLabel1 = new javax.swing.JLabel();
-        jLabel2 = new javax.swing.JLabel();
         jLabel3 = new javax.swing.JLabel();
         jLabel4 = new javax.swing.JLabel();
         jLabel5 = new javax.swing.JLabel();
-        jLabel6 = new javax.swing.JLabel();
-        jTextField1 = new javax.swing.JTextField();
-        jTextField2 = new javax.swing.JTextField();
-        jLabel7 = new javax.swing.JLabel();
-        jButton1 = new javax.swing.JButton();
+        jt_IDEmpleado_Orden = new javax.swing.JTextField();
+        jt_IDPuntoVenta_Orden = new javax.swing.JTextField();
+        jl_Fecha_Orden = new javax.swing.JLabel();
+        jb_AgregarOrden_Orden = new javax.swing.JButton();
         jButton2 = new javax.swing.JButton();
+        jScrollPane7 = new javax.swing.JScrollPane();
+        jl_Ordenes_Orden = new javax.swing.JList<>();
         jPanel4 = new javax.swing.JPanel();
         jTabbedPane2 = new javax.swing.JTabbedPane();
         jPanel2 = new javax.swing.JPanel();
-        jButton4 = new javax.swing.JButton();
         jButton5 = new javax.swing.JButton();
-        jButton6 = new javax.swing.JButton();
         jButton7 = new javax.swing.JButton();
+        jButton1 = new javax.swing.JButton();
         jPanel5 = new javax.swing.JPanel();
         jButton8 = new javax.swing.JButton();
         jButton9 = new javax.swing.JButton();
         jButton3 = new javax.swing.JButton();
 
         jLabel8.setText("Recursos Humanos");
-
-        jLabel9.setText("ID");
 
         jLabel10.setText("RTN");
 
@@ -148,108 +151,106 @@ public class MobilesApp extends javax.swing.JFrame {
 
         jButton10.setIcon(new javax.swing.ImageIcon(getClass().getResource("/icons/user_add_32.png"))); // NOI18N
         jButton10.setText("Agregar");
-
-        jButton11.setIcon(new javax.swing.ImageIcon(getClass().getResource("/icons/search_32.png"))); // NOI18N
-        jButton11.setText("Buscar");
+        jButton10.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                jButton10MouseClicked(evt);
+            }
+        });
 
         jButton12.setIcon(new javax.swing.ImageIcon(getClass().getResource("/icons/user_close_32.png"))); // NOI18N
         jButton12.setText("Eliminar");
+        jButton12.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                jButton12MouseClicked(evt);
+            }
+        });
 
         jButton13.setIcon(new javax.swing.ImageIcon(getClass().getResource("/icons/edit.png"))); // NOI18N
         jButton13.setText("Editar");
+        jButton13.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                jButton13MouseClicked(evt);
+            }
+        });
 
-        jTextField3.setText("jTextField3");
+        jScrollPane3.setViewportView(jl_Empleados_Empleado);
 
-        jTextField4.setText("jTextField4");
-
-        jTextField5.setText("jTextField5");
-
-        jTextField6.setText("jTextField6");
-
-        jTextField7.setText("jTextField7");
-
-        jTextField8.setText("jTextField8");
-
-        jTextField9.setText("jTextField9");
-
-        javax.swing.GroupLayout empleadoLayout = new javax.swing.GroupLayout(empleado.getContentPane());
-        empleado.getContentPane().setLayout(empleadoLayout);
-        empleadoLayout.setHorizontalGroup(
-            empleadoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(empleadoLayout.createSequentialGroup()
+        javax.swing.GroupLayout jd_EmpleadoLayout = new javax.swing.GroupLayout(jd_Empleado.getContentPane());
+        jd_Empleado.getContentPane().setLayout(jd_EmpleadoLayout);
+        jd_EmpleadoLayout.setHorizontalGroup(
+            jd_EmpleadoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jd_EmpleadoLayout.createSequentialGroup()
                 .addGap(44, 44, 44)
-                .addGroup(empleadoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                .addGroup(jd_EmpleadoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(jLabel10)
-                    .addComponent(jLabel9)
                     .addComponent(jLabel11)
                     .addComponent(jLabel12)
                     .addComponent(jLabel13)
                     .addComponent(jLabel14)
                     .addComponent(jLabel15)
                     .addComponent(jButton10))
-                .addGap(33, 33, 33)
-                .addGroup(empleadoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                    .addGroup(empleadoLayout.createSequentialGroup()
-                        .addComponent(jButton11)
+                .addGroup(jd_EmpleadoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(jd_EmpleadoLayout.createSequentialGroup()
+                        .addGap(73, 73, 73)
+                        .addComponent(jLabel8))
+                    .addGroup(jd_EmpleadoLayout.createSequentialGroup()
                         .addGap(18, 18, 18)
                         .addComponent(jButton13)
                         .addGap(18, 18, 18)
                         .addComponent(jButton12))
-                    .addComponent(jTextField3)
-                    .addComponent(jTextField4)
-                    .addComponent(jTextField5)
-                    .addComponent(jTextField6)
-                    .addComponent(jTextField7)
-                    .addComponent(jTextField8)
-                    .addComponent(jTextField9)
-                    .addGroup(empleadoLayout.createSequentialGroup()
-                        .addGap(40, 40, 40)
-                        .addComponent(jLabel8)))
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jd_EmpleadoLayout.createSequentialGroup()
+                        .addGap(33, 33, 33)
+                        .addGroup(jd_EmpleadoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(jt_Sueldo_Empleado, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 219, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(jt_Fecha_Empleado, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 219, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(jt_Direccion_Empleado, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 219, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(jt_Telefono_Empleado, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 219, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(jt_Nombre_Empleado, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 219, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(jt_RTN_Empleado, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 219, javax.swing.GroupLayout.PREFERRED_SIZE))))
+                .addGap(42, 42, 42)
+                .addComponent(jScrollPane3, javax.swing.GroupLayout.PREFERRED_SIZE, 319, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(23, Short.MAX_VALUE))
         );
-        empleadoLayout.setVerticalGroup(
-            empleadoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(empleadoLayout.createSequentialGroup()
+        jd_EmpleadoLayout.setVerticalGroup(
+            jd_EmpleadoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jd_EmpleadoLayout.createSequentialGroup()
                 .addContainerGap()
                 .addComponent(jLabel8)
                 .addGap(24, 24, 24)
-                .addGroup(empleadoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jLabel9)
-                    .addComponent(jTextField3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addGroup(empleadoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jLabel10)
-                    .addComponent(jTextField4, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addGroup(empleadoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jLabel11)
-                    .addComponent(jTextField5, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(18, 18, 18)
-                .addGroup(empleadoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jLabel12)
-                    .addComponent(jTextField6, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(18, 18, 18)
-                .addGroup(empleadoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jLabel13)
-                    .addComponent(jTextField7, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(18, 18, 18)
-                .addGroup(empleadoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jLabel14)
-                    .addComponent(jTextField8, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(18, 18, 18)
-                .addGroup(empleadoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jLabel15)
-                    .addComponent(jTextField9, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(39, 39, 39)
-                .addGroup(empleadoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jButton10)
-                    .addComponent(jButton11)
-                    .addComponent(jButton12)
-                    .addComponent(jButton13))
+                .addGroup(jd_EmpleadoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                    .addGroup(jd_EmpleadoLayout.createSequentialGroup()
+                        .addGap(12, 12, 12)
+                        .addGroup(jd_EmpleadoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(jLabel10)
+                            .addComponent(jt_RTN_Empleado, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                        .addGroup(jd_EmpleadoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(jLabel11)
+                            .addComponent(jt_Nombre_Empleado, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addGap(18, 18, 18)
+                        .addGroup(jd_EmpleadoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(jLabel12)
+                            .addComponent(jt_Telefono_Empleado, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addGap(21, 21, 21)
+                        .addGroup(jd_EmpleadoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(jLabel13)
+                            .addComponent(jt_Direccion_Empleado, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addGap(18, 18, 18)
+                        .addGroup(jd_EmpleadoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(jLabel14)
+                            .addComponent(jt_Fecha_Empleado, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addGap(18, 18, 18)
+                        .addGroup(jd_EmpleadoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(jLabel15)
+                            .addComponent(jt_Sueldo_Empleado, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addGap(56, 56, 56)
+                        .addGroup(jd_EmpleadoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(jButton10)
+                            .addComponent(jButton12)
+                            .addComponent(jButton13)))
+                    .addComponent(jScrollPane3, javax.swing.GroupLayout.DEFAULT_SIZE, 335, Short.MAX_VALUE))
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
-
-        jLabel17.setText("ID");
 
         jLabel18.setText("ID Proveedor");
 
@@ -263,122 +264,123 @@ public class MobilesApp extends javax.swing.JFrame {
 
         jLabel23.setText("Descripcion");
 
-        jTextField10.setText("jTextField10");
-
-        jTextField11.setText("jTextField11");
-
-        jTextField12.setText("jTextField12");
-
-        jTextField13.setText("jTextField13");
-
-        jTextField14.setText("jTextField14");
-
-        jTextField15.setText("jTextField15");
-
-        jTextArea1.setColumns(20);
-        jTextArea1.setRows(5);
-        jScrollPane1.setViewportView(jTextArea1);
+        jta_Descripcion_Producto.setColumns(20);
+        jta_Descripcion_Producto.setRows(5);
+        jScrollPane1.setViewportView(jta_Descripcion_Producto);
 
         jLabel16.setText("Gestion de Productos");
 
         jButton14.setIcon(new javax.swing.ImageIcon(getClass().getResource("/icons/add_32.png"))); // NOI18N
         jButton14.setText("Agregar");
-
-        jButton15.setIcon(new javax.swing.ImageIcon(getClass().getResource("/icons/search_32.png"))); // NOI18N
-        jButton15.setText("Buscar");
+        jButton14.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                jButton14MouseClicked(evt);
+            }
+        });
 
         jButton16.setIcon(new javax.swing.ImageIcon(getClass().getResource("/icons/edit.png"))); // NOI18N
         jButton16.setText("Editar");
+        jButton16.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                jButton16MouseClicked(evt);
+            }
+        });
 
         jButton17.setIcon(new javax.swing.ImageIcon(getClass().getResource("/icons/Trash_Delete.png"))); // NOI18N
         jButton17.setText("Eliminar");
+        jButton17.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                jButton17MouseClicked(evt);
+            }
+        });
 
-        javax.swing.GroupLayout productoLayout = new javax.swing.GroupLayout(producto.getContentPane());
-        producto.getContentPane().setLayout(productoLayout);
-        productoLayout.setHorizontalGroup(
-            productoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(productoLayout.createSequentialGroup()
-                .addContainerGap()
-                .addGroup(productoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jLabel17)
-                    .addComponent(jLabel18)
-                    .addComponent(jLabel19)
-                    .addComponent(jLabel20)
-                    .addComponent(jLabel21)
-                    .addComponent(jLabel22)
-                    .addComponent(jLabel23))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addGroup(productoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                    .addComponent(jTextField10)
-                    .addComponent(jTextField11)
-                    .addComponent(jTextField12)
-                    .addComponent(jTextField13)
-                    .addComponent(jTextField14)
-                    .addComponent(jTextField15)
-                    .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 240, Short.MAX_VALUE))
-                .addGap(54, 54, 54))
-            .addGroup(productoLayout.createSequentialGroup()
-                .addGroup(productoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(productoLayout.createSequentialGroup()
+        jScrollPane4.setViewportView(jl_Productos_Producto);
+
+        javax.swing.GroupLayout jd_ProductoLayout = new javax.swing.GroupLayout(jd_Producto.getContentPane());
+        jd_Producto.getContentPane().setLayout(jd_ProductoLayout);
+        jd_ProductoLayout.setHorizontalGroup(
+            jd_ProductoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jd_ProductoLayout.createSequentialGroup()
+                .addGroup(jd_ProductoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(jd_ProductoLayout.createSequentialGroup()
                         .addGap(182, 182, 182)
                         .addComponent(jLabel16))
-                    .addGroup(productoLayout.createSequentialGroup()
-                        .addGap(21, 21, 21)
-                        .addComponent(jButton14)
-                        .addGap(18, 18, 18)
-                        .addComponent(jButton15)
-                        .addGap(18, 18, 18)
-                        .addComponent(jButton16)
-                        .addGap(18, 18, 18)
-                        .addComponent(jButton17)))
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                    .addGroup(jd_ProductoLayout.createSequentialGroup()
+                        .addGroup(jd_ProductoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addGroup(jd_ProductoLayout.createSequentialGroup()
+                                .addContainerGap()
+                                .addGroup(jd_ProductoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addComponent(jLabel18)
+                                    .addComponent(jLabel19)
+                                    .addComponent(jLabel20)
+                                    .addComponent(jLabel21)
+                                    .addComponent(jLabel22)
+                                    .addComponent(jLabel23))
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                                .addGroup(jd_ProductoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                                    .addComponent(jt_IDProveedor_Producto)
+                                    .addComponent(jt_Nombre_Producto)
+                                    .addComponent(jt_PrecioVenta_Producto)
+                                    .addComponent(jt_PrecioCompra_Producto)
+                                    .addComponent(jt_Unidades_Producto)
+                                    .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 240, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                            .addGroup(jd_ProductoLayout.createSequentialGroup()
+                                .addGap(21, 21, 21)
+                                .addComponent(jButton14)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                .addComponent(jButton16)
+                                .addGap(18, 18, 18)
+                                .addComponent(jButton17)))
+                        .addGap(39, 39, 39)
+                        .addComponent(jScrollPane4, javax.swing.GroupLayout.PREFERRED_SIZE, 271, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                .addContainerGap(37, Short.MAX_VALUE))
         );
-        productoLayout.setVerticalGroup(
-            productoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(productoLayout.createSequentialGroup()
+        jd_ProductoLayout.setVerticalGroup(
+            jd_ProductoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jd_ProductoLayout.createSequentialGroup()
                 .addGap(4, 4, 4)
                 .addComponent(jLabel16)
-                .addGap(18, 18, 18)
-                .addGroup(productoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                    .addGroup(productoLayout.createSequentialGroup()
-                        .addGroup(productoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                            .addComponent(jLabel17)
-                            .addComponent(jTextField10, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGroup(jd_ProductoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(jd_ProductoLayout.createSequentialGroup()
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                        .addComponent(jScrollPane4))
+                    .addGroup(jd_ProductoLayout.createSequentialGroup()
+                        .addGap(29, 29, 29)
+                        .addGroup(jd_ProductoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addGroup(jd_ProductoLayout.createSequentialGroup()
+                                .addGroup(jd_ProductoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                                    .addGroup(jd_ProductoLayout.createSequentialGroup()
+                                        .addComponent(jt_IDProveedor_Producto, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                        .addGap(18, 18, 18)
+                                        .addGroup(jd_ProductoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                                            .addComponent(jt_Nombre_Producto, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                            .addComponent(jLabel19))
+                                        .addGap(18, 18, 18)
+                                        .addGroup(jd_ProductoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                                            .addComponent(jt_PrecioVenta_Producto, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                            .addComponent(jLabel20))
+                                        .addGap(34, 34, 34))
+                                    .addGroup(jd_ProductoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                                        .addComponent(jt_PrecioCompra_Producto, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                        .addComponent(jLabel21)))
+                                .addGap(18, 18, 18)
+                                .addGroup(jd_ProductoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                                    .addComponent(jt_Unidades_Producto, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addComponent(jLabel22)))
+                            .addComponent(jLabel18))
                         .addGap(18, 18, 18)
-                        .addGroup(productoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                            .addComponent(jLabel18)
-                            .addComponent(jTextField11, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addGap(18, 18, 18)
-                        .addGroup(productoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                            .addComponent(jLabel19)
-                            .addComponent(jTextField12, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addGap(18, 18, 18)
-                        .addGroup(productoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                            .addComponent(jLabel20)
-                            .addComponent(jTextField13, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addGap(18, 18, 18)
-                        .addComponent(jLabel21))
-                    .addComponent(jTextField14, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(18, 18, 18)
-                .addGroup(productoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jLabel22)
-                    .addComponent(jTextField15, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(18, 18, 18)
-                .addGroup(productoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jLabel23)
-                    .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 35, Short.MAX_VALUE)
-                .addGroup(productoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jButton14)
-                    .addComponent(jButton15)
-                    .addComponent(jButton16)
-                    .addComponent(jButton17))
+                        .addGroup(jd_ProductoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(jLabel23)
+                            .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 36, Short.MAX_VALUE)
+                        .addGroup(jd_ProductoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(jButton14)
+                            .addComponent(jButton16)
+                            .addComponent(jButton17))))
                 .addGap(36, 36, 36))
         );
 
         jLabel24.setText("Gestion de Proveedores");
-
-        jLabel25.setText("ID");
 
         jLabel26.setText("Nombre");
 
@@ -386,93 +388,98 @@ public class MobilesApp extends javax.swing.JFrame {
 
         jLabel28.setText("Correo");
 
-        jTextField16.setText("jTextField16");
-
-        jTextField17.setText("jTextField17");
-
-        jTextField18.setText("jTextField18");
-
-        jTextField19.setText("jTextField19");
-
         jButton18.setIcon(new javax.swing.ImageIcon(getClass().getResource("/icons/add_32.png"))); // NOI18N
         jButton18.setText("Agregar");
-
-        jButton19.setIcon(new javax.swing.ImageIcon(getClass().getResource("/icons/search_32.png"))); // NOI18N
-        jButton19.setText("Buscar");
+        jButton18.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                jButton18MouseClicked(evt);
+            }
+        });
 
         jButton20.setIcon(new javax.swing.ImageIcon(getClass().getResource("/icons/File_Edit.png"))); // NOI18N
         jButton20.setText("Editar");
+        jButton20.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                jButton20MouseClicked(evt);
+            }
+        });
 
         jButton21.setIcon(new javax.swing.ImageIcon(getClass().getResource("/icons/user_close_32.png"))); // NOI18N
         jButton21.setText("Eliminar");
+        jButton21.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                jButton21MouseClicked(evt);
+            }
+        });
 
-        javax.swing.GroupLayout ProveedorLayout = new javax.swing.GroupLayout(Proveedor.getContentPane());
-        Proveedor.getContentPane().setLayout(ProveedorLayout);
-        ProveedorLayout.setHorizontalGroup(
-            ProveedorLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(ProveedorLayout.createSequentialGroup()
-                .addGroup(ProveedorLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(ProveedorLayout.createSequentialGroup()
+        jScrollPane2.setViewportView(jl_Proveedores_Proveedor);
+
+        javax.swing.GroupLayout jd_ProveedorLayout = new javax.swing.GroupLayout(jd_Proveedor.getContentPane());
+        jd_Proveedor.getContentPane().setLayout(jd_ProveedorLayout);
+        jd_ProveedorLayout.setHorizontalGroup(
+            jd_ProveedorLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jd_ProveedorLayout.createSequentialGroup()
+                .addGroup(jd_ProveedorLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(jd_ProveedorLayout.createSequentialGroup()
                         .addGap(157, 157, 157)
                         .addComponent(jLabel24))
-                    .addGroup(ProveedorLayout.createSequentialGroup()
-                        .addGap(27, 27, 27)
-                        .addGroup(ProveedorLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addGroup(ProveedorLayout.createSequentialGroup()
-                                .addGroup(ProveedorLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addComponent(jLabel25)
-                                    .addComponent(jLabel26)
+                    .addGroup(jd_ProveedorLayout.createSequentialGroup()
+                        .addGap(31, 31, 31)
+                        .addGroup(jd_ProveedorLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addGroup(jd_ProveedorLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
+                                .addGroup(javax.swing.GroupLayout.Alignment.LEADING, jd_ProveedorLayout.createSequentialGroup()
+                                    .addComponent(jLabel28)
+                                    .addGap(47, 47, 47)
+                                    .addComponent(jt_Correo_Proveedor))
+                                .addGroup(javax.swing.GroupLayout.Alignment.LEADING, jd_ProveedorLayout.createSequentialGroup()
                                     .addComponent(jLabel27)
-                                    .addComponent(jLabel28))
-                                .addGap(47, 47, 47)
-                                .addGroup(ProveedorLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                                    .addComponent(jTextField16, javax.swing.GroupLayout.DEFAULT_SIZE, 224, Short.MAX_VALUE)
-                                    .addComponent(jTextField17)
-                                    .addComponent(jTextField18)
-                                    .addComponent(jTextField19)))
-                            .addGroup(ProveedorLayout.createSequentialGroup()
+                                    .addGap(47, 47, 47)
+                                    .addComponent(jt_Telefono_Proveedor))
+                                .addGroup(javax.swing.GroupLayout.Alignment.LEADING, jd_ProveedorLayout.createSequentialGroup()
+                                    .addComponent(jLabel26)
+                                    .addGap(52, 52, 52)
+                                    .addComponent(jt_Nombre_Proveedor, javax.swing.GroupLayout.PREFERRED_SIZE, 224, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                            .addGroup(jd_ProveedorLayout.createSequentialGroup()
                                 .addComponent(jButton18)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                                .addComponent(jButton19)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                                .addGap(18, 18, 18)
                                 .addComponent(jButton20)
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                                .addComponent(jButton21)))))
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                                .addComponent(jButton21)))
+                        .addGap(54, 54, 54)
+                        .addComponent(jScrollPane2, javax.swing.GroupLayout.DEFAULT_SIZE, 269, Short.MAX_VALUE)))
+                .addGap(30, 30, 30))
         );
-        ProveedorLayout.setVerticalGroup(
-            ProveedorLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(ProveedorLayout.createSequentialGroup()
-                .addContainerGap()
-                .addComponent(jLabel24)
-                .addGap(24, 24, 24)
-                .addGroup(ProveedorLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jLabel25)
-                    .addComponent(jTextField16, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(18, 18, 18)
-                .addGroup(ProveedorLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jLabel26)
-                    .addComponent(jTextField17, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(18, 18, 18)
-                .addGroup(ProveedorLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jLabel27)
-                    .addComponent(jTextField18, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(18, 18, 18)
-                .addGroup(ProveedorLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jLabel28)
-                    .addComponent(jTextField19, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 34, Short.MAX_VALUE)
-                .addGroup(ProveedorLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jButton18)
-                    .addComponent(jButton19)
-                    .addComponent(jButton20)
-                    .addComponent(jButton21))
-                .addGap(42, 42, 42))
+        jd_ProveedorLayout.setVerticalGroup(
+            jd_ProveedorLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jd_ProveedorLayout.createSequentialGroup()
+                .addGroup(jd_ProveedorLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                    .addGroup(jd_ProveedorLayout.createSequentialGroup()
+                        .addGap(81, 81, 81)
+                        .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 282, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGroup(javax.swing.GroupLayout.Alignment.LEADING, jd_ProveedorLayout.createSequentialGroup()
+                        .addContainerGap()
+                        .addComponent(jLabel24)
+                        .addGap(70, 70, 70)
+                        .addGroup(jd_ProveedorLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(jLabel26)
+                            .addComponent(jt_Nombre_Proveedor, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addGap(43, 43, 43)
+                        .addGroup(jd_ProveedorLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(jLabel27)
+                            .addComponent(jt_Telefono_Proveedor, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addGap(51, 51, 51)
+                        .addGroup(jd_ProveedorLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(jLabel28)
+                            .addComponent(jt_Correo_Proveedor, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addGap(63, 63, 63)
+                        .addGroup(jd_ProveedorLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(jButton18)
+                            .addComponent(jButton20)
+                            .addComponent(jButton21))))
+                .addContainerGap(43, Short.MAX_VALUE))
         );
 
         jLabel29.setText("Gestion de Puntos de Venta");
-
-        jLabel30.setText("ID");
 
         jLabel31.setText("Direccion");
 
@@ -482,100 +489,141 @@ public class MobilesApp extends javax.swing.JFrame {
 
         jLabel34.setText("Telefono");
 
-        jTextField20.setText("jTextField20");
-
-        jTextField21.setText("jTextField21");
-
-        jTextField22.setText("jTextField22");
-
-        jTextField23.setText("jTextField23");
-
-        jTextField24.setText("jTextField24");
-
         jButton22.setIcon(new javax.swing.ImageIcon(getClass().getResource("/icons/add_32.png"))); // NOI18N
         jButton22.setText("Agregar");
-
-        jButton23.setIcon(new javax.swing.ImageIcon(getClass().getResource("/icons/search_32.png"))); // NOI18N
-        jButton23.setText("Buscar");
+        jButton22.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                jButton22MouseClicked(evt);
+            }
+        });
 
         jButton24.setIcon(new javax.swing.ImageIcon(getClass().getResource("/icons/File_Edit.png"))); // NOI18N
         jButton24.setText("Editar");
+        jButton24.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                jButton24MouseClicked(evt);
+            }
+        });
 
         jButton25.setIcon(new javax.swing.ImageIcon(getClass().getResource("/icons/Trash.png"))); // NOI18N
         jButton25.setText("Eliminar");
+        jButton25.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                jButton25MouseClicked(evt);
+            }
+        });
 
-        javax.swing.GroupLayout puntos_ventasLayout = new javax.swing.GroupLayout(puntos_ventas.getContentPane());
-        puntos_ventas.getContentPane().setLayout(puntos_ventasLayout);
-        puntos_ventasLayout.setHorizontalGroup(
-            puntos_ventasLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(puntos_ventasLayout.createSequentialGroup()
-                .addContainerGap()
-                .addGroup(puntos_ventasLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(puntos_ventasLayout.createSequentialGroup()
-                        .addGroup(puntos_ventasLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(jLabel30)
+        jScrollPane5.setViewportView(jl_Puntos_PuntoVenta);
+
+        javax.swing.GroupLayout jd_puntos_ventasLayout = new javax.swing.GroupLayout(jd_puntos_ventas.getContentPane());
+        jd_puntos_ventas.getContentPane().setLayout(jd_puntos_ventasLayout);
+        jd_puntos_ventasLayout.setHorizontalGroup(
+            jd_puntos_ventasLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jd_puntos_ventasLayout.createSequentialGroup()
+                .addGap(142, 142, 142)
+                .addComponent(jLabel29)
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+            .addGroup(jd_puntos_ventasLayout.createSequentialGroup()
+                .addGap(30, 30, 30)
+                .addGroup(jd_puntos_ventasLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(jd_puntos_ventasLayout.createSequentialGroup()
+                        .addComponent(jButton22)
+                        .addGap(18, 18, 18)
+                        .addComponent(jButton24)
+                        .addGap(18, 18, 18)
+                        .addComponent(jButton25))
+                    .addGroup(jd_puntos_ventasLayout.createSequentialGroup()
+                        .addGroup(jd_puntos_ventasLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(jLabel31)
                             .addComponent(jLabel32)
                             .addComponent(jLabel33)
                             .addComponent(jLabel34))
                         .addGap(78, 78, 78)
-                        .addGroup(puntos_ventasLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                            .addComponent(jLabel29)
-                            .addComponent(jTextField20, javax.swing.GroupLayout.DEFAULT_SIZE, 213, Short.MAX_VALUE)
-                            .addComponent(jTextField21)
-                            .addComponent(jTextField22)
-                            .addComponent(jTextField23)
-                            .addComponent(jTextField24)))
-                    .addGroup(puntos_ventasLayout.createSequentialGroup()
-                        .addComponent(jButton22)
-                        .addGap(18, 18, 18)
-                        .addComponent(jButton23)
-                        .addGap(18, 18, 18)
-                        .addComponent(jButton24)
-                        .addGap(18, 18, 18)
-                        .addComponent(jButton25)))
+                        .addGroup(jd_puntos_ventasLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                            .addComponent(jt_Direccion_PuntoVenta)
+                            .addComponent(jt_Ciudad_PuntoVenta)
+                            .addComponent(jt_Correo_PuntoVenta)
+                            .addComponent(jt_Telefono_PuntoVenta, javax.swing.GroupLayout.PREFERRED_SIZE, 213, javax.swing.GroupLayout.PREFERRED_SIZE))))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 51, Short.MAX_VALUE)
+                .addComponent(jScrollPane5, javax.swing.GroupLayout.PREFERRED_SIZE, 238, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(24, 24, 24))
+        );
+        jd_puntos_ventasLayout.setVerticalGroup(
+            jd_puntos_ventasLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jd_puntos_ventasLayout.createSequentialGroup()
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addComponent(jLabel29)
+                .addGroup(jd_puntos_ventasLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(jd_puntos_ventasLayout.createSequentialGroup()
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                        .addComponent(jScrollPane5, javax.swing.GroupLayout.PREFERRED_SIZE, 344, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGroup(jd_puntos_ventasLayout.createSequentialGroup()
+                        .addGap(46, 46, 46)
+                        .addGroup(jd_puntos_ventasLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(jLabel31)
+                            .addComponent(jt_Direccion_PuntoVenta, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addGap(36, 36, 36)
+                        .addGroup(jd_puntos_ventasLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(jLabel32)
+                            .addComponent(jt_Ciudad_PuntoVenta, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addGap(33, 33, 33)
+                        .addGroup(jd_puntos_ventasLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(jLabel33)
+                            .addComponent(jt_Correo_PuntoVenta, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addGap(36, 36, 36)
+                        .addGroup(jd_puntos_ventasLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(jLabel34)
+                            .addComponent(jt_Telefono_PuntoVenta, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addGap(39, 39, 39)
+                        .addGroup(jd_puntos_ventasLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(jButton22)
+                            .addComponent(jButton24)
+                            .addComponent(jButton25))))
+                .addContainerGap())
+        );
+
+        jTable1.setModel(new javax.swing.table.DefaultTableModel(
+            new Object [][] {
+
+            },
+            new String [] {
+                "Title 1", "Title 2", "Title 3", "Title 4"
+            }
+        ));
+        jScrollPane6.setViewportView(jTable1);
+
+        javax.swing.GroupLayout jd_InventarioLayout = new javax.swing.GroupLayout(jd_Inventario.getContentPane());
+        jd_Inventario.getContentPane().setLayout(jd_InventarioLayout);
+        jd_InventarioLayout.setHorizontalGroup(
+            jd_InventarioLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jd_InventarioLayout.createSequentialGroup()
+                .addContainerGap()
+                .addComponent(jScrollPane6, javax.swing.GroupLayout.DEFAULT_SIZE, 760, Short.MAX_VALUE)
+                .addContainerGap())
+        );
+        jd_InventarioLayout.setVerticalGroup(
+            jd_InventarioLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jd_InventarioLayout.createSequentialGroup()
+                .addContainerGap()
+                .addComponent(jScrollPane6, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
-        puntos_ventasLayout.setVerticalGroup(
-            puntos_ventasLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(puntos_ventasLayout.createSequentialGroup()
-                .addContainerGap()
-                .addComponent(jLabel29)
-                .addGap(27, 27, 27)
-                .addGroup(puntos_ventasLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jLabel30)
-                    .addComponent(jTextField20, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(18, 18, 18)
-                .addGroup(puntos_ventasLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jLabel31)
-                    .addComponent(jTextField21, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(18, 18, 18)
-                .addGroup(puntos_ventasLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jLabel32)
-                    .addComponent(jTextField22, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(18, 18, 18)
-                .addGroup(puntos_ventasLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jLabel33)
-                    .addComponent(jTextField23, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(18, 18, 18)
-                .addGroup(puntos_ventasLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jLabel34)
-                    .addComponent(jTextField24, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 12, Short.MAX_VALUE)
-                .addGroup(puntos_ventasLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jButton22)
-                    .addComponent(jButton23)
-                    .addComponent(jButton24)
-                    .addComponent(jButton25))
-                .addGap(23, 23, 23))
+
+        javax.swing.GroupLayout jd_HistorialOrdenesLayout = new javax.swing.GroupLayout(jd_HistorialOrdenes.getContentPane());
+        jd_HistorialOrdenes.getContentPane().setLayout(jd_HistorialOrdenesLayout);
+        jd_HistorialOrdenesLayout.setHorizontalGroup(
+            jd_HistorialOrdenesLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 400, Short.MAX_VALUE)
+        );
+        jd_HistorialOrdenesLayout.setVerticalGroup(
+            jd_HistorialOrdenesLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 300, Short.MAX_VALUE)
         );
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
-        jLabel1.setText("Formulario de  venta");
+        jLabel1.setText("Formulario de ordenes");
         jLabel1.setBorder(javax.swing.BorderFactory.createEtchedBorder());
-
-        jLabel2.setText("Id de Orden");
 
         jLabel3.setText("ID de Empleado");
 
@@ -583,129 +631,145 @@ public class MobilesApp extends javax.swing.JFrame {
 
         jLabel5.setText("Fecha");
 
-        jLabel6.setBorder(javax.swing.BorderFactory.createEtchedBorder());
+        jl_Fecha_Orden.setBorder(javax.swing.BorderFactory.createEtchedBorder());
 
-        jLabel7.setBorder(javax.swing.BorderFactory.createEtchedBorder());
+        jb_AgregarOrden_Orden.setIcon(new javax.swing.ImageIcon(getClass().getResource("/icons/add_32.png"))); // NOI18N
+        jb_AgregarOrden_Orden.setText("Registrar orden");
+        jb_AgregarOrden_Orden.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                jb_AgregarOrden_OrdenMouseClicked(evt);
+            }
+        });
 
-        jButton1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/icons/add_32.png"))); // NOI18N
-        jButton1.setText("Registrar Venta");
+        jButton2.setText("Eliminar orden");
+        jButton2.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                jButton2MouseClicked(evt);
+            }
+        });
 
-        jButton2.setIcon(new javax.swing.ImageIcon(getClass().getResource("/icons/recycle.png"))); // NOI18N
-        jButton2.setText("Generar ID");
+        jScrollPane7.setViewportView(jl_Ordenes_Orden);
 
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
         jPanel1Layout.setHorizontalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel1Layout.createSequentialGroup()
+                .addGap(139, 139, 139)
+                .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 134, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+            .addGroup(jPanel1Layout.createSequentialGroup()
+                .addContainerGap()
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addGap(26, 26, 26)
                         .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(jLabel3)
-                            .addComponent(jLabel2)
                             .addComponent(jLabel4)
                             .addComponent(jLabel5))
-                        .addGap(71, 71, 71)
-                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                            .addComponent(jLabel6, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                            .addComponent(jTextField1, javax.swing.GroupLayout.DEFAULT_SIZE, 217, Short.MAX_VALUE)
-                            .addComponent(jTextField2)
-                            .addComponent(jLabel7, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                            .addGroup(jPanel1Layout.createSequentialGroup()
-                                .addGap(38, 38, 38)
-                                .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 134, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                        .addGap(18, 18, 18)
-                        .addComponent(jButton2))
+                        .addGap(36, 36, 36)
+                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                            .addComponent(jt_IDPuntoVenta_Orden, javax.swing.GroupLayout.PREFERRED_SIZE, 217, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(jl_Fecha_Orden, javax.swing.GroupLayout.PREFERRED_SIZE, 217, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(jt_IDEmpleado_Orden, javax.swing.GroupLayout.PREFERRED_SIZE, 217, javax.swing.GroupLayout.PREFERRED_SIZE)))
                     .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addGap(204, 204, 204)
-                        .addComponent(jButton1)))
-                .addContainerGap(58, Short.MAX_VALUE))
+                        .addComponent(jb_AgregarOrden_Orden)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                        .addComponent(jButton2, javax.swing.GroupLayout.PREFERRED_SIZE, 155, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 56, Short.MAX_VALUE)
+                .addComponent(jScrollPane7, javax.swing.GroupLayout.PREFERRED_SIZE, 167, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(33, 33, 33))
         );
         jPanel1Layout.setVerticalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel1Layout.createSequentialGroup()
-                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                .addContainerGap()
+                .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 20, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(18, 18, 18)
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                     .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addContainerGap()
-                        .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 20, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(18, 18, 18)
                         .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                            .addComponent(jLabel2)
-                            .addComponent(jLabel6, javax.swing.GroupLayout.PREFERRED_SIZE, 22, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                    .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addGap(39, 39, 39)
-                        .addComponent(jButton2)))
-                .addGap(48, 48, 48)
-                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jLabel3)
-                    .addComponent(jTextField1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(36, 36, 36)
-                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jLabel4)
-                    .addComponent(jTextField2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(31, 31, 31)
-                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jLabel5)
-                    .addComponent(jLabel7, javax.swing.GroupLayout.PREFERRED_SIZE, 23, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(54, 54, 54)
-                .addComponent(jButton1)
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                            .addComponent(jLabel3)
+                            .addComponent(jt_IDEmpleado_Orden, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addGap(36, 36, 36)
+                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(jLabel4)
+                            .addComponent(jt_IDPuntoVenta_Orden, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addGap(31, 31, 31)
+                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(jLabel5)
+                            .addComponent(jl_Fecha_Orden, javax.swing.GroupLayout.PREFERRED_SIZE, 23, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addGap(62, 62, 62)
+                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                            .addComponent(jb_AgregarOrden_Orden, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                            .addComponent(jButton2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
+                    .addComponent(jScrollPane7))
+                .addContainerGap(102, Short.MAX_VALUE))
         );
 
-        jTabbedPane1.addTab("Ventas", new javax.swing.ImageIcon(getClass().getResource("/icons/basket_32.png")), jPanel1); // NOI18N
-
-        jButton4.setIcon(new javax.swing.ImageIcon(getClass().getResource("/icons/add_32.png"))); // NOI18N
-        jButton4.setText("Realizar nueva orden ");
+        jTabbedPane1.addTab("Orden", new javax.swing.ImageIcon(getClass().getResource("/icons/basket_32.png")), jPanel1); // NOI18N
 
         jButton5.setIcon(new javax.swing.ImageIcon(getClass().getResource("/icons/address_book_32.png"))); // NOI18N
         jButton5.setText("Proveedores");
-
-        jButton6.setIcon(new javax.swing.ImageIcon(getClass().getResource("/icons/book_32.png"))); // NOI18N
-        jButton6.setText("Historial de compras");
+        jButton5.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                jButton5MouseClicked(evt);
+            }
+        });
 
         jButton7.setIcon(new javax.swing.ImageIcon(getClass().getResource("/icons/Clipboard_Full.png"))); // NOI18N
         jButton7.setText("Inventario");
+
+        jButton1.setText("Productos");
+        jButton1.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                jButton1MouseClicked(evt);
+            }
+        });
 
         javax.swing.GroupLayout jPanel2Layout = new javax.swing.GroupLayout(jPanel2);
         jPanel2.setLayout(jPanel2Layout);
         jPanel2Layout.setHorizontalGroup(
             jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel2Layout.createSequentialGroup()
-                .addGap(31, 31, 31)
+                .addContainerGap()
                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                    .addComponent(jButton4, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(jButton6, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 135, Short.MAX_VALUE)
-                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jButton5, javax.swing.GroupLayout.PREFERRED_SIZE, 167, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jButton7, javax.swing.GroupLayout.PREFERRED_SIZE, 167, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(52, 52, 52))
+                    .addComponent(jButton5, javax.swing.GroupLayout.DEFAULT_SIZE, 185, Short.MAX_VALUE)
+                    .addComponent(jButton7, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(jButton1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addContainerGap(381, Short.MAX_VALUE))
         );
         jPanel2Layout.setVerticalGroup(
             jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel2Layout.createSequentialGroup()
-                .addGap(24, 24, 24)
-                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jButton4)
-                    .addComponent(jButton5))
-                .addGap(41, 41, 41)
-                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jButton7)
-                    .addComponent(jButton6))
-                .addContainerGap(210, Short.MAX_VALUE))
+                .addGap(28, 28, 28)
+                .addComponent(jButton5, javax.swing.GroupLayout.PREFERRED_SIZE, 55, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 47, Short.MAX_VALUE)
+                .addComponent(jButton7, javax.swing.GroupLayout.PREFERRED_SIZE, 54, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(44, 44, 44)
+                .addComponent(jButton1, javax.swing.GroupLayout.PREFERRED_SIZE, 49, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(57, 57, 57))
         );
 
         jTabbedPane2.addTab("Productos", jPanel2);
 
         jButton8.setIcon(new javax.swing.ImageIcon(getClass().getResource("/icons/User2.png"))); // NOI18N
         jButton8.setText("Recursos humanos");
+        jButton8.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                jButton8MouseClicked(evt);
+            }
+        });
 
         jButton9.setIcon(new javax.swing.ImageIcon(getClass().getResource("/icons/Location.png"))); // NOI18N
         jButton9.setText("Puntos de venta");
+        jButton9.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                jButton9MouseClicked(evt);
+            }
+        });
 
         jButton3.setIcon(new javax.swing.ImageIcon(getClass().getResource("/icons/basket_chart_32.png"))); // NOI18N
-        jButton3.setText("Historial de ventas");
+        jButton3.setText("Historial de ordenes");
 
         javax.swing.GroupLayout jPanel5Layout = new javax.swing.GroupLayout(jPanel5);
         jPanel5.setLayout(jPanel5Layout);
@@ -723,12 +787,12 @@ public class MobilesApp extends javax.swing.JFrame {
             jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel5Layout.createSequentialGroup()
                 .addGap(26, 26, 26)
-                .addComponent(jButton8, javax.swing.GroupLayout.PREFERRED_SIZE, 47, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(26, 26, 26)
-                .addComponent(jButton9, javax.swing.GroupLayout.PREFERRED_SIZE, 52, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(jButton8, javax.swing.GroupLayout.PREFERRED_SIZE, 58, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 37, Short.MAX_VALUE)
+                .addComponent(jButton9, javax.swing.GroupLayout.PREFERRED_SIZE, 58, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(36, 36, 36)
                 .addComponent(jButton3, javax.swing.GroupLayout.PREFERRED_SIZE, 53, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(117, Short.MAX_VALUE))
+                .addGap(66, 66, 66))
         );
 
         jTabbedPane2.addTab("Empresa", jPanel5);
@@ -772,6 +836,320 @@ public class MobilesApp extends javax.swing.JFrame {
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
+    private void jb_AgregarOrden_OrdenMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jb_AgregarOrden_OrdenMouseClicked
+        // TODO add your handling code here:
+        if (CampoLleno(jt_IDEmpleado_Orden) && CampoLleno(jt_IDPuntoVenta_Orden)) {
+            int IDEmpleado, IDPuntoVenta;
+
+            IDEmpleado = Integer.parseInt(jt_IDEmpleado_Orden.getText());
+            IDPuntoVenta = Integer.parseInt(jt_IDPuntoVenta_Orden.getText());
+
+            InsertarOrdenEnDB(IDEmpleado, IDPuntoVenta);
+            LlenarListas(jl_Ordenes_Orden, "ListarOrdenes");
+
+            JOptionPane.showMessageDialog(this, "Orden agregada con exito", "OPERACION EXITOSA", JOptionPane.INFORMATION_MESSAGE);
+        } else {
+            JOptionPane.showMessageDialog(this, "Los campos no estan llenos", "ERROR", JOptionPane.ERROR_MESSAGE);
+        }
+    }//GEN-LAST:event_jb_AgregarOrden_OrdenMouseClicked
+
+    private void jButton2MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jButton2MouseClicked
+        // TODO add your handling code here:
+        if (jl_Ordenes_Orden.getSelectedIndex() != -1) {
+            int IDOrden;
+
+            IDOrden = Integer.parseInt(jl_Ordenes_Orden.getSelectedValue());
+
+            BorrarOrdenPorID(IDOrden);
+            LlenarListas(jl_Ordenes_Orden, "ListarOrdenes");
+
+            JOptionPane.showMessageDialog(this, "Orden eliminada con exito", "OPERACION EXITOSA", JOptionPane.INFORMATION_MESSAGE);
+        } else {
+            JOptionPane.showMessageDialog(this, "Seleccione una orden", "ERROR", JOptionPane.ERROR_MESSAGE);
+        }
+    }//GEN-LAST:event_jButton2MouseClicked
+
+    private void jButton10MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jButton10MouseClicked
+        // TODO add your handling code here:
+        if (CampoLleno(jt_Direccion_Empleado) && CampoLleno(jt_Fecha_Empleado) && CampoLleno(jt_Nombre_Empleado) && CampoLleno(jt_RTN_Empleado)
+                && CampoLleno(jt_Sueldo_Empleado) && CampoLleno(jt_Telefono_Empleado)) {
+            Date FechaSistema = new Date();
+
+            String Direccion;
+            String Fecha = Integer.toString(FechaSistema.getYear()) + Integer.toString(FechaSistema.getMonth()) + Integer.toString(FechaSistema.getDay());
+            String Nombre;
+            String RTN;
+            double Sueldo;
+            String Telefono;
+
+            Direccion = jt_Direccion_Empleado.getText();
+            Nombre = jt_Nombre_Empleado.getText();
+            RTN = jt_RTN_Empleado.getText();
+            Sueldo = Double.parseDouble(jt_Sueldo_Empleado.getText());
+            Telefono = jt_Telefono_Empleado.getText();
+
+            InsertarEmpleadoEnDB(RTN, Sueldo, Direccion, Fecha, Telefono, Nombre);
+            LlenarListas(jl_Ordenes_Orden, "ListarEmpleados");
+
+            JOptionPane.showMessageDialog(this, "Empleado agregado con exito", "OPERACION EXITOSA", JOptionPane.INFORMATION_MESSAGE);
+        } else {
+            JOptionPane.showMessageDialog(this, "Los campos no estan llenos", "ERROR", JOptionPane.ERROR_MESSAGE);
+        }
+    }//GEN-LAST:event_jButton10MouseClicked
+
+    private void jButton13MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jButton13MouseClicked
+        // TODO add your handling code here:
+        if (CampoLleno(jt_Direccion_Empleado) && CampoLleno(jt_Fecha_Empleado) && CampoLleno(jt_Nombre_Empleado) && CampoLleno(jt_RTN_Empleado)
+                && CampoLleno(jt_Sueldo_Empleado) && CampoLleno(jt_Telefono_Empleado) && jl_Empleados_Empleado.getSelectedIndex() != -1) {
+            Date FechaSistema = new Date();
+
+            String Direccion;
+            String Fecha = Integer.toString(FechaSistema.getYear()) + Integer.toString(FechaSistema.getMonth()) + Integer.toString(FechaSistema.getDay());
+            String Nombre;
+            String RTN;
+            double Sueldo;
+            String Telefono;
+
+            Direccion = jt_Direccion_Empleado.getText();
+            Nombre = jt_Nombre_Empleado.getText();
+            RTN = jt_RTN_Empleado.getText();
+            Sueldo = Double.parseDouble(jt_Sueldo_Empleado.getText());
+            Telefono = jt_Telefono_Empleado.getText();
+
+            ActualizarEmpleadoEnDB(WIDTH, RTN, Sueldo, Direccion, Fecha, Telefono, Nombre);
+
+            JOptionPane.showMessageDialog(this, "Empleado editado con exito", "OPERACION EXITOSA", JOptionPane.INFORMATION_MESSAGE);
+        } else {
+            JOptionPane.showMessageDialog(this, "Los campos no estan llenos o no ha seleccionado un empleado", "ERROR", JOptionPane.ERROR_MESSAGE);
+        }
+    }//GEN-LAST:event_jButton13MouseClicked
+
+    private void jButton12MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jButton12MouseClicked
+        // TODO add your handling code here:
+        if (jl_Empleados_Empleado.getSelectedIndex() != -1) {
+            int IDEmpleado;
+
+            IDEmpleado = Integer.parseInt(jl_Empleados_Empleado.getSelectedValue());
+
+            BorrarEmpleadoPorID(IDEmpleado);
+            LlenarListas(jl_Ordenes_Orden, "ListarEmpleados");
+
+            JOptionPane.showMessageDialog(this, "Empleado eliminadao con exito", "OPERACION EXITOSA", JOptionPane.INFORMATION_MESSAGE);
+        } else {
+            JOptionPane.showMessageDialog(this, "Seleccione un empleado", "ERROR", JOptionPane.ERROR_MESSAGE);
+        }
+    }//GEN-LAST:event_jButton12MouseClicked
+
+    private void jButton14MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jButton14MouseClicked
+        // TODO add your handling code here:
+        if (CampoLleno(jt_IDProveedor_Producto) && CampoLleno(jt_PrecioCompra_Producto) && CampoLleno(jt_PrecioVenta_Producto)
+                && CampoLleno(jt_Unidades_Producto) && !jta_Descripcion_Producto.getText().equals("") && CampoLleno(jt_Nombre_Producto)) {
+
+            int IDProveedor, Unidades;
+            double PrecioCompra, PrecioVenta;
+            String Descripcion, Nombre;
+
+            IDProveedor = Integer.parseInt(jt_IDProveedor_Producto.getText());
+            Unidades = Integer.parseInt(jt_Unidades_Producto.getText());
+            PrecioCompra = Double.parseDouble(jt_PrecioCompra_Producto.getText());
+            PrecioVenta = Double.parseDouble(jt_PrecioVenta_Producto.getText());
+            Descripcion = jta_Descripcion_Producto.getText();
+            Nombre = jt_Nombre_Producto.getText();
+
+            InsertarProductoEnDB(1, Nombre, PrecioVenta, PrecioCompra, Unidades, Descripcion, IDProveedor);
+            LlenarListas(jl_Ordenes_Orden, "ListarProductos");
+            
+            JOptionPane.showMessageDialog(this, "Producto agregado con exito", "OPERACION EXITOSA", JOptionPane.INFORMATION_MESSAGE);
+            
+        } else {
+            JOptionPane.showMessageDialog(this, "Los campos no estan llenos", "ERROR", JOptionPane.ERROR_MESSAGE);
+        }
+    }//GEN-LAST:event_jButton14MouseClicked
+
+    private void jButton16MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jButton16MouseClicked
+        // TODO add your handling code here:
+        if (CampoLleno(jt_IDProveedor_Producto) && CampoLleno(jt_PrecioCompra_Producto) && CampoLleno(jt_PrecioVenta_Producto)
+                && CampoLleno(jt_Unidades_Producto) && !jta_Descripcion_Producto.getText().equals("") && CampoLleno(jt_Nombre_Producto)
+                && jl_Productos_Producto.getSelectedIndex() != -1) {
+
+            int IDProveedor, Unidades, ID;
+            double PrecioCompra, PrecioVenta;
+            String Descripcion, Nombre;
+
+            ID = Integer.parseInt(jl_Productos_Producto.getSelectedValue());
+            IDProveedor = Integer.parseInt(jt_IDProveedor_Producto.getText());
+            Unidades = Integer.parseInt(jt_Unidades_Producto.getText());
+            PrecioCompra = Double.parseDouble(jt_PrecioCompra_Producto.getText());
+            PrecioVenta = Double.parseDouble(jt_PrecioVenta_Producto.getText());
+            Descripcion = jta_Descripcion_Producto.getText();
+            Nombre = jt_Nombre_Producto.getText();
+
+            ActualizarProductoEnDB(ID, Nombre, PrecioVenta, PrecioCompra, Unidades, Descripcion, Nombre);
+            LlenarListas(jl_Ordenes_Orden, "ListarProductos");
+            
+            JOptionPane.showMessageDialog(this, "Producto actualizado con exito", "OPERACION EXITOSA", JOptionPane.INFORMATION_MESSAGE);
+        } else {
+            JOptionPane.showMessageDialog(this, "Los campos no estan llenos o no ha seleccionado un producto", "ERROR", JOptionPane.ERROR_MESSAGE);
+        }
+    }//GEN-LAST:event_jButton16MouseClicked
+
+    private void jButton17MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jButton17MouseClicked
+        // TODO add your handling code here:
+        if (jl_Productos_Producto.getSelectedIndex() != -1) {
+            int IDProducto;
+
+            IDProducto = Integer.parseInt(jl_Productos_Producto.getSelectedValue());
+
+            BorrarProductoPorID(IDProducto);
+
+            JOptionPane.showMessageDialog(this, "Producto eliminadao con exito", "OPERACION EXITOSA", JOptionPane.INFORMATION_MESSAGE);
+        } else {
+            JOptionPane.showMessageDialog(this, "Seleccione un producto", "ERROR", JOptionPane.ERROR_MESSAGE);
+        }
+    }//GEN-LAST:event_jButton17MouseClicked
+
+    private void jButton18MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jButton18MouseClicked
+        // TODO add your handling code here:
+        if (CampoLleno(jt_Correo_Proveedor) && CampoLleno(jt_Nombre_Proveedor) && CampoLleno(jt_Telefono_Proveedor)) {
+            String Correo, Nombre, Telefono;
+
+            Correo = jt_Correo_Proveedor.getText();
+            Nombre = jt_Nombre_Proveedor.getText();
+            Telefono = jt_Telefono_Proveedor.getText();
+
+            InsertarProveedorEnDB(Nombre, Telefono, Correo);
+            LlenarListas(jl_Ordenes_Orden, "ListarProveedores");
+
+            JOptionPane.showMessageDialog(this, "Proveedor agregado con exito", "OPERACION EXITOSA", JOptionPane.INFORMATION_MESSAGE);
+        } else {
+            JOptionPane.showMessageDialog(this, "Los campos no estan llenos", "ERROR", JOptionPane.ERROR_MESSAGE);
+        }
+    }//GEN-LAST:event_jButton18MouseClicked
+
+    private void jButton20MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jButton20MouseClicked
+        // TODO add your handling code here:
+        if (CampoLleno(jt_Correo_Proveedor) && CampoLleno(jt_Nombre_Proveedor) && CampoLleno(jt_Telefono_Proveedor) && jl_Proveedores_Proveedor.getSelectedIndex() != -1) {
+            String Correo, Nombre, Telefono;
+            int ID;
+
+            ID = Integer.parseInt(jl_Proveedores_Proveedor.getSelectedValue());
+            Correo = jt_Correo_Proveedor.getText();
+            Nombre = jt_Nombre_Proveedor.getText();
+            Telefono = jt_Telefono_Proveedor.getText();
+
+            ActualizarProveedorEnDB(ID, Nombre, Telefono, Correo);
+
+            JOptionPane.showMessageDialog(this, "Proveedor actualizado con exito", "OPERACION EXITOSA", JOptionPane.INFORMATION_MESSAGE);
+        } else {
+            JOptionPane.showMessageDialog(this, "Los campos no estan llenos o no ha seleccionado un proveedor", "ERROR", JOptionPane.ERROR_MESSAGE);
+        }
+    }//GEN-LAST:event_jButton20MouseClicked
+
+    private void jButton21MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jButton21MouseClicked
+        // TODO add your handling code here:
+        if (jl_Proveedores_Proveedor.getSelectedIndex() != -1) {
+            int ID;
+
+            ID = Integer.parseInt(jl_Proveedores_Proveedor.getSelectedValue());
+
+            BorrarProveedorPorID(ID);
+            LlenarListas(jl_Ordenes_Orden, "ListarProveedores");
+
+            JOptionPane.showMessageDialog(this, "Proveedor eliminadao con exito", "OPERACION EXITOSA", JOptionPane.INFORMATION_MESSAGE);
+        } else {
+            JOptionPane.showMessageDialog(this, "Seleccione un proveedor", "ERROR", JOptionPane.ERROR_MESSAGE);
+        }
+    }//GEN-LAST:event_jButton21MouseClicked
+
+    private void jButton22MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jButton22MouseClicked
+        // TODO add your handling code here:
+        if (CampoLleno(jt_Ciudad_PuntoVenta) && CampoLleno(jt_Correo_PuntoVenta)
+                && CampoLleno(jt_Direccion_PuntoVenta) && CampoLleno(jt_Telefono_PuntoVenta)) {
+            String Ciudad, Correo, Telefono, Direccion;
+
+            Ciudad = jt_Ciudad_PuntoVenta.getText();
+            Correo = jt_Correo_PuntoVenta.getText();
+            Telefono = jt_Telefono_PuntoVenta.getText();
+            Direccion = jt_Direccion_PuntoVenta.getText();
+
+            InsertarPuntoVentaEnDB(Direccion, Ciudad, Telefono, Correo);
+            LlenarListas(jl_Ordenes_Orden, "ListarPuntoVenta");
+
+            JOptionPane.showMessageDialog(this, "Punto de venta agregado con exito", "OPERACION EXITOSA", JOptionPane.INFORMATION_MESSAGE);
+        } else {
+            JOptionPane.showMessageDialog(this, "Los campos no estan llenos", "ERROR", JOptionPane.ERROR_MESSAGE);
+        }
+    }//GEN-LAST:event_jButton22MouseClicked
+
+    private void jButton24MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jButton24MouseClicked
+        // TODO add your handling code here:
+        if (CampoLleno(jt_Ciudad_PuntoVenta) && CampoLleno(jt_Correo_PuntoVenta) && CampoLleno(jt_Direccion_PuntoVenta)
+                && CampoLleno(jt_Telefono_PuntoVenta) && jl_Puntos_PuntoVenta.getSelectedIndex() != -1) {
+            String Ciudad, Correo, Telefono, Direccion;
+            int ID;
+
+            ID = Integer.parseInt(jl_Puntos_PuntoVenta.getSelectedValue());
+            Ciudad = jt_Ciudad_PuntoVenta.getText();
+            Correo = jt_Correo_PuntoVenta.getText();
+            Telefono = jt_Telefono_PuntoVenta.getText();
+            Direccion = jt_Direccion_PuntoVenta.getText();
+
+            ActualizarPuntoVentaEnDB(ID, Direccion, Ciudad, Telefono, Correo);
+
+            JOptionPane.showMessageDialog(this, "Punto de venta actualizado con exito", "OPERACION EXITOSA", JOptionPane.INFORMATION_MESSAGE);
+        } else {
+            JOptionPane.showMessageDialog(this, "Los campos no estan llenos o no ha seleccionado un punto de venta", "ERROR", JOptionPane.ERROR_MESSAGE);
+        }
+    }//GEN-LAST:event_jButton24MouseClicked
+
+    private void jButton25MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jButton25MouseClicked
+        // TODO add your handling code here:
+        if (jl_Puntos_PuntoVenta.getSelectedIndex() != -1) {
+            int ID;
+
+            ID = Integer.parseInt(jl_Puntos_PuntoVenta.getSelectedValue());
+            
+            BorrarPuntoVentaPorID(ID);
+            LlenarListas(jl_Ordenes_Orden, "ListarPuntoVenta");
+
+            JOptionPane.showMessageDialog(this, "Punto de venta eliminadao con exito", "OPERACION EXITOSA", JOptionPane.INFORMATION_MESSAGE);
+        } else {
+            JOptionPane.showMessageDialog(this, "Seleccione un punto de venta", "ERROR", JOptionPane.ERROR_MESSAGE);
+        }
+    }//GEN-LAST:event_jButton25MouseClicked
+
+    private void jButton5MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jButton5MouseClicked
+        // TODO add your handling code here:
+         jd_Proveedor.setModal(false);
+        jd_Proveedor.pack();
+        jd_Proveedor.setLocationRelativeTo(this);
+        jd_Proveedor.setVisible(true);
+    }//GEN-LAST:event_jButton5MouseClicked
+
+    private void jButton1MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jButton1MouseClicked
+        // TODO add your handling code here:
+        jd_Producto.setModal(false);
+        jd_Producto.pack();
+        jd_Producto.setLocationRelativeTo(this);
+        jd_Producto.setVisible(true);
+    }//GEN-LAST:event_jButton1MouseClicked
+
+    private void jButton8MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jButton8MouseClicked
+        // TODO add your handling code here:
+        jd_Empleado.setModal(false);
+        jd_Empleado.pack();
+        jd_Empleado.setLocationRelativeTo(this);
+        jd_Empleado.setVisible(true);
+    }//GEN-LAST:event_jButton8MouseClicked
+
+    private void jButton9MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jButton9MouseClicked
+        // TODO add your handling code here:
+        jd_puntos_ventas.setModal(false);
+        jd_puntos_ventas.pack();
+        jd_puntos_ventas.setLocationRelativeTo(this);
+        jd_puntos_ventas.setVisible(true);
+    }//GEN-LAST:event_jButton9MouseClicked
+
     /**
      * @param args the command line arguments
      */
@@ -808,30 +1186,22 @@ public class MobilesApp extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JDialog Proveedor;
-    private javax.swing.JDialog empleado;
     private javax.swing.JButton jButton1;
     private javax.swing.JButton jButton10;
-    private javax.swing.JButton jButton11;
     private javax.swing.JButton jButton12;
     private javax.swing.JButton jButton13;
     private javax.swing.JButton jButton14;
-    private javax.swing.JButton jButton15;
     private javax.swing.JButton jButton16;
     private javax.swing.JButton jButton17;
     private javax.swing.JButton jButton18;
-    private javax.swing.JButton jButton19;
     private javax.swing.JButton jButton2;
     private javax.swing.JButton jButton20;
     private javax.swing.JButton jButton21;
     private javax.swing.JButton jButton22;
-    private javax.swing.JButton jButton23;
     private javax.swing.JButton jButton24;
     private javax.swing.JButton jButton25;
     private javax.swing.JButton jButton3;
-    private javax.swing.JButton jButton4;
     private javax.swing.JButton jButton5;
-    private javax.swing.JButton jButton6;
     private javax.swing.JButton jButton7;
     private javax.swing.JButton jButton8;
     private javax.swing.JButton jButton9;
@@ -843,66 +1213,73 @@ public class MobilesApp extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel14;
     private javax.swing.JLabel jLabel15;
     private javax.swing.JLabel jLabel16;
-    private javax.swing.JLabel jLabel17;
     private javax.swing.JLabel jLabel18;
     private javax.swing.JLabel jLabel19;
-    private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel20;
     private javax.swing.JLabel jLabel21;
     private javax.swing.JLabel jLabel22;
     private javax.swing.JLabel jLabel23;
     private javax.swing.JLabel jLabel24;
-    private javax.swing.JLabel jLabel25;
     private javax.swing.JLabel jLabel26;
     private javax.swing.JLabel jLabel27;
     private javax.swing.JLabel jLabel28;
     private javax.swing.JLabel jLabel29;
     private javax.swing.JLabel jLabel3;
-    private javax.swing.JLabel jLabel30;
     private javax.swing.JLabel jLabel31;
     private javax.swing.JLabel jLabel32;
     private javax.swing.JLabel jLabel33;
     private javax.swing.JLabel jLabel34;
     private javax.swing.JLabel jLabel4;
     private javax.swing.JLabel jLabel5;
-    private javax.swing.JLabel jLabel6;
-    private javax.swing.JLabel jLabel7;
     private javax.swing.JLabel jLabel8;
-    private javax.swing.JLabel jLabel9;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel jPanel2;
     private javax.swing.JPanel jPanel4;
     private javax.swing.JPanel jPanel5;
     private javax.swing.JScrollPane jScrollPane1;
+    private javax.swing.JScrollPane jScrollPane2;
+    private javax.swing.JScrollPane jScrollPane3;
+    private javax.swing.JScrollPane jScrollPane4;
+    private javax.swing.JScrollPane jScrollPane5;
+    private javax.swing.JScrollPane jScrollPane6;
+    private javax.swing.JScrollPane jScrollPane7;
     private javax.swing.JTabbedPane jTabbedPane1;
     private javax.swing.JTabbedPane jTabbedPane2;
-    private javax.swing.JTextArea jTextArea1;
-    private javax.swing.JTextField jTextField1;
-    private javax.swing.JTextField jTextField10;
-    private javax.swing.JTextField jTextField11;
-    private javax.swing.JTextField jTextField12;
-    private javax.swing.JTextField jTextField13;
-    private javax.swing.JTextField jTextField14;
-    private javax.swing.JTextField jTextField15;
-    private javax.swing.JTextField jTextField16;
-    private javax.swing.JTextField jTextField17;
-    private javax.swing.JTextField jTextField18;
-    private javax.swing.JTextField jTextField19;
-    private javax.swing.JTextField jTextField2;
-    private javax.swing.JTextField jTextField20;
-    private javax.swing.JTextField jTextField21;
-    private javax.swing.JTextField jTextField22;
-    private javax.swing.JTextField jTextField23;
-    private javax.swing.JTextField jTextField24;
-    private javax.swing.JTextField jTextField3;
-    private javax.swing.JTextField jTextField4;
-    private javax.swing.JTextField jTextField5;
-    private javax.swing.JTextField jTextField6;
-    private javax.swing.JTextField jTextField7;
-    private javax.swing.JTextField jTextField8;
-    private javax.swing.JTextField jTextField9;
-    private javax.swing.JDialog producto;
-    private javax.swing.JDialog puntos_ventas;
+    private javax.swing.JTable jTable1;
+    private javax.swing.JButton jb_AgregarOrden_Orden;
+    private javax.swing.JDialog jd_Empleado;
+    private javax.swing.JDialog jd_HistorialOrdenes;
+    private javax.swing.JDialog jd_Inventario;
+    private javax.swing.JDialog jd_Producto;
+    private javax.swing.JDialog jd_Proveedor;
+    private javax.swing.JDialog jd_puntos_ventas;
+    private javax.swing.JList<String> jl_Empleados_Empleado;
+    private javax.swing.JLabel jl_Fecha_Orden;
+    private javax.swing.JList<String> jl_Ordenes_Orden;
+    private javax.swing.JList<String> jl_Productos_Producto;
+    private javax.swing.JList<String> jl_Proveedores_Proveedor;
+    private javax.swing.JList<String> jl_Puntos_PuntoVenta;
+    private javax.swing.JTextField jt_Ciudad_PuntoVenta;
+    private javax.swing.JTextField jt_Correo_Proveedor;
+    private javax.swing.JTextField jt_Correo_PuntoVenta;
+    private javax.swing.JTextField jt_Direccion_Empleado;
+    private javax.swing.JTextField jt_Direccion_PuntoVenta;
+    private javax.swing.JTextField jt_Fecha_Empleado;
+    private javax.swing.JTextField jt_IDEmpleado_Orden;
+    private javax.swing.JTextField jt_IDProveedor_Producto;
+    private javax.swing.JTextField jt_IDPuntoVenta_Orden;
+    private javax.swing.JTextField jt_Nombre_Empleado;
+    private javax.swing.JTextField jt_Nombre_Producto;
+    private javax.swing.JTextField jt_Nombre_Proveedor;
+    private javax.swing.JTextField jt_PrecioCompra_Producto;
+    private javax.swing.JTextField jt_PrecioVenta_Producto;
+    private javax.swing.JTextField jt_RTN_Empleado;
+    private javax.swing.JTextField jt_Sueldo_Empleado;
+    private javax.swing.JTextField jt_Telefono_Empleado;
+    private javax.swing.JTextField jt_Telefono_Proveedor;
+    private javax.swing.JTextField jt_Telefono_PuntoVenta;
+    private javax.swing.JTextField jt_Unidades_Producto;
+    private javax.swing.JTextArea jta_Descripcion_Producto;
     // End of variables declaration//GEN-END:variables
     Connection Conect;
 
@@ -917,13 +1294,12 @@ public class MobilesApp extends javax.swing.JFrame {
     }
 
     //----------------------------------METODOS DE AGREGAR-----------------------------------------------------
-    public void InsertarProveedorEnDB(String ID, String Nombre, String Telefono, String Correo) {
+    public void InsertarProveedorEnDB(String Nombre, String Telefono, String Correo) {
         CallableStatement CT = null;
         boolean Resp = true;
         try {
             Conect.setAutoCommit(false);
-            CT = Conect.prepareCall("{Call stb_insertProveedores(?, ?, ?, ?)}");
-            CT.setString("ID", ID);
+            CT = Conect.prepareCall("{Call stb_insertProveedores(?, ?, ?)}");
             CT.setString("Nombre", Nombre);
             CT.setString("Telefono", Telefono);
             CT.setString("Correo", Correo);
@@ -934,13 +1310,13 @@ public class MobilesApp extends javax.swing.JFrame {
         }
     }
 
-    public void InsertarDetalleOrdenEnDB(String ID, String IDProducto, double Subtotal, double Total, double Descuento) {
+    public void InsertarDetalleOrdenEnDB(String IDOrden, String IDProducto, double Subtotal, double Total, double Descuento) {
         CallableStatement CT = null;
         boolean Resp = true;
         try {
             Conect.setAutoCommit(false);
-            CT = Conect.prepareCall("{Call stb_insertarDetalle(?, ?, ?, ?, ?)}");
-            CT.setString("ID_Orden", ID);
+            CT = Conect.prepareCall("{Call stb_insertDetalle(?, ?, ?, ?, ?)}");
+            CT.setString("ID_Orden", IDOrden);
             CT.setString("ID_Producto", IDProducto);
             CT.setString("Subtotal", Double.toString(Subtotal));
             CT.setString("Total", Double.toString(Total));
@@ -952,13 +1328,12 @@ public class MobilesApp extends javax.swing.JFrame {
         }
     }
 
-    public void InsertarEmpleadoEnDB(String ID, String RTN, double Sueldo, String Direccion, String Fecha, String Telefono, String Nombre) {
+    public void InsertarEmpleadoEnDB(String RTN, double Sueldo, String Direccion, String Fecha, String Telefono, String Nombre) {
         CallableStatement CT = null;
         boolean Resp = true;
         try {
             Conect.setAutoCommit(false);
-            CT = Conect.prepareCall("{Call stb_insertEmpleado(?, ?, ?, ?, ?, ?, ?)}");
-            CT.setString("ID", ID);
+            CT = Conect.prepareCall("{Call stb_insertEmpleado(?, ?, ?, ?, ?, ?)}");
             CT.setString("RTN", RTN);
             CT.setString("Sueldo", Double.toString(Sueldo));
             CT.setString("Direccion", Direccion);
@@ -972,15 +1347,14 @@ public class MobilesApp extends javax.swing.JFrame {
         }
     }
 
-    public void InsertarOrdenEnDB(String ID, String IDEmpleado, String IDPuntoDeVenta) {
+    public void InsertarOrdenEnDB(int IDEmpleado, int IDPuntoDeVenta) {
         CallableStatement CT = null;
         boolean Resp = true;
         try {
             Conect.setAutoCommit(false);
-            CT = Conect.prepareCall("{Call stb_insertOrden(?, ?, ?)}");
-            CT.setString("ID", ID);
-            CT.setString("ID_Empleado", IDEmpleado);
-            CT.setString("ID_PuntoVenta", IDPuntoDeVenta);
+            CT = Conect.prepareCall("{Call stb_insertOrden(?, ?)}");
+            CT.setInt("ID_Empleado", IDEmpleado);
+            CT.setInt("ID_PuntoVenta", IDPuntoDeVenta);
             Resp = CT.execute();
             Conect.commit();
         } catch (Exception e) {
@@ -988,19 +1362,19 @@ public class MobilesApp extends javax.swing.JFrame {
         }
     }
 
-    public void InsertarProductoEnDB(String ID, String Nombre, double PrecioVenta, double PrecioCompra, int Unidades, String Descripcion, String IDProveedor) {
+    public void InsertarProductoEnDB(int ID, String Nombre, double PrecioVenta, double PrecioCompra, int Unidades, String Descripcion, int IDProveedor) {
         CallableStatement CT = null;
         boolean Resp = true;
         try {
             Conect.setAutoCommit(false);
             CT = Conect.prepareCall("{Call stb_insertProducto(?, ?, ?, ?, ?, ?, ?)}");
-            CT.setString("ID", ID);
+            CT.setInt("ID", ID);
             CT.setString("Nombre", Nombre);
             CT.setString("Precio_Venta", Double.toString(PrecioVenta));
             CT.setString("Precio_Compra", Double.toString(PrecioCompra));
-            CT.setString("Unidades", Double.toString(Unidades));
+            CT.setInt("Unidades", Unidades);
             CT.setString("Descripcion", Descripcion);
-            CT.setString("ID_Proveedor", IDProveedor);
+            CT.setInt("ID_Proveedor", IDProveedor);
             Resp = CT.execute();
             Conect.commit();
         } catch (Exception e) {
@@ -1008,13 +1382,12 @@ public class MobilesApp extends javax.swing.JFrame {
         }
     }
 
-    public void InsertarPuntoVentaEnDB(String ID, String Direccion, String Ciudad, String Telefono, String Correo) {
+    public void InsertarPuntoVentaEnDB(String Direccion, String Ciudad, String Telefono, String Correo) {
         CallableStatement CT = null;
         boolean Resp = true;
         try {
             Conect.setAutoCommit(false);
-            CT = Conect.prepareCall("{Call stb_insertPuntoVenta(?, ?, ?, ?, ?)}");
-            CT.setString("ID", ID);
+            CT = Conect.prepareCall("{Call stb_insertPuntoVenta(?, ?, ?, ?)}");
             CT.setString("Direccion", Direccion);
             CT.setString("Ciudad", Ciudad);
             CT.setString("Telefono", Telefono);
@@ -1027,14 +1400,14 @@ public class MobilesApp extends javax.swing.JFrame {
     }
 
 //------------------------------------------------------METODOS DE MODIFICAR----------------------------
-    public void ActualizarDetalleOrdenEnDB(String ID, String IDProducto, double Subtotal, double Total, double Descuento) {
+    public void ActualizarDetalleOrdenEnDB(int ID, int IDProducto, double Subtotal, double Total, double Descuento) {
         CallableStatement CT = null;
         boolean Resp = true;
         try {
             Conect.setAutoCommit(false);
             CT = Conect.prepareCall("{Call stb_ActualizarDetalleOrden(?, ?, ?, ?, ?)}");
-            CT.setString("ID_Orden", ID);
-            CT.setString("ID_Producto", IDProducto);
+            CT.setInt("ID_Orden", ID);
+            CT.setInt("ID_Producto", IDProducto);
             CT.setString("Subtotal", Double.toString(Subtotal));
             CT.setString("Total", Double.toString(Total));
             CT.setString("Descuento", Double.toString(Descuento));
@@ -1045,13 +1418,13 @@ public class MobilesApp extends javax.swing.JFrame {
         }
     }
 
-    public void ActualizarEmpleadoEnDB(String ID, String RTN, double Sueldo, String Direccion, String Fecha, String Telefono, String Nombre) {
+    public void ActualizarEmpleadoEnDB(int ID, String RTN, double Sueldo, String Direccion, String Fecha, String Telefono, String Nombre) {
         CallableStatement CT = null;
         boolean Resp = true;
         try {
             Conect.setAutoCommit(false);
             CT = Conect.prepareCall("{Call stb_ActualizarEmpleado(?, ?, ?, ?, ?, ?, ?)}");
-            CT.setString("ID", ID);
+            CT.setInt("ID", ID);
             CT.setString("RTN", RTN);
             CT.setString("Sueldo", Double.toString(Sueldo));
             CT.setString("Direccion", Direccion);
@@ -1065,13 +1438,13 @@ public class MobilesApp extends javax.swing.JFrame {
         }
     }
 
-    public void ActualizarOrdenEnDB(String ID, String IDEmpleado, String IDPuntoDeVenta) {
+    public void ActualizarOrdenEnDB(int ID, String IDEmpleado, String IDPuntoDeVenta) {
         CallableStatement CT = null;
         boolean Resp = true;
         try {
             Conect.setAutoCommit(false);
             CT = Conect.prepareCall("{Call stb_ActualizarOrden(?, ?, ?)}");
-            CT.setString("ID", ID);
+            CT.setInt("ID", ID);
             CT.setString("ID_Empleado", IDEmpleado);
             CT.setString("ID_PuntoVenta", IDPuntoDeVenta);
             Resp = CT.execute();
@@ -1081,17 +1454,17 @@ public class MobilesApp extends javax.swing.JFrame {
         }
     }
 
-    public void ActualizarProductoEnDB(String ID, String Nombre, double PrecioVenta, double PrecioCompra, int Unidades, String Descripcion, String IDProveedor) {
+    public void ActualizarProductoEnDB(int ID, String Nombre, double PrecioVenta, double PrecioCompra, int Unidades, String Descripcion, String IDProveedor) {
         CallableStatement CT = null;
         boolean Resp = true;
         try {
             Conect.setAutoCommit(false);
             CT = Conect.prepareCall("{Call stb_ActualizarProducto(?, ?, ?, ?, ?, ?, ?)}");
-            CT.setString("ID", ID);
+            CT.setInt("ID", ID);
             CT.setString("Nombre", Nombre);
             CT.setString("Precio_Venta", Double.toString(PrecioVenta));
             CT.setString("Precio_Compra", Double.toString(PrecioCompra));
-            CT.setString("Unidades", Double.toString(Unidades));
+            CT.setInt("Unidades", Unidades);
             CT.setString("Descripcion", Descripcion);
             CT.setString("ID_Proveedor", IDProveedor);
             Resp = CT.execute();
@@ -1101,13 +1474,13 @@ public class MobilesApp extends javax.swing.JFrame {
         }
     }
 
-    public void ActualizarProveedorEnDB(String ID, String Nombre, String Telefono, String Correo) {
+    public void ActualizarProveedorEnDB(int ID, String Nombre, String Telefono, String Correo) {
         CallableStatement CT = null;
         boolean Resp = true;
         try {
             Conect.setAutoCommit(false);
             CT = Conect.prepareCall("{Call stb_ActualizarProveedores(?, ?, ?, ?)}");
-            CT.setString("ID", ID);
+            CT.setInt("ID", ID);
             CT.setString("Nombre", Nombre);
             CT.setString("Telefono", Telefono);
             CT.setString("Correo", Correo);
@@ -1118,13 +1491,13 @@ public class MobilesApp extends javax.swing.JFrame {
         }
     }
 
-    public void ActualizarPuntoVentaEnDB(String ID, String Direccion, String Ciudad, String Telefono, String Correo) {
+    public void ActualizarPuntoVentaEnDB(int ID, String Direccion, String Ciudad, String Telefono, String Correo) {
         CallableStatement CT = null;
         boolean Resp = true;
         try {
             Conect.setAutoCommit(false);
             CT = Conect.prepareCall("{Call stb_ActualizarPuntoVenta(?, ?, ?, ?, ?)}");
-            CT.setString("ID", ID);
+            CT.setInt("ID", ID);
             CT.setString("Direccion", Direccion);
             CT.setString("Ciudad", Ciudad);
             CT.setString("Telefono", Telefono);
@@ -1137,13 +1510,13 @@ public class MobilesApp extends javax.swing.JFrame {
     }
 
 //----------------------------METODOS DE ELIMINAR--------------------------------------------------------
-    public void BorrarProductoPorID(String ID) {
+    public void BorrarProductoPorID(int ID) {
         CallableStatement CT = null;
         boolean Resp = true;
         try {
             Conect.setAutoCommit(false);
             CT = Conect.prepareCall("{Call stb_deletbyID(?)}");
-            CT.setString("ID", ID);
+            CT.setInt("ID", ID);
             Resp = CT.execute();
             Conect.commit();
         } catch (Exception e) {
@@ -1151,13 +1524,13 @@ public class MobilesApp extends javax.swing.JFrame {
         }
     }
 
-    public void BorrarOrdenPorID(String ID) {
+    public void BorrarOrdenPorID(int ID) {
         CallableStatement CT = null;
         boolean Resp = true;
         try {
             Conect.setAutoCommit(false);
             CT = Conect.prepareCall("{Call stb_deleteOrdenbyID(?)}");
-            CT.setString("ID", ID);
+            CT.setInt("ID", ID);
             Resp = CT.execute();
             Conect.commit();
         } catch (Exception e) {
@@ -1165,13 +1538,13 @@ public class MobilesApp extends javax.swing.JFrame {
         }
     }
 
-    public void BorrarEmpleadoPorID(String ID) {
+    public void BorrarEmpleadoPorID(int ID) {
         CallableStatement CT = null;
         boolean Resp = true;
         try {
             Conect.setAutoCommit(false);
             CT = Conect.prepareCall("{Call stb_deleteEmpleadobyID(?)}");
-            CT.setString("ID", ID);
+            CT.setInt("ID", ID);
             Resp = CT.execute();
             Conect.commit();
         } catch (Exception e) {
@@ -1179,13 +1552,13 @@ public class MobilesApp extends javax.swing.JFrame {
         }
     }
 
-    public void BorrarProveedorPorID(String ID) {
+    public void BorrarProveedorPorID(int ID) {
         CallableStatement CT = null;
         boolean Resp = true;
         try {
             Conect.setAutoCommit(false);
             CT = Conect.prepareCall("{Call stb_deleteProveedorbyID(?)}");
-            CT.setString("ID", ID);
+            CT.setInt("ID", ID);
             Resp = CT.execute();
             Conect.commit();
         } catch (Exception e) {
@@ -1193,17 +1566,43 @@ public class MobilesApp extends javax.swing.JFrame {
         }
     }
 
-    public void BorrarPuntoVentaPorID(String ID) {
+    public void BorrarPuntoVentaPorID(int ID) {
         CallableStatement CT = null;
         boolean Resp = true;
         try {
             Conect.setAutoCommit(false);
             CT = Conect.prepareCall("{Call stb_deletePuntoVentabyID(?)}");
-            CT.setString("ID", ID);
+            CT.setInt("ID", ID);
             Resp = CT.execute();
             Conect.commit();
         } catch (Exception e) {
             e.printStackTrace();
         }
+    }
+
+    public boolean CampoLleno(JTextField Campo) {
+        if (Campo.getText().equals("")) {
+            return false;
+        } else {
+            return true;
+        }
+    }
+
+    public void LlenarListas(JList Lista, String Proceso) {
+        DefaultListModel modelo = new DefaultListModel();
+        CallableStatement CT = null;
+        ResultSet RS = null;
+        try {
+            CT = Conect.prepareCall("{Call " + Proceso + "}");
+            RS = CT.executeQuery();
+            while (RS.next()) {
+                int ID = 0;
+                ID = RS.getInt("ID");
+                modelo.addElement(ID);
+            }
+        } catch (Exception e) {
+        }
+
+        Lista.setModel(modelo);
     }
 }
