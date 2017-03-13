@@ -76,9 +76,13 @@ declare @idProducto int,
 @descripcion varchar(max),
 @idProveedor int
 
-select  @idProducto = i.ID, @nombreProducto = i.Nombre, @precioVenta = i.Precio_Venta, @precioCompra = i.Precio_Compra,
+select  @nombreProducto = i.Nombre, @precioVenta = i.Precio_Venta, @precioCompra = i.Precio_Compra,
 		@unidades = i.Unidades, @descripcion = i.Descripcion, @idProveedor = i.ID_Proveedor
 from inserted i
+
+select top 1 @idProducto = P.ID + 1
+from dbo.Producto P
+order by ID desc
 
 if exists(select* from dbo.Producto P where P.ID = @idProducto)
 	begin 
@@ -103,16 +107,12 @@ else
 		else
 			print 'nada'
 
-insert into dbo.Producto values('sd','asfasr',123,123,123,'gwedgvwresfgv','mario',1)
+insert into dbo.Producto values('sd','asfasr',123,123,123,'gwedgvwresfgv','1',1)
 
 select* from dbo.Proveedor_Producto
 select* from dbo.Proveedores
 select* from dbo.Producto
 ---------------------
-
-
-
-
 --------------------------------------------------------------------------------------------------------------------------------------
 
 go
@@ -198,24 +198,20 @@ alter procedure stb_ActualizarEmpleado
 @nombre varchar(50)
 as
 if exists(select* from dbo.Empleado E where E.ID = @idEmpleado)
-begin 
-	if exists(select* from dbo.Empleado E where E.RTN = @RTN and @idEmpleado != ID)
-	begin 
-		if exists(select* from dbo.Empleado E where E.Telefono = @telefono and @idEmpleado != ID)
-		begin
-			UPDATE Empleado SET RTN = @RTN, Sueldo = @Sueldo, Direccion = @direccion, 
-						        Fecha_inicio = @fecha_inicio, Telefono = @telefono, Nombre = @nombre
-						    WHERE ID = @idEmpleado
-		end
-		else 
-			print '1'
-	end 
+begin
+	if exists(select* from dbo.Empleado E where E.RTN = @RTN and E.ID != @idEmpleado)
+	begin
+		print 'RTN de otra persona' 
+	end
 	else 
-		print '2'
-		
-end 
-else
-	print '3'	
+		if exists(select* from dbo.Empleado E where E.Telefono = @idEmpleado and E.ID != @idEmpleado)
+		begin 
+			print 'telefono repetido'
+		end 
+		else
+			update Empleado set RTN = @RTN, Sueldo = @sueldo , Direccion = @direccion , Fecha_Inicio = @fecha_inicio, Telefono = @telefono, Nombre = @nombre
+			where ID = @idEmpleado
+end
 
 select*
 from dbo.Empleado
@@ -281,7 +277,7 @@ else
 	print 'Id de proveedor inexistente'
 ---------------------------------------------ELIMINADO------------------------------------------------------------
 --Eliminado por ID PRODUCTO
-create procedure stb_deletebyID
+alter procedure stb_deletebyID
 @idProducto int
 as
 if exists(select* from dbo.Producto P where P.ID = @idProducto)

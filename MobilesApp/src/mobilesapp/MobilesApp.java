@@ -9,6 +9,7 @@ import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.SQLException;
 import java.sql.CallableStatement;
+import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.util.Date;
 import javax.swing.DefaultListModel;
@@ -28,6 +29,7 @@ public class MobilesApp extends javax.swing.JFrame {
     public MobilesApp() {
         initComponents();
         Conectar();
+        LlenarListas(jl_Ordenes_Orden, "stb_listarOrdenes");
     }
 
     /**
@@ -882,7 +884,7 @@ public class MobilesApp extends javax.swing.JFrame {
             IDPuntoVenta = Integer.parseInt(jt_IDPuntoVenta_Orden.getText());
 
             InsertarOrdenEnDB(IDEmpleado, IDPuntoVenta);
-            LlenarListas(jl_Ordenes_Orden, "stb_listarOrden");
+            LlenarListas(jl_Ordenes_Orden, "stb_listarOrdenes");
 
             JOptionPane.showMessageDialog(this, "Orden agregada con exito", "OPERACION EXITOSA", JOptionPane.INFORMATION_MESSAGE);
         } else {
@@ -894,11 +896,10 @@ public class MobilesApp extends javax.swing.JFrame {
         // TODO add your handling code here:
         if (jl_Ordenes_Orden.getSelectedIndex() != -1) {
             int IDOrden;
-
-            IDOrden = Integer.parseInt(jl_Ordenes_Orden.getSelectedValue());
-
+            Object id = jl_Ordenes_Orden.getSelectedValue();
+            IDOrden = ((Integer)id).intValue();
             BorrarOrdenPorID(IDOrden);
-            LlenarListas(jl_Ordenes_Orden, "stb_listarOrden");
+            LlenarListas(jl_Ordenes_Orden, "stb_listarOrdenes");
 
             JOptionPane.showMessageDialog(this, "Orden eliminada con exito", "OPERACION EXITOSA", JOptionPane.INFORMATION_MESSAGE);
         } else {
@@ -907,11 +908,11 @@ public class MobilesApp extends javax.swing.JFrame {
     }//GEN-LAST:event_jButton2MouseClicked
 
     private void jButton10MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jButton10MouseClicked
-        // TODO add your handling code here:
         if (CampoLleno(jt_Direccion_Empleado) && CampoLleno(jt_Fecha_Empleado) && CampoLleno(jt_Nombre_Empleado) && CampoLleno(jt_RTN_Empleado)
                 && CampoLleno(jt_Sueldo_Empleado) && CampoLleno(jt_Telefono_Empleado)) {
             Date FechaSistema = new Date();
-
+            int cantidad = jl_Empleados_Empleado.getComponentCount();
+            System.out.println("HAY------" + cantidad);
             String Direccion;
             String Fecha = Integer.toString(FechaSistema.getYear()) + Integer.toString(FechaSistema.getMonth()) + Integer.toString(FechaSistema.getDay());
             String Nombre;
@@ -926,19 +927,21 @@ public class MobilesApp extends javax.swing.JFrame {
             InsertarEmpleadoEnDB(RTN, Sueldo, Direccion, Fecha, Telefono, Nombre);
             LlenarListas(jl_Ordenes_Orden, "stb_listartodosEmpleados");
             LlenarListas(jl_Empleados_Empleado, "stb_listartodosEmpleados");
-
-            JOptionPane.showMessageDialog(this, "Empleado agregado con exito", "OPERACION EXITOSA", JOptionPane.INFORMATION_MESSAGE);
+            int ahora = jl_Empleados_Empleado.getComponentCount();
+            if ((cantidad + 1) == ahora) {
+                JOptionPane.showMessageDialog(this, "Empleado agregado con exito", "OPERACION EXITOSA", JOptionPane.INFORMATION_MESSAGE);
+            } else {
+                JOptionPane.showMessageDialog(this, "No se ha podido agregar usuario", "REVISE LOS DATOS", JOptionPane.INFORMATION_MESSAGE);
+            }
         } else {
             JOptionPane.showMessageDialog(this, "Los campos no estan llenos", "ERROR", JOptionPane.ERROR_MESSAGE);
         }
     }//GEN-LAST:event_jButton10MouseClicked
 
     private void jButton13MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jButton13MouseClicked
-        // TODO add your handling code here:
         if (CampoLleno(jt_Direccion_Empleado) && CampoLleno(jt_Fecha_Empleado) && CampoLleno(jt_Nombre_Empleado) && CampoLleno(jt_RTN_Empleado)
                 && CampoLleno(jt_Sueldo_Empleado) && CampoLleno(jt_Telefono_Empleado) && jl_Empleados_Empleado.getSelectedIndex() != -1) {
             Date FechaSistema = new Date();
-
             String Direccion;
             String Fecha = Integer.toString(FechaSistema.getYear()) + Integer.toString(FechaSistema.getMonth()) + Integer.toString(FechaSistema.getDay());
             String Nombre;
@@ -964,10 +967,9 @@ public class MobilesApp extends javax.swing.JFrame {
     }//GEN-LAST:event_jButton13MouseClicked
 
     private void btn_borrarEmpleadoMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btn_borrarEmpleadoMouseClicked
-        // TODO add your handling code here:
         if (jl_Empleados_Empleado.getSelectedIndex() != -1) {
+            int hay = jl_Empleados_Empleado.getComponentCount();
             int IDEmpleado = -1;
-            //IDEmpleado = Integer.parseInt(jl_Empleados_Empleado.getSelectedValue
             Object i = jl_Empleados_Empleado.getSelectedValue();
             if (i instanceof Integer) {
                 IDEmpleado = ((Integer) i);
@@ -976,33 +978,35 @@ public class MobilesApp extends javax.swing.JFrame {
                 BorrarEmpleadoPorID(IDEmpleado);
                 LlenarListas(jl_Empleados_Empleado, "stb_listartodosEmpleados");
             }
-            JOptionPane.showMessageDialog(this, "Empleado eliminadao con exito", "OPERACION EXITOSA", JOptionPane.INFORMATION_MESSAGE);
+            int ahora = jl_Empleados_Empleado.getComponentCount();
+            if ((hay - 1) == ahora) {
+                JOptionPane.showMessageDialog(this, "Empleado eliminadao con exito", "OPERACION EXITOSA", JOptionPane.INFORMATION_MESSAGE);
+            } else {
+                JOptionPane.showMessageDialog(this, "Se ha producido un error", "SELECCIONE UN DATO DE LA LISTA", JOptionPane.INFORMATION_MESSAGE);
+            }
         } else {
             JOptionPane.showMessageDialog(this, "Seleccione un empleado", "ERROR", JOptionPane.ERROR_MESSAGE);
         }
     }//GEN-LAST:event_btn_borrarEmpleadoMouseClicked
 
     private void jButton14MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jButton14MouseClicked
-        // TODO add your handling code here:
         if (CampoLleno(jt_IDProveedor_Producto) && CampoLleno(jt_PrecioCompra_Producto) && CampoLleno(jt_PrecioVenta_Producto)
                 && CampoLleno(jt_Unidades_Producto) && !jta_Descripcion_Producto.getText().equals("") && CampoLleno(jt_Nombre_Producto)) {
 
             int IDProveedor, Unidades;
             double PrecioCompra, PrecioVenta;
             String Descripcion, Nombre;
-
             IDProveedor = Integer.parseInt(jt_IDProveedor_Producto.getText());
             Unidades = Integer.parseInt(jt_Unidades_Producto.getText());
             PrecioCompra = Double.parseDouble(jt_PrecioCompra_Producto.getText());
             PrecioVenta = Double.parseDouble(jt_PrecioVenta_Producto.getText());
             Descripcion = jta_Descripcion_Producto.getText();
             Nombre = jt_Nombre_Producto.getText();
-
-            InsertarProductoEnDB(1, Nombre, PrecioVenta, PrecioCompra, Unidades, Descripcion, IDProveedor);
-            LlenarListas(jl_Ordenes_Orden, "ListarProductos");
-
-            JOptionPane.showMessageDialog(this, "Producto agregado con exito", "OPERACION EXITOSA", JOptionPane.INFORMATION_MESSAGE);
-
+            int mostrar = InsertarProductoEnDB(Nombre, PrecioVenta, PrecioCompra, Unidades, Descripcion, IDProveedor);
+            LlenarListas(jl_Productos_Producto, "stb_listarProductos");
+            if (mostrar > 0) {
+                JOptionPane.showMessageDialog(this, "Producto agregado con exito", "OPERACION EXITOSA", JOptionPane.INFORMATION_MESSAGE);
+            }
         } else {
             JOptionPane.showMessageDialog(this, "Los campos no estan llenos", "ERROR", JOptionPane.ERROR_MESSAGE);
         }
@@ -1017,8 +1021,8 @@ public class MobilesApp extends javax.swing.JFrame {
             int IDProveedor, Unidades, ID;
             double PrecioCompra, PrecioVenta;
             String Descripcion, Nombre;
-
-            ID = Integer.parseInt(jl_Productos_Producto.getSelectedValue());
+            Object id = jl_Productos_Producto.getSelectedValue();
+            ID = ((Integer)id).intValue();
             IDProveedor = Integer.parseInt(jt_IDProveedor_Producto.getText());
             Unidades = Integer.parseInt(jt_Unidades_Producto.getText());
             PrecioCompra = Double.parseDouble(jt_PrecioCompra_Producto.getText());
@@ -1027,7 +1031,7 @@ public class MobilesApp extends javax.swing.JFrame {
             Nombre = jt_Nombre_Producto.getText();
 
             ActualizarProductoEnDB(ID, Nombre, PrecioVenta, PrecioCompra, Unidades, Descripcion, Nombre);
-            LlenarListas(jl_Ordenes_Orden, "ListarProductos");
+            LlenarListas(jl_Productos_Producto, "stb_listarProductos");
 
             JOptionPane.showMessageDialog(this, "Producto actualizado con exito", "OPERACION EXITOSA", JOptionPane.INFORMATION_MESSAGE);
         } else {
@@ -1036,7 +1040,6 @@ public class MobilesApp extends javax.swing.JFrame {
     }//GEN-LAST:event_jButton16MouseClicked
 
     private void jButton17MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jButton17MouseClicked
-        // TODO add your handling code here:
         if (jl_Productos_Producto.getSelectedIndex() != -1) {
             int IDProducto = -1;
             Object i = jl_Productos_Producto.getSelectedValue();
@@ -1125,7 +1128,6 @@ public class MobilesApp extends javax.swing.JFrame {
     }//GEN-LAST:event_jButton22MouseClicked
 
     private void jButton24MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jButton24MouseClicked
-        // TODO add your handling code here:
         if (CampoLleno(jt_Ciudad_PuntoVenta) && CampoLleno(jt_Correo_PuntoVenta) && CampoLleno(jt_Direccion_PuntoVenta)
                 && CampoLleno(jt_Telefono_PuntoVenta) && jl_Puntos_PuntoVenta.getSelectedIndex() != -1) {
             String Ciudad, Correo, Telefono, Direccion;
@@ -1438,8 +1440,8 @@ public class MobilesApp extends javax.swing.JFrame {
         try {
             Conect.setAutoCommit(false);
             CT = Conect.prepareCall("{Call stb_insertOrden(?, ?)}");
-            CT.setInt("ID_Empleado", IDEmpleado);
-            CT.setInt("ID_PuntoVenta", IDPuntoDeVenta);
+            CT.setInt(1, IDEmpleado);
+            CT.setInt(2, IDPuntoDeVenta);
             Resp = CT.execute();
             Conect.commit();
         } catch (Exception e) {
@@ -1447,24 +1449,22 @@ public class MobilesApp extends javax.swing.JFrame {
         }
     }
 
-    public void InsertarProductoEnDB(int ID, String Nombre, double PrecioVenta, double PrecioCompra, int Unidades, String Descripcion, int IDProveedor) {
-        CallableStatement CT = null;
-        boolean Resp = true;
+    public int InsertarProductoEnDB(String Nombre, double PrecioVenta, double PrecioCompra, int Unidades, String Descripcion, int IDProveedor) {
+        int agrega = 0;
         try {
-            Conect.setAutoCommit(false);
-            CT = Conect.prepareCall("{Call stb_insertProducto(?, ?, ?, ?, ?, ?, ?)}");
-            CT.setInt("ID", ID);
-            CT.setString("Nombre", Nombre);
-            CT.setString("Precio_Venta", Double.toString(PrecioVenta));
-            CT.setString("Precio_Compra", Double.toString(PrecioCompra));
-            CT.setInt("Unidades", Unidades);
-            CT.setString("Descripcion", Descripcion);
-            CT.setInt("ID_Proveedor", IDProveedor);
-            Resp = CT.execute();
-            Conect.commit();
+            PreparedStatement CT = Conect.prepareStatement("Insert into Producto values (?,?,?,?,?,?,?)");
+            CT.setString(1, Nombre);
+            CT.setString(2, Double.toString(PrecioVenta));
+            CT.setString(3, Double.toString(PrecioCompra));
+            CT.setInt(4, Unidades);
+            CT.setString(5, Descripcion);
+            CT.setInt(6, IDProveedor);
+            CT.setInt(7, 1);
+            agrega = CT.executeUpdate();
         } catch (Exception e) {
             e.printStackTrace();
         }
+        return agrega;
     }
 
     public void InsertarPuntoVentaEnDB(String Direccion, String Ciudad, String Telefono, String Correo) {
@@ -1546,13 +1546,13 @@ public class MobilesApp extends javax.swing.JFrame {
         try {
             Conect.setAutoCommit(false);
             CT = Conect.prepareCall("{Call stb_ActualizarProducto(?, ?, ?, ?, ?, ?, ?)}");
-            CT.setInt("ID", ID);
-            CT.setString("Nombre", Nombre);
-            CT.setString("Precio_Venta", Double.toString(PrecioVenta));
-            CT.setString("Precio_Compra", Double.toString(PrecioCompra));
-            CT.setInt("Unidades", Unidades);
-            CT.setString("Descripcion", Descripcion);
-            CT.setString("ID_Proveedor", IDProveedor);
+            CT.setInt(1, ID);
+            CT.setString(2, Nombre);
+            CT.setString(3, Double.toString(PrecioVenta));
+            CT.setString(4, Double.toString(PrecioCompra));
+            CT.setInt(5, Unidades);
+            CT.setString(6, Descripcion);
+            CT.setString(7, IDProveedor);
             Resp = CT.execute();
             Conect.commit();
         } catch (Exception e) {
@@ -1601,8 +1601,8 @@ public class MobilesApp extends javax.swing.JFrame {
         boolean Resp = true;
         try {
             Conect.setAutoCommit(false);
-            CT = Conect.prepareCall("{Call stb_deletbyID(?)}");
-            CT.setInt("ID", ID);
+            CT = Conect.prepareCall("{Call stb_deletebyID(?)}");
+            CT.setInt(1, ID);
             Resp = CT.execute();
             Conect.commit();
         } catch (Exception e) {
@@ -1616,7 +1616,7 @@ public class MobilesApp extends javax.swing.JFrame {
         try {
             Conect.setAutoCommit(false);
             CT = Conect.prepareCall("{Call stb_deleteOrdenbyID(?)}");
-            CT.setInt("ID", ID);
+            CT.setInt(1, ID);
             Resp = CT.execute();
             Conect.commit();
         } catch (Exception e) {
