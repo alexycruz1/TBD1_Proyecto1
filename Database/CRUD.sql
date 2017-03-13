@@ -199,17 +199,31 @@ alter procedure stb_ActualizarEmpleado
 as
 if exists(select* from dbo.Empleado E where E.ID = @idEmpleado)
 begin 
-	if exists(select* from dbo.Empleado E where E.RTN = @RTN)
+	if exists(select* from dbo.Empleado E where E.RTN = @RTN and @idEmpleado != ID)
 	begin 
-		if exists(select* from dbo.Empleado E where E.Telefono = @telefono)
+		if exists(select* from dbo.Empleado E where E.Telefono = @telefono and @idEmpleado != ID)
 		begin
 			UPDATE Empleado SET RTN = @RTN, Sueldo = @Sueldo, Direccion = @direccion, 
 						        Fecha_inicio = @fecha_inicio, Telefono = @telefono, Nombre = @nombre
 						    WHERE ID = @idEmpleado
 		end
+		else 
+			print '1'
 	end 
-end 
+	else 
+		print '2'
 		
+end 
+else
+	print '3'	
+
+select*
+from dbo.Empleado
+
+update Empleado set RTN = 35
+where ID = 1
+
+exec stb_ActualizarEmpleado 1,1,3,'1324','2017-3-12',13435,'asfas'
 
 		
 -----------------------------------------------------------------------------------------------------------------
@@ -250,7 +264,7 @@ else
 	print 'Id de punto de venta inexistente'
 -------------------------------------------------------------------------------------------------------------------
 go
-create procedure stb_ActualizarProveedores
+alter procedure stb_ActualizarProveedores
 @idProveedores int,
 @Nombre varchar(50),
 @Telefono char(9),
@@ -261,6 +275,7 @@ if exists(select*
 	  where P.ID = @idProveedores)
 	  begin
 		UPDATE Proveedores SET Nombre = @Nombre, Telefono = @Telefono, Correo = @Correo
+		WHERE ID = @idProveedores
 	  end
 else	
 	print 'Id de proveedor inexistente'

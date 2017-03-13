@@ -5,7 +5,6 @@
  */
 package mobilesapp;
 
-import java.sql.CallableStatement;
 import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.SQLException;
@@ -1062,7 +1061,7 @@ public class MobilesApp extends javax.swing.JFrame {
             Telefono = jt_Telefono_Proveedor.getText();
 
             InsertarProveedorEnDB(Nombre, Telefono, Correo);
-            LlenarListas(jl_Ordenes_Orden, "ListarProveedores");
+            LlenarListas(jl_Proveedores_Proveedor, "stb_ListarProveedores");
 
             JOptionPane.showMessageDialog(this, "Proveedor agregado con exito", "OPERACION EXITOSA", JOptionPane.INFORMATION_MESSAGE);
         } else {
@@ -1075,8 +1074,8 @@ public class MobilesApp extends javax.swing.JFrame {
         if (CampoLleno(jt_Correo_Proveedor) && CampoLleno(jt_Nombre_Proveedor) && CampoLleno(jt_Telefono_Proveedor) && jl_Proveedores_Proveedor.getSelectedIndex() != -1) {
             String Correo, Nombre, Telefono;
             int ID;
-
-            ID = Integer.parseInt(jl_Proveedores_Proveedor.getSelectedValue());
+            Object i = jl_Proveedores_Proveedor.getSelectedValue();
+            ID = ((Integer) i).intValue();
             Correo = jt_Correo_Proveedor.getText();
             Nombre = jt_Nombre_Proveedor.getText();
             Telefono = jt_Telefono_Proveedor.getText();
@@ -1092,13 +1091,13 @@ public class MobilesApp extends javax.swing.JFrame {
     private void jButton21MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jButton21MouseClicked
         // TODO add your handling code here:
         if (jl_Proveedores_Proveedor.getSelectedIndex() != -1) {
-            int ID;
-
-            ID = Integer.parseInt(jl_Proveedores_Proveedor.getSelectedValue());
-
-            BorrarProveedorPorID(ID);
-            LlenarListas(jl_Ordenes_Orden, "ListarProveedores");
-
+            int ID = -1;
+            Object i = jl_Proveedores_Proveedor.getSelectedValue();
+            ID = ((Integer) i).intValue();
+            if (ID > -1) {
+                BorrarProveedorPorID(ID);
+                LlenarListas(jl_Proveedores_Proveedor, "stb_ListarProveedores");
+            }
             JOptionPane.showMessageDialog(this, "Proveedor eliminadao con exito", "OPERACION EXITOSA", JOptionPane.INFORMATION_MESSAGE);
         } else {
             JOptionPane.showMessageDialog(this, "Seleccione un proveedor", "ERROR", JOptionPane.ERROR_MESSAGE);
@@ -1567,10 +1566,10 @@ public class MobilesApp extends javax.swing.JFrame {
         try {
             Conect.setAutoCommit(false);
             CT = Conect.prepareCall("{Call stb_ActualizarProveedores(?, ?, ?, ?)}");
-            CT.setInt("ID", ID);
-            CT.setString("Nombre", Nombre);
-            CT.setString("Telefono", Telefono);
-            CT.setString("Correo", Correo);
+            CT.setInt(1, ID);
+            CT.setString(2, Nombre);
+            CT.setString(3, Telefono);
+            CT.setString(4, Correo);
             Resp = CT.execute();
             Conect.commit();
         } catch (Exception e) {
