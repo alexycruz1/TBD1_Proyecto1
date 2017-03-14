@@ -16,6 +16,7 @@ import javax.swing.DefaultListModel;
 import javax.swing.JList;
 import javax.swing.JOptionPane;
 import javax.swing.JTextField;
+import javax.swing.table.DefaultTableModel;
 
 /**
  *
@@ -59,7 +60,7 @@ public class MobilesApp extends javax.swing.JFrame {
         jt_Fecha_Empleado = new javax.swing.JTextField();
         jt_Sueldo_Empleado = new javax.swing.JTextField();
         jScrollPane3 = new javax.swing.JScrollPane();
-        jl_Empleados_Empleado = new javax.swing.JList<>();
+        jl_Empleados_Empleado = new javax.swing.JList<String>();
         jd_Producto = new javax.swing.JDialog();
         jLabel18 = new javax.swing.JLabel();
         jLabel19 = new javax.swing.JLabel();
@@ -79,7 +80,7 @@ public class MobilesApp extends javax.swing.JFrame {
         jButton16 = new javax.swing.JButton();
         jButton17 = new javax.swing.JButton();
         jScrollPane4 = new javax.swing.JScrollPane();
-        jl_Productos_Producto = new javax.swing.JList<>();
+        jl_Productos_Producto = new javax.swing.JList<String>();
         jd_Proveedor = new javax.swing.JDialog();
         jLabel24 = new javax.swing.JLabel();
         jLabel26 = new javax.swing.JLabel();
@@ -92,7 +93,7 @@ public class MobilesApp extends javax.swing.JFrame {
         jButton20 = new javax.swing.JButton();
         jButton21 = new javax.swing.JButton();
         jScrollPane2 = new javax.swing.JScrollPane();
-        jl_Proveedores_Proveedor = new javax.swing.JList<>();
+        jl_Proveedores_Proveedor = new javax.swing.JList<String>();
         jd_puntos_ventas = new javax.swing.JDialog();
         jLabel29 = new javax.swing.JLabel();
         jLabel31 = new javax.swing.JLabel();
@@ -107,11 +108,13 @@ public class MobilesApp extends javax.swing.JFrame {
         jButton24 = new javax.swing.JButton();
         jButton25 = new javax.swing.JButton();
         jScrollPane5 = new javax.swing.JScrollPane();
-        jl_Puntos_PuntoVenta = new javax.swing.JList<>();
+        jl_Puntos_PuntoVenta = new javax.swing.JList<String>();
         jd_Inventario = new javax.swing.JDialog();
         jScrollPane6 = new javax.swing.JScrollPane();
-        jTable1 = new javax.swing.JTable();
+        jt_Producto_Inventario = new javax.swing.JTable();
         jd_HistorialOrdenes = new javax.swing.JDialog();
+        jScrollPane8 = new javax.swing.JScrollPane();
+        jTable2 = new javax.swing.JTable();
         jTabbedPane1 = new javax.swing.JTabbedPane();
         jPanel1 = new javax.swing.JPanel();
         jLabel1 = new javax.swing.JLabel();
@@ -124,7 +127,7 @@ public class MobilesApp extends javax.swing.JFrame {
         jb_AgregarOrden_Orden = new javax.swing.JButton();
         jButton2 = new javax.swing.JButton();
         jScrollPane7 = new javax.swing.JScrollPane();
-        jl_Ordenes_Orden = new javax.swing.JList<>();
+        jl_Ordenes_Orden = new javax.swing.JList<String>();
         jPanel4 = new javax.swing.JPanel();
         jTabbedPane2 = new javax.swing.JTabbedPane();
         jPanel2 = new javax.swing.JPanel();
@@ -606,15 +609,30 @@ public class MobilesApp extends javax.swing.JFrame {
                 .addContainerGap())
         );
 
-        jTable1.setModel(new javax.swing.table.DefaultTableModel(
+        jt_Producto_Inventario.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
 
             },
             new String [] {
-                "Title 1", "Title 2", "Title 3", "Title 4"
+                "ID", "Nombre", "Precio venta", "precio compra", "Unidades", "Descripcion", "ID proveedor"
             }
-        ));
-        jScrollPane6.setViewportView(jTable1);
+        ) {
+            Class[] types = new Class [] {
+                java.lang.Integer.class, java.lang.String.class, java.lang.Double.class, java.lang.Double.class, java.lang.Integer.class, java.lang.String.class, java.lang.Integer.class
+            };
+            boolean[] canEdit = new boolean [] {
+                false, false, false, false, false, false, false
+            };
+
+            public Class getColumnClass(int columnIndex) {
+                return types [columnIndex];
+            }
+
+            public boolean isCellEditable(int rowIndex, int columnIndex) {
+                return canEdit [columnIndex];
+            }
+        });
+        jScrollPane6.setViewportView(jt_Producto_Inventario);
 
         javax.swing.GroupLayout jd_InventarioLayout = new javax.swing.GroupLayout(jd_Inventario.getContentPane());
         jd_Inventario.getContentPane().setLayout(jd_InventarioLayout);
@@ -633,15 +651,46 @@ public class MobilesApp extends javax.swing.JFrame {
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
+        jTable2.setModel(new javax.swing.table.DefaultTableModel(
+            new Object [][] {
+
+            },
+            new String [] {
+                "ID", "ID producto", "Descuento", "Subtotal", "Total"
+            }
+        ) {
+            Class[] types = new Class [] {
+                java.lang.Integer.class, java.lang.Integer.class, java.lang.Double.class, java.lang.Double.class, java.lang.Double.class
+            };
+            boolean[] canEdit = new boolean [] {
+                false, false, false, false, false
+            };
+
+            public Class getColumnClass(int columnIndex) {
+                return types [columnIndex];
+            }
+
+            public boolean isCellEditable(int rowIndex, int columnIndex) {
+                return canEdit [columnIndex];
+            }
+        });
+        jScrollPane8.setViewportView(jTable2);
+
         javax.swing.GroupLayout jd_HistorialOrdenesLayout = new javax.swing.GroupLayout(jd_HistorialOrdenes.getContentPane());
         jd_HistorialOrdenes.getContentPane().setLayout(jd_HistorialOrdenesLayout);
         jd_HistorialOrdenesLayout.setHorizontalGroup(
             jd_HistorialOrdenesLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 400, Short.MAX_VALUE)
+            .addGroup(jd_HistorialOrdenesLayout.createSequentialGroup()
+                .addContainerGap()
+                .addComponent(jScrollPane8, javax.swing.GroupLayout.DEFAULT_SIZE, 681, Short.MAX_VALUE)
+                .addContainerGap())
         );
         jd_HistorialOrdenesLayout.setVerticalGroup(
             jd_HistorialOrdenesLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 300, Short.MAX_VALUE)
+            .addGroup(jd_HistorialOrdenesLayout.createSequentialGroup()
+                .addContainerGap()
+                .addComponent(jScrollPane8, javax.swing.GroupLayout.DEFAULT_SIZE, 441, Short.MAX_VALUE)
+                .addContainerGap())
         );
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
@@ -670,6 +719,7 @@ public class MobilesApp extends javax.swing.JFrame {
             }
         });
 
+        jButton2.setIcon(new javax.swing.ImageIcon(getClass().getResource("/icons/Trash.png"))); // NOI18N
         jButton2.setText("Eliminar orden");
         jButton2.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
@@ -683,10 +733,6 @@ public class MobilesApp extends javax.swing.JFrame {
         jPanel1.setLayout(jPanel1Layout);
         jPanel1Layout.setHorizontalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPanel1Layout.createSequentialGroup()
-                .addGap(139, 139, 139)
-                .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 134, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
             .addGroup(jPanel1Layout.createSequentialGroup()
                 .addContainerGap()
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -704,16 +750,20 @@ public class MobilesApp extends javax.swing.JFrame {
                         .addComponent(jb_AgregarOrden_Orden)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                         .addComponent(jButton2, javax.swing.GroupLayout.PREFERRED_SIZE, 155, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 56, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 67, Short.MAX_VALUE)
                 .addComponent(jScrollPane7, javax.swing.GroupLayout.PREFERRED_SIZE, 167, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(33, 33, 33))
+            .addGroup(jPanel1Layout.createSequentialGroup()
+                .addGap(180, 180, 180)
+                .addComponent(jLabel1)
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         jPanel1Layout.setVerticalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel1Layout.createSequentialGroup()
-                .addContainerGap()
-                .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 20, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(18, 18, 18)
+                .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 20, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                     .addGroup(jPanel1Layout.createSequentialGroup()
                         .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
@@ -753,6 +803,7 @@ public class MobilesApp extends javax.swing.JFrame {
             }
         });
 
+        jButton1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/icons/pack-1.png"))); // NOI18N
         jButton1.setText("Productos");
         jButton1.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
@@ -1329,9 +1380,10 @@ public class MobilesApp extends javax.swing.JFrame {
     private javax.swing.JScrollPane jScrollPane5;
     private javax.swing.JScrollPane jScrollPane6;
     private javax.swing.JScrollPane jScrollPane7;
+    private javax.swing.JScrollPane jScrollPane8;
     private javax.swing.JTabbedPane jTabbedPane1;
     private javax.swing.JTabbedPane jTabbedPane2;
-    private javax.swing.JTable jTable1;
+    private javax.swing.JTable jTable2;
     private javax.swing.JButton jb_AgregarOrden_Orden;
     private javax.swing.JDialog jd_Empleado;
     private javax.swing.JDialog jd_HistorialOrdenes;
@@ -1359,6 +1411,7 @@ public class MobilesApp extends javax.swing.JFrame {
     private javax.swing.JTextField jt_Nombre_Proveedor;
     private javax.swing.JTextField jt_PrecioCompra_Producto;
     private javax.swing.JTextField jt_PrecioVenta_Producto;
+    private javax.swing.JTable jt_Producto_Inventario;
     private javax.swing.JTextField jt_RTN_Empleado;
     private javax.swing.JTextField jt_Sueldo_Empleado;
     private javax.swing.JTextField jt_Telefono_Empleado;
@@ -1689,7 +1742,69 @@ public class MobilesApp extends javax.swing.JFrame {
         } catch (Exception e) {
             e.printStackTrace();
         }
-
         Lista.setModel(modelo);
+    }
+    
+    public void LlenarInventario(){
+        DefaultTableModel ModeloTabla = (DefaultTableModel) jt_Producto_Inventario.getModel();
+        while(ModeloTabla.getRowCount() > 0){
+            ModeloTabla.removeRow(0);
+        }
+        
+        CallableStatement CT = null;
+        ResultSet RS = null;
+        Producto ProductoTemporal;
+        try {
+            CT = Conect.prepareCall("{Call ListarProductos}");
+            RS = CT.executeQuery();
+            while (RS.next()) {
+                ProductoTemporal = new Producto();
+                ProductoTemporal.setID(Integer.toString(RS.getInt("ID")));
+                ProductoTemporal.setNombre(RS.getString("Nombre"));
+                ProductoTemporal.setPrecioVenta(RS.getDouble("Precio_Venta"));
+                ProductoTemporal.setPrecioCompra(RS.getDouble("Precio_Compra"));
+                ProductoTemporal.setUnidades(RS.getInt("Unidades"));
+                ProductoTemporal.setDescripcion(RS.getString("Descripcion"));
+                ProductoTemporal.setIDProveedor(Integer.toString(RS.getInt("ID_Proveedor")));
+                
+                String[] Row = {ProductoTemporal.getID(), ProductoTemporal.getNombre(),
+                Double.toString(ProductoTemporal.getPrecioVenta()), Double.toString(ProductoTemporal.getPrecioCompra()),
+                Integer.toString(ProductoTemporal.getUnidades()), ProductoTemporal.getDescripcion(), 
+                ProductoTemporal.getIDProveedor()};
+                
+                ModeloTabla.addRow(Row);
+            }
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+    }
+    
+    public void LlenarHistorialOrdenes(){
+        DefaultTableModel ModeloTabla = (DefaultTableModel) jt_Producto_Inventario.getModel();
+        while(ModeloTabla.getRowCount() > 0){
+            ModeloTabla.removeRow(0);
+        }
+        
+        CallableStatement CT = null;
+        ResultSet RS = null;
+        Producto ProductoTemporal;
+        try {
+            CT = Conect.prepareCall("{Call ListarDetalleOrden}");
+            RS = CT.executeQuery();
+            while (RS.next()) {
+                int ID_Orden = RS.getInt("ID_Orden");
+                int ID_Producto = RS.getInt("ID_Producto");
+                double Descuento = RS.getDouble("Descuento");
+                double Subtotal = RS.getDouble("Subtotal");
+                double Total = RS.getDouble("Total");
+                
+                String[] Row = {Integer.toString(ID_Orden), Integer.toString(ID_Producto), 
+                    Double.toString(Subtotal), Double.toString(Total), Double.toString(Descuento)};
+                
+                ModeloTabla.addRow(Row);
+            }
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
     }
 }
