@@ -10,6 +10,9 @@ import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.SQLException;
 import java.sql.CallableStatement;
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
+import javax.swing.JOptionPane;
 
 /**
  *
@@ -96,15 +99,15 @@ public class MobilesApp extends javax.swing.JFrame {
         jLabel32 = new javax.swing.JLabel();
         jLabel33 = new javax.swing.JLabel();
         jLabel34 = new javax.swing.JLabel();
-        jTextField20 = new javax.swing.JTextField();
-        jTextField21 = new javax.swing.JTextField();
-        jTextField22 = new javax.swing.JTextField();
-        jTextField23 = new javax.swing.JTextField();
-        jTextField24 = new javax.swing.JTextField();
-        jButton22 = new javax.swing.JButton();
-        jButton23 = new javax.swing.JButton();
-        jButton24 = new javax.swing.JButton();
-        jButton25 = new javax.swing.JButton();
+        id_punto_venta = new javax.swing.JTextField();
+        direccion_punto_venta = new javax.swing.JTextField();
+        ciudad_punto_venta = new javax.swing.JTextField();
+        correo_punto_venta = new javax.swing.JTextField();
+        agregar_punto_de_venta = new javax.swing.JButton();
+        editar_punto_de_venta = new javax.swing.JButton();
+        eliminar_punto_de_venta = new javax.swing.JButton();
+        telefono_punto_venta = new javax.swing.JFormattedTextField();
+        listar_punto_de_venta = new javax.swing.JButton();
         jTabbedPane1 = new javax.swing.JTabbedPane();
         jPanel1 = new javax.swing.JPanel();
         jLabel1 = new javax.swing.JLabel();
@@ -482,27 +485,38 @@ public class MobilesApp extends javax.swing.JFrame {
 
         jLabel34.setText("Telefono");
 
-        jTextField20.setText("jTextField20");
+        agregar_punto_de_venta.setIcon(new javax.swing.ImageIcon(getClass().getResource("/icons/add_32.png"))); // NOI18N
+        agregar_punto_de_venta.setText("Agregar");
+        agregar_punto_de_venta.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                agregar_punto_de_ventaMouseClicked(evt);
+            }
+        });
 
-        jTextField21.setText("jTextField21");
+        editar_punto_de_venta.setIcon(new javax.swing.ImageIcon(getClass().getResource("/icons/File_Edit.png"))); // NOI18N
+        editar_punto_de_venta.setText("Editar");
+        editar_punto_de_venta.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                editar_punto_de_ventaMouseClicked(evt);
+            }
+        });
 
-        jTextField22.setText("jTextField22");
+        eliminar_punto_de_venta.setIcon(new javax.swing.ImageIcon(getClass().getResource("/icons/Trash.png"))); // NOI18N
+        eliminar_punto_de_venta.setText("Eliminar");
+        eliminar_punto_de_venta.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                eliminar_punto_de_ventaMouseClicked(evt);
+            }
+        });
 
-        jTextField23.setText("jTextField23");
+        try {
+            telefono_punto_venta.setFormatterFactory(new javax.swing.text.DefaultFormatterFactory(new javax.swing.text.MaskFormatter("###-###-###")));
+        } catch (java.text.ParseException ex) {
+            ex.printStackTrace();
+        }
 
-        jTextField24.setText("jTextField24");
-
-        jButton22.setIcon(new javax.swing.ImageIcon(getClass().getResource("/icons/add_32.png"))); // NOI18N
-        jButton22.setText("Agregar");
-
-        jButton23.setIcon(new javax.swing.ImageIcon(getClass().getResource("/icons/search_32.png"))); // NOI18N
-        jButton23.setText("Buscar");
-
-        jButton24.setIcon(new javax.swing.ImageIcon(getClass().getResource("/icons/File_Edit.png"))); // NOI18N
-        jButton24.setText("Editar");
-
-        jButton25.setIcon(new javax.swing.ImageIcon(getClass().getResource("/icons/Trash.png"))); // NOI18N
-        jButton25.setText("Eliminar");
+        listar_punto_de_venta.setIcon(new javax.swing.ImageIcon(getClass().getResource("/icons/Clipboard_Full.png"))); // NOI18N
+        listar_punto_de_venta.setText("Listar");
 
         javax.swing.GroupLayout puntos_ventasLayout = new javax.swing.GroupLayout(puntos_ventas.getContentPane());
         puntos_ventas.getContentPane().setLayout(puntos_ventasLayout);
@@ -518,23 +532,28 @@ public class MobilesApp extends javax.swing.JFrame {
                             .addComponent(jLabel32)
                             .addComponent(jLabel33)
                             .addComponent(jLabel34))
-                        .addGap(78, 78, 78)
-                        .addGroup(puntos_ventasLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                            .addComponent(jLabel29)
-                            .addComponent(jTextField20, javax.swing.GroupLayout.DEFAULT_SIZE, 213, Short.MAX_VALUE)
-                            .addComponent(jTextField21)
-                            .addComponent(jTextField22)
-                            .addComponent(jTextField23)
-                            .addComponent(jTextField24)))
+                        .addGroup(puntos_ventasLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addGroup(puntos_ventasLayout.createSequentialGroup()
+                                .addGap(78, 78, 78)
+                                .addGroup(puntos_ventasLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                                    .addComponent(jLabel29)
+                                    .addComponent(id_punto_venta, javax.swing.GroupLayout.DEFAULT_SIZE, 213, Short.MAX_VALUE)
+                                    .addComponent(direccion_punto_venta)
+                                    .addComponent(ciudad_punto_venta)
+                                    .addComponent(correo_punto_venta)))
+                            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, puntos_ventasLayout.createSequentialGroup()
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                .addComponent(telefono_punto_venta, javax.swing.GroupLayout.PREFERRED_SIZE, 217, javax.swing.GroupLayout.PREFERRED_SIZE))))
                     .addGroup(puntos_ventasLayout.createSequentialGroup()
-                        .addComponent(jButton22)
+                        .addComponent(agregar_punto_de_venta)
                         .addGap(18, 18, 18)
-                        .addComponent(jButton23)
-                        .addGap(18, 18, 18)
-                        .addComponent(jButton24)
-                        .addGap(18, 18, 18)
-                        .addComponent(jButton25)))
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                        .addGroup(puntos_ventasLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(eliminar_punto_de_venta)
+                            .addGroup(puntos_ventasLayout.createSequentialGroup()
+                                .addComponent(editar_punto_de_venta)
+                                .addGap(27, 27, 27)
+                                .addComponent(listar_punto_de_venta, javax.swing.GroupLayout.PREFERRED_SIZE, 105, javax.swing.GroupLayout.PREFERRED_SIZE)))))
+                .addContainerGap(41, Short.MAX_VALUE))
         );
         puntos_ventasLayout.setVerticalGroup(
             puntos_ventasLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -544,30 +563,31 @@ public class MobilesApp extends javax.swing.JFrame {
                 .addGap(27, 27, 27)
                 .addGroup(puntos_ventasLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel30)
-                    .addComponent(jTextField20, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(id_punto_venta, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(18, 18, 18)
                 .addGroup(puntos_ventasLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel31)
-                    .addComponent(jTextField21, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(direccion_punto_venta, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(18, 18, 18)
                 .addGroup(puntos_ventasLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel32)
-                    .addComponent(jTextField22, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(ciudad_punto_venta, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(18, 18, 18)
                 .addGroup(puntos_ventasLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel33)
-                    .addComponent(jTextField23, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(correo_punto_venta, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(18, 18, 18)
                 .addGroup(puntos_ventasLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel34)
-                    .addComponent(jTextField24, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 12, Short.MAX_VALUE)
+                    .addComponent(telefono_punto_venta, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 33, Short.MAX_VALUE)
                 .addGroup(puntos_ventasLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jButton22)
-                    .addComponent(jButton23)
-                    .addComponent(jButton24)
-                    .addComponent(jButton25))
-                .addGap(23, 23, 23))
+                    .addComponent(agregar_punto_de_venta)
+                    .addComponent(editar_punto_de_venta)
+                    .addComponent(listar_punto_de_venta, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addComponent(eliminar_punto_de_venta, javax.swing.GroupLayout.PREFERRED_SIZE, 41, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(31, 31, 31))
         );
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
@@ -772,6 +792,89 @@ public class MobilesApp extends javax.swing.JFrame {
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
+    private void agregar_punto_de_ventaMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_agregar_punto_de_ventaMouseClicked
+        // TODO add your handlinonPang code here:
+        if (this.id_punto_venta.toString().equalsIgnoreCase("") || this.ciudad_punto_venta.toString().equalsIgnoreCase("")
+                || this.direccion_punto_venta.toString().equalsIgnoreCase("") || this.correo_punto_venta.toString().equalsIgnoreCase("")
+                || this.telefono_punto_venta.toString().equalsIgnoreCase("")) {
+            JOptionPane.showMessageDialog(rootPane, "Debe llenar todos lo campos del formulario");
+
+        } else {
+            //se procede a validar correo electronico
+            String PATTERN_EMAIL = "^[_A-Za-z0-9-\\+]+(\\.[_A-Za-z0-9-]+)*@"
+                    + "[A-Za-z0-9-]+(\\.[A-Za-z0-9]+)*(\\.[A-Za-z]{2,})$";
+            Pattern pattern = Pattern.compile(PATTERN_EMAIL);
+            Matcher matcher = pattern.matcher(this.correo_punto_venta.toString());
+            if (!matcher.matches()) {
+                JOptionPane.showMessageDialog(rootPane, "El formato del correo no es valido, intente de nuevo");
+            } else {
+                //se procede a insertaar el registro con el siguiente formato
+                //String ID, String Direccion, String Ciudad, String Telefono, String Correo
+                InsertarPuntoVentaEnDB(this.id_punto_venta.toString(), this.direccion_punto_venta.toString(),
+                        this.ciudad_punto_venta.toString(), this.telefono_punto_venta.toString(),
+                        this.correo_punto_venta.toString());
+                JOptionPane.showMessageDialog(rootPane, "Registro completado exitosamente");
+                //se procede a borrar los campos del registro
+                this.id_punto_venta.setText("");
+                this.direccion_punto_venta.setText("");
+                this.ciudad_punto_venta.setText("");
+                this.telefono_punto_venta.setText("");
+                this.correo_punto_venta.setText("");
+            }
+        }
+    }//GEN-LAST:event_agregar_punto_de_ventaMouseClicked
+
+    private void editar_punto_de_ventaMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_editar_punto_de_ventaMouseClicked
+        // TODO add your handling code here:
+        if (this.id_punto_venta.toString().equalsIgnoreCase("") || this.ciudad_punto_venta.toString().equalsIgnoreCase("")
+                || this.direccion_punto_venta.toString().equalsIgnoreCase("") || this.correo_punto_venta.toString().equalsIgnoreCase("")
+                || this.telefono_punto_venta.toString().equalsIgnoreCase("")) {
+            JOptionPane.showMessageDialog(rootPane, "Debe llenar todos lo campos del formulario");
+
+        } else {
+            //se procede a validar correo electronico
+            String PATTERN_EMAIL = "^[_A-Za-z0-9-\\+]+(\\.[_A-Za-z0-9-]+)*@"
+                    + "[A-Za-z0-9-]+(\\.[A-Za-z0-9]+)*(\\.[A-Za-z]{2,})$";
+            Pattern pattern = Pattern.compile(PATTERN_EMAIL);
+            Matcher matcher = pattern.matcher(this.correo_punto_venta.toString());
+            if (!matcher.matches()) {
+                JOptionPane.showMessageDialog(rootPane, "El formato del correo no es valido, intente de nuevo");
+            } else {
+                //se procede a insertaar el registro con el siguiente formato
+                //String ID, String Direccion, String Ciudad, String Telefono, String Correo
+                ActualizarPuntoVentaEnDB(this.id_punto_venta.toString(), this.direccion_punto_venta.toString(),
+                        this.ciudad_punto_venta.toString(), this.telefono_punto_venta.toString(),
+                        this.correo_punto_venta.toString());
+                JOptionPane.showMessageDialog(rootPane, "La actualizacion del registro completado exitosamente");
+                //se procede a borrar los campos del registro
+                this.id_punto_venta.setText("");
+                this.direccion_punto_venta.setText("");
+                this.ciudad_punto_venta.setText("");
+                this.telefono_punto_venta.setText("");
+                this.correo_punto_venta.setText("");
+            }
+        }
+    }//GEN-LAST:event_editar_punto_de_ventaMouseClicked
+
+    private void eliminar_punto_de_ventaMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_eliminar_punto_de_ventaMouseClicked
+        // TODO add your handling code here:
+        if (this.id_punto_venta.toString().equalsIgnoreCase("")) {
+            JOptionPane.showMessageDialog(rootPane, "Debe ingresar el id del producto que desea eliminar");
+
+        } else {
+
+           BorrarPuntoVentaPorID(this.id_punto_venta.toString());
+            JOptionPane.showMessageDialog(rootPane, "Registro eliminado exitosamente");
+            //se procede a borrar los campos del registro
+            this.id_punto_venta.setText("");
+            this.direccion_punto_venta.setText("");
+            this.ciudad_punto_venta.setText("");
+            this.telefono_punto_venta.setText("");
+            this.correo_punto_venta.setText("");
+
+        }
+    }//GEN-LAST:event_eliminar_punto_de_ventaMouseClicked
+
     /**
      * @param args the command line arguments
      */
@@ -809,7 +912,14 @@ public class MobilesApp extends javax.swing.JFrame {
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JDialog Proveedor;
+    private javax.swing.JButton agregar_punto_de_venta;
+    private javax.swing.JTextField ciudad_punto_venta;
+    private javax.swing.JTextField correo_punto_venta;
+    private javax.swing.JTextField direccion_punto_venta;
+    private javax.swing.JButton editar_punto_de_venta;
+    private javax.swing.JButton eliminar_punto_de_venta;
     private javax.swing.JDialog empleado;
+    private javax.swing.JTextField id_punto_venta;
     private javax.swing.JButton jButton1;
     private javax.swing.JButton jButton10;
     private javax.swing.JButton jButton11;
@@ -824,10 +934,6 @@ public class MobilesApp extends javax.swing.JFrame {
     private javax.swing.JButton jButton2;
     private javax.swing.JButton jButton20;
     private javax.swing.JButton jButton21;
-    private javax.swing.JButton jButton22;
-    private javax.swing.JButton jButton23;
-    private javax.swing.JButton jButton24;
-    private javax.swing.JButton jButton25;
     private javax.swing.JButton jButton3;
     private javax.swing.JButton jButton4;
     private javax.swing.JButton jButton5;
@@ -889,11 +995,6 @@ public class MobilesApp extends javax.swing.JFrame {
     private javax.swing.JTextField jTextField18;
     private javax.swing.JTextField jTextField19;
     private javax.swing.JTextField jTextField2;
-    private javax.swing.JTextField jTextField20;
-    private javax.swing.JTextField jTextField21;
-    private javax.swing.JTextField jTextField22;
-    private javax.swing.JTextField jTextField23;
-    private javax.swing.JTextField jTextField24;
     private javax.swing.JTextField jTextField3;
     private javax.swing.JTextField jTextField4;
     private javax.swing.JTextField jTextField5;
@@ -901,8 +1002,10 @@ public class MobilesApp extends javax.swing.JFrame {
     private javax.swing.JTextField jTextField7;
     private javax.swing.JTextField jTextField8;
     private javax.swing.JTextField jTextField9;
+    private javax.swing.JButton listar_punto_de_venta;
     private javax.swing.JDialog producto;
     private javax.swing.JDialog puntos_ventas;
+    private javax.swing.JFormattedTextField telefono_punto_venta;
     // End of variables declaration//GEN-END:variables
     Connection Conect;
 
