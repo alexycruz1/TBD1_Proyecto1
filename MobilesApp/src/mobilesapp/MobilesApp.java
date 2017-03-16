@@ -13,6 +13,11 @@ import java.sql.CallableStatement;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 import javax.swing.JOptionPane;
+import java.sql.ResultSet;
+import java.sql.ResultSetMetaData;
+import java.sql.Statement;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 
 /**
  *
@@ -130,7 +135,7 @@ public class MobilesApp extends javax.swing.JFrame {
         jButton7 = new javax.swing.JButton();
         jPanel5 = new javax.swing.JPanel();
         jButton8 = new javax.swing.JButton();
-        jButton9 = new javax.swing.JButton();
+        abrir_administracion_puntos_venta = new javax.swing.JButton();
         jButton3 = new javax.swing.JButton();
 
         jLabel8.setText("Recursos Humanos");
@@ -721,8 +726,13 @@ public class MobilesApp extends javax.swing.JFrame {
         jButton8.setIcon(new javax.swing.ImageIcon(getClass().getResource("/icons/User2.png"))); // NOI18N
         jButton8.setText("Recursos humanos");
 
-        jButton9.setIcon(new javax.swing.ImageIcon(getClass().getResource("/icons/Location.png"))); // NOI18N
-        jButton9.setText("Puntos de venta");
+        abrir_administracion_puntos_venta.setIcon(new javax.swing.ImageIcon(getClass().getResource("/icons/Location.png"))); // NOI18N
+        abrir_administracion_puntos_venta.setText("Puntos de venta");
+        abrir_administracion_puntos_venta.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                abrir_administracion_puntos_ventaMouseClicked(evt);
+            }
+        });
 
         jButton3.setIcon(new javax.swing.ImageIcon(getClass().getResource("/icons/basket_chart_32.png"))); // NOI18N
         jButton3.setText("Historial de ventas");
@@ -735,7 +745,7 @@ public class MobilesApp extends javax.swing.JFrame {
                 .addContainerGap()
                 .addGroup(jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                     .addComponent(jButton3, javax.swing.GroupLayout.DEFAULT_SIZE, 195, Short.MAX_VALUE)
-                    .addComponent(jButton9, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(abrir_administracion_puntos_venta, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addComponent(jButton8, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                 .addContainerGap(371, Short.MAX_VALUE))
         );
@@ -745,7 +755,7 @@ public class MobilesApp extends javax.swing.JFrame {
                 .addGap(26, 26, 26)
                 .addComponent(jButton8, javax.swing.GroupLayout.PREFERRED_SIZE, 47, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(26, 26, 26)
-                .addComponent(jButton9, javax.swing.GroupLayout.PREFERRED_SIZE, 52, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(abrir_administracion_puntos_venta, javax.swing.GroupLayout.PREFERRED_SIZE, 52, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(36, 36, 36)
                 .addComponent(jButton3, javax.swing.GroupLayout.PREFERRED_SIZE, 53, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addContainerGap(117, Short.MAX_VALUE))
@@ -875,6 +885,14 @@ public class MobilesApp extends javax.swing.JFrame {
         }
     }//GEN-LAST:event_eliminar_punto_de_ventaMouseClicked
 
+    private void abrir_administracion_puntos_ventaMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_abrir_administracion_puntos_ventaMouseClicked
+        // TODO add your handling code here:
+        
+         puntos_ventas.setVisible(true);
+         puntos_ventas.pack();
+        
+    }//GEN-LAST:event_abrir_administracion_puntos_ventaMouseClicked
+
     /**
      * @param args the command line arguments
      */
@@ -912,6 +930,7 @@ public class MobilesApp extends javax.swing.JFrame {
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JDialog Proveedor;
+    private javax.swing.JButton abrir_administracion_puntos_venta;
     private javax.swing.JButton agregar_punto_de_venta;
     private javax.swing.JTextField ciudad_punto_venta;
     private javax.swing.JTextField correo_punto_venta;
@@ -940,7 +959,6 @@ public class MobilesApp extends javax.swing.JFrame {
     private javax.swing.JButton jButton6;
     private javax.swing.JButton jButton7;
     private javax.swing.JButton jButton8;
-    private javax.swing.JButton jButton9;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel10;
     private javax.swing.JLabel jLabel11;
