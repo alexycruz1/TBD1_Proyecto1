@@ -342,6 +342,12 @@ create procedure stb_listarProductos
 as 
 select* from dbo.Producto P where P.Activo = 1
 
+create procedure stb_listarProductoID
+@idProducto int
+as
+select* from dbo.Producto P where P.ID = @idProducto
+
+
 --Listar Orden
 create procedure stb_listarOrden
 @idOrden int
@@ -371,8 +377,6 @@ alter procedure stb_listartodosEmpleados
 as
 select* from dbo.Empleado E where E.Activo = 1
 
-exec stb_listartodosEmpleados 
-
 ALTER procedure stb_listarEmpleado
 @idEmpleado int
 as
@@ -387,6 +391,16 @@ create procedure stb_ListarProveedores
 as
 select* from dbo.Proveedores P where P.Activo = 1
 
+create procedure stb_ListarProveedoresID
+@idProveedor int
+as 
+select* from dbo.Proveedores Pr where Pr.ID = @idProveedor
+
 create procedure stb_ListarPuntosVenta
 as
 select* from dbo.Punto_venta PV where PV.Activo = 1
+
+create procedure stb_ListarPuntosVentaID
+@idPunto int
+as
+select* from dbo.Punto_venta PV where PV.ID = @idPunto
