@@ -40,6 +40,10 @@ end
 else
 	print 'No existe la orden'
 
+exec stb_insertDetalle 3,0,123,123,123
+
+exec stb_listarDetalle 3
+
 ------------------------------------------------------------------------------------------------------
 go
 alter procedure stb_insertEmpleado
@@ -369,13 +373,15 @@ select* from dbo.Empleado E where E.Activo = 1
 
 exec stb_listartodosEmpleados 
 
-create procedure stb_listarEmpleado
+ALTER procedure stb_listarEmpleado
 @idEmpleado int
 as
 if exists(select* from dbo.Empleado E where E.ID = @idEmpleado)
 begin
-	print ''
+	select E.RTN, E.Nombre, E.Telefono, E.Direccion, E.Fecha_Inicio, E.Sueldo from dbo.Empleado E where E.ID = @idEmpleado
 end
+
+exec stb_listarEmpleado 5
 
 create procedure stb_ListarProveedores
 as

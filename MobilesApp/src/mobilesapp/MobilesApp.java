@@ -1012,7 +1012,6 @@ public class MobilesApp extends javax.swing.JFrame {
         if (CampoLleno(jt_Direccion_Empleado) && CampoLleno(jt_Fecha_Empleado) && CampoLleno(jt_Nombre_Empleado) && CampoLleno(jt_RTN_Empleado)
                 && CampoLleno(jt_Sueldo_Empleado) && CampoLleno(jt_Telefono_Empleado)) {
             int cantidad = jl_Empleados_Empleado.getComponentCount();
-            System.out.println("HAY------" + cantidad);
             String Direccion;
             String Nombre;
 
@@ -1034,11 +1033,7 @@ public class MobilesApp extends javax.swing.JFrame {
             LlenarListas(jl_Ordenes_Orden, "stb_listartodosEmpleados");
             LlenarListas(jl_Empleados_Empleado, "stb_listartodosEmpleados");
             int ahora = jl_Empleados_Empleado.getComponentCount();
-            if ((cantidad + 1) == ahora) {
-                JOptionPane.showMessageDialog(this, "Empleado agregado con exito", "OPERACION EXITOSA", JOptionPane.INFORMATION_MESSAGE);
-            } else {
-                JOptionPane.showMessageDialog(this, "No se ha podido agregar usuario", "REVISE LOS DATOS", JOptionPane.INFORMATION_MESSAGE);
-            }
+            JOptionPane.showMessageDialog(this, "Empleado agregado con exito", "OPERACION EXITOSA", JOptionPane.INFORMATION_MESSAGE);
         } else {
             JOptionPane.showMessageDialog(this, "Los campos no estan llenos", "ERROR", JOptionPane.ERROR_MESSAGE);
         }
@@ -1366,17 +1361,18 @@ public class MobilesApp extends javax.swing.JFrame {
     private void jl_Empleados_EmpleadoMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jl_Empleados_EmpleadoMouseClicked
         //Ver campos
         if (jl_Empleados_Empleado.getSelectedIndex() != -1) {
-            int id = Integer.parseInt(jl_Empleados_Empleado.getSelectedValue());
-            LlenarInventario();
+            Object id = jl_Empleados_Empleado.getSelectedValue();
+            int ide = Integer.parseInt(id.toString());
+            VerEmpleado(ide);
         }
     }//GEN-LAST:event_jl_Empleados_EmpleadoMouseClicked
 
     private void jl_IDOrdenMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jl_IDOrdenMouseClicked
         //Ver campos
         if (jl_IDOrden.getSelectedIndex() != -1) {
-            int id = (int)jl_IDOrden.getSelectedValue();
+            int id = (int) jl_IDOrden.getSelectedValue();
             LlenarHistorialOrdenes(id);
-        }else{
+        } else {
             System.out.println("WTF");
         }
     }//GEN-LAST:event_jl_IDOrdenMouseClicked
@@ -1901,6 +1897,28 @@ public class MobilesApp extends javax.swing.JFrame {
                 ModeloTabla.addRow(Row);
             }
             jt_Detalle.setModel(ModeloTabla);
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+    }
+
+    public void VerEmpleado(int id) {
+        CallableStatement CT = null;
+        ResultSet RS = null;
+        try {
+            CT = Conect.prepareCall("{Call stb_listarEmpleado(?)}");
+            CT.setInt(1, id);
+            RS = CT.executeQuery();
+            if (RS.next()) {
+                String rtn = RS.getString(1);
+                String nombre = RS.getString(2);
+                String tele = RS.getString(3);
+                String direct = RS.getString(4);
+                Date fecha = RS.getDate(5);
+                double sueldo = ((Double) RS.getDouble(6)).doubleValue();
+                System.out.println(rtn + "-" + nombre + "-" + tele + "-" + direct + "-" + fecha+"-"+sueldo);
+            } else {
+            }
         } catch (Exception e) {
             e.printStackTrace();
         }
