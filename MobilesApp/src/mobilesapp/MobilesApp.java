@@ -11,6 +11,7 @@ import java.sql.SQLException;
 import java.sql.CallableStatement;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
+import java.util.Calendar;
 import java.util.Date;
 import javax.swing.DefaultListModel;
 import javax.swing.JList;
@@ -114,7 +115,10 @@ public class MobilesApp extends javax.swing.JFrame {
         jt_Producto_Inventario = new javax.swing.JTable();
         jd_HistorialOrdenes = new javax.swing.JDialog();
         jScrollPane8 = new javax.swing.JScrollPane();
-        jTable2 = new javax.swing.JTable();
+        jt_Detalle = new javax.swing.JTable();
+        jScrollPane9 = new javax.swing.JScrollPane();
+        jl_IDOrden = new javax.swing.JList();
+        jd_Detalle = new javax.swing.JDialog();
         jTabbedPane1 = new javax.swing.JTabbedPane();
         jPanel1 = new javax.swing.JPanel();
         jLabel1 = new javax.swing.JLabel();
@@ -183,6 +187,11 @@ public class MobilesApp extends javax.swing.JFrame {
             }
         });
 
+        jl_Empleados_Empleado.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                jl_Empleados_EmpleadoMouseClicked(evt);
+            }
+        });
         jScrollPane3.setViewportView(jl_Empleados_Empleado);
 
         javax.swing.GroupLayout jd_EmpleadoLayout = new javax.swing.GroupLayout(jd_Empleado.getContentPane());
@@ -609,6 +618,12 @@ public class MobilesApp extends javax.swing.JFrame {
                 .addContainerGap())
         );
 
+        jd_Inventario.addWindowListener(new java.awt.event.WindowAdapter() {
+            public void windowOpened(java.awt.event.WindowEvent evt) {
+                jd_InventarioWindowOpened(evt);
+            }
+        });
+
         jt_Producto_Inventario.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
 
@@ -618,7 +633,7 @@ public class MobilesApp extends javax.swing.JFrame {
             }
         ) {
             Class[] types = new Class [] {
-                java.lang.Integer.class, java.lang.String.class, java.lang.Double.class, java.lang.Double.class, java.lang.Integer.class, java.lang.String.class, java.lang.Integer.class
+                java.lang.String.class, java.lang.String.class, java.lang.String.class, java.lang.String.class, java.lang.String.class, java.lang.String.class, java.lang.String.class
             };
             boolean[] canEdit = new boolean [] {
                 false, false, false, false, false, false, false
@@ -651,7 +666,13 @@ public class MobilesApp extends javax.swing.JFrame {
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
-        jTable2.setModel(new javax.swing.table.DefaultTableModel(
+        jd_HistorialOrdenes.addWindowListener(new java.awt.event.WindowAdapter() {
+            public void windowOpened(java.awt.event.WindowEvent evt) {
+                jd_HistorialOrdenesWindowOpened(evt);
+            }
+        });
+
+        jt_Detalle.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
 
             },
@@ -674,7 +695,14 @@ public class MobilesApp extends javax.swing.JFrame {
                 return canEdit [columnIndex];
             }
         });
-        jScrollPane8.setViewportView(jTable2);
+        jScrollPane8.setViewportView(jt_Detalle);
+
+        jl_IDOrden.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                jl_IDOrdenMouseClicked(evt);
+            }
+        });
+        jScrollPane9.setViewportView(jl_IDOrden);
 
         javax.swing.GroupLayout jd_HistorialOrdenesLayout = new javax.swing.GroupLayout(jd_HistorialOrdenes.getContentPane());
         jd_HistorialOrdenes.getContentPane().setLayout(jd_HistorialOrdenesLayout);
@@ -682,21 +710,44 @@ public class MobilesApp extends javax.swing.JFrame {
             jd_HistorialOrdenesLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jd_HistorialOrdenesLayout.createSequentialGroup()
                 .addContainerGap()
-                .addComponent(jScrollPane8, javax.swing.GroupLayout.DEFAULT_SIZE, 681, Short.MAX_VALUE)
-                .addContainerGap())
+                .addComponent(jScrollPane8, javax.swing.GroupLayout.PREFERRED_SIZE, 540, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addComponent(jScrollPane9, javax.swing.GroupLayout.PREFERRED_SIZE, 94, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(47, Short.MAX_VALUE))
         );
         jd_HistorialOrdenesLayout.setVerticalGroup(
             jd_HistorialOrdenesLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jd_HistorialOrdenesLayout.createSequentialGroup()
                 .addContainerGap()
-                .addComponent(jScrollPane8, javax.swing.GroupLayout.DEFAULT_SIZE, 441, Short.MAX_VALUE)
+                .addGroup(jd_HistorialOrdenesLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(jd_HistorialOrdenesLayout.createSequentialGroup()
+                        .addComponent(jScrollPane9, javax.swing.GroupLayout.PREFERRED_SIZE, 243, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(0, 0, Short.MAX_VALUE))
+                    .addComponent(jScrollPane8, javax.swing.GroupLayout.DEFAULT_SIZE, 441, Short.MAX_VALUE))
                 .addContainerGap())
+        );
+
+        javax.swing.GroupLayout jd_DetalleLayout = new javax.swing.GroupLayout(jd_Detalle.getContentPane());
+        jd_Detalle.getContentPane().setLayout(jd_DetalleLayout);
+        jd_DetalleLayout.setHorizontalGroup(
+            jd_DetalleLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 400, Short.MAX_VALUE)
+        );
+        jd_DetalleLayout.setVerticalGroup(
+            jd_DetalleLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 300, Short.MAX_VALUE)
         );
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         addWindowListener(new java.awt.event.WindowAdapter() {
             public void windowOpened(java.awt.event.WindowEvent evt) {
                 formWindowOpened(evt);
+            }
+        });
+
+        jPanel1.addMouseMotionListener(new java.awt.event.MouseMotionAdapter() {
+            public void mouseMoved(java.awt.event.MouseEvent evt) {
+                jPanel1MouseMoved(evt);
             }
         });
 
@@ -930,14 +981,13 @@ public class MobilesApp extends javax.swing.JFrame {
         // TODO add your handling code here:
         if (CampoLleno(jt_IDEmpleado_Orden) && CampoLleno(jt_IDPuntoVenta_Orden)) {
             int IDEmpleado, IDPuntoVenta;
-
             IDEmpleado = Integer.parseInt(jt_IDEmpleado_Orden.getText());
             IDPuntoVenta = Integer.parseInt(jt_IDPuntoVenta_Orden.getText());
-
-            InsertarOrdenEnDB(IDEmpleado, IDPuntoVenta);
+            String Fecha = jl_Fecha_Orden.getText();
+            InsertarOrdenEnDB(IDEmpleado, IDPuntoVenta, Fecha);
             LlenarListas(jl_Ordenes_Orden, "stb_listarOrdenes");
-
             JOptionPane.showMessageDialog(this, "Orden agregada con exito", "OPERACION EXITOSA", JOptionPane.INFORMATION_MESSAGE);
+
         } else {
             JOptionPane.showMessageDialog(this, "Los campos no estan llenos", "ERROR", JOptionPane.ERROR_MESSAGE);
         }
@@ -948,7 +998,7 @@ public class MobilesApp extends javax.swing.JFrame {
         if (jl_Ordenes_Orden.getSelectedIndex() != -1) {
             int IDOrden;
             Object id = jl_Ordenes_Orden.getSelectedValue();
-            IDOrden = ((Integer)id).intValue();
+            IDOrden = ((Integer) id).intValue();
             BorrarOrdenPorID(IDOrden);
             LlenarListas(jl_Ordenes_Orden, "stb_listarOrdenes");
 
@@ -961,12 +1011,17 @@ public class MobilesApp extends javax.swing.JFrame {
     private void jButton10MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jButton10MouseClicked
         if (CampoLleno(jt_Direccion_Empleado) && CampoLleno(jt_Fecha_Empleado) && CampoLleno(jt_Nombre_Empleado) && CampoLleno(jt_RTN_Empleado)
                 && CampoLleno(jt_Sueldo_Empleado) && CampoLleno(jt_Telefono_Empleado)) {
-            Date FechaSistema = new Date();
             int cantidad = jl_Empleados_Empleado.getComponentCount();
             System.out.println("HAY------" + cantidad);
             String Direccion;
-            String Fecha = Integer.toString(FechaSistema.getYear()) + Integer.toString(FechaSistema.getMonth()) + Integer.toString(FechaSistema.getDay());
             String Nombre;
+
+            Calendar c = Calendar.getInstance();
+            String dia = Integer.toString(c.get(Calendar.DATE));
+            String mes = Integer.toString(c.get(Calendar.MONTH));
+            String año = Integer.toString(c.get(Calendar.YEAR));
+            String Fecha = dia + "-" + mes + "-" + año;
+
             String RTN;
             double Sueldo;
             String Telefono;
@@ -992,9 +1047,14 @@ public class MobilesApp extends javax.swing.JFrame {
     private void jButton13MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jButton13MouseClicked
         if (CampoLleno(jt_Direccion_Empleado) && CampoLleno(jt_Fecha_Empleado) && CampoLleno(jt_Nombre_Empleado) && CampoLleno(jt_RTN_Empleado)
                 && CampoLleno(jt_Sueldo_Empleado) && CampoLleno(jt_Telefono_Empleado) && jl_Empleados_Empleado.getSelectedIndex() != -1) {
-            Date FechaSistema = new Date();
             String Direccion;
-            String Fecha = Integer.toString(FechaSistema.getYear()) + Integer.toString(FechaSistema.getMonth()) + Integer.toString(FechaSistema.getDay());
+
+            Calendar c = Calendar.getInstance();
+            String dia = Integer.toString(c.get(Calendar.DATE));
+            String mes = Integer.toString(c.get(Calendar.MONTH));
+            String año = Integer.toString(c.get(Calendar.YEAR));
+            String Fecha = dia + "-" + mes + "-" + año;
+
             String Nombre;
             String RTN;
             double Sueldo;
@@ -1043,7 +1103,6 @@ public class MobilesApp extends javax.swing.JFrame {
     private void jButton14MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jButton14MouseClicked
         if (CampoLleno(jt_IDProveedor_Producto) && CampoLleno(jt_PrecioCompra_Producto) && CampoLleno(jt_PrecioVenta_Producto)
                 && CampoLleno(jt_Unidades_Producto) && !jta_Descripcion_Producto.getText().equals("") && CampoLleno(jt_Nombre_Producto)) {
-
             int IDProveedor, Unidades;
             double PrecioCompra, PrecioVenta;
             String Descripcion, Nombre;
@@ -1073,7 +1132,7 @@ public class MobilesApp extends javax.swing.JFrame {
             double PrecioCompra, PrecioVenta;
             String Descripcion, Nombre;
             Object id = jl_Productos_Producto.getSelectedValue();
-            ID = ((Integer)id).intValue();
+            ID = ((Integer) id).intValue();
             IDProveedor = Integer.parseInt(jt_IDProveedor_Producto.getText());
             Unidades = Integer.parseInt(jt_Unidades_Producto.getText());
             PrecioCompra = Double.parseDouble(jt_PrecioCompra_Producto.getText());
@@ -1272,7 +1331,6 @@ public class MobilesApp extends javax.swing.JFrame {
     }//GEN-LAST:event_formWindowOpened
 
     private void jButton7MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jButton7MouseClicked
-        // TODO add your handling code here:
         jd_Inventario.setModal(false);
         jd_Inventario.pack();
         jd_Inventario.setLocationRelativeTo(this);
@@ -1286,6 +1344,42 @@ public class MobilesApp extends javax.swing.JFrame {
         jd_HistorialOrdenes.setLocationRelativeTo(this);
         jd_HistorialOrdenes.setVisible(true);
     }//GEN-LAST:event_jButton3MouseClicked
+
+    private void jPanel1MouseMoved(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jPanel1MouseMoved
+        // TODO add your handling code here:
+        Calendar c = Calendar.getInstance();
+        String dia = Integer.toString(c.get(Calendar.DATE));
+        String mes = Integer.toString(c.get(Calendar.MONTH));
+        String año = Integer.toString(c.get(Calendar.YEAR));
+
+        jl_Fecha_Orden.setText(dia + "-" + mes + "-" + año);
+    }//GEN-LAST:event_jPanel1MouseMoved
+
+    private void jd_InventarioWindowOpened(java.awt.event.WindowEvent evt) {//GEN-FIRST:event_jd_InventarioWindowOpened
+
+    }//GEN-LAST:event_jd_InventarioWindowOpened
+
+    private void jd_HistorialOrdenesWindowOpened(java.awt.event.WindowEvent evt) {//GEN-FIRST:event_jd_HistorialOrdenesWindowOpened
+        LlenarListas(jl_IDOrden, "stb_listarOrdenes");
+    }//GEN-LAST:event_jd_HistorialOrdenesWindowOpened
+
+    private void jl_Empleados_EmpleadoMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jl_Empleados_EmpleadoMouseClicked
+        //Ver campos
+        if (jl_Empleados_Empleado.getSelectedIndex() != -1) {
+            int id = Integer.parseInt(jl_Empleados_Empleado.getSelectedValue());
+            LlenarInventario();
+        }
+    }//GEN-LAST:event_jl_Empleados_EmpleadoMouseClicked
+
+    private void jl_IDOrdenMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jl_IDOrdenMouseClicked
+        //Ver campos
+        if (jl_IDOrden.getSelectedIndex() != -1) {
+            int id = (int)jl_IDOrden.getSelectedValue();
+            LlenarHistorialOrdenes(id);
+        }else{
+            System.out.println("WTF");
+        }
+    }//GEN-LAST:event_jl_IDOrdenMouseClicked
 
     /**
      * @param args the command line arguments
@@ -1381,10 +1475,11 @@ public class MobilesApp extends javax.swing.JFrame {
     private javax.swing.JScrollPane jScrollPane6;
     private javax.swing.JScrollPane jScrollPane7;
     private javax.swing.JScrollPane jScrollPane8;
+    private javax.swing.JScrollPane jScrollPane9;
     private javax.swing.JTabbedPane jTabbedPane1;
     private javax.swing.JTabbedPane jTabbedPane2;
-    private javax.swing.JTable jTable2;
     private javax.swing.JButton jb_AgregarOrden_Orden;
+    private javax.swing.JDialog jd_Detalle;
     private javax.swing.JDialog jd_Empleado;
     private javax.swing.JDialog jd_HistorialOrdenes;
     private javax.swing.JDialog jd_Inventario;
@@ -1393,6 +1488,7 @@ public class MobilesApp extends javax.swing.JFrame {
     private javax.swing.JDialog jd_puntos_ventas;
     private javax.swing.JList<String> jl_Empleados_Empleado;
     private javax.swing.JLabel jl_Fecha_Orden;
+    private javax.swing.JList jl_IDOrden;
     private javax.swing.JList<String> jl_Ordenes_Orden;
     private javax.swing.JList<String> jl_Productos_Producto;
     private javax.swing.JList<String> jl_Proveedores_Proveedor;
@@ -1400,6 +1496,7 @@ public class MobilesApp extends javax.swing.JFrame {
     private javax.swing.JTextField jt_Ciudad_PuntoVenta;
     private javax.swing.JTextField jt_Correo_Proveedor;
     private javax.swing.JTextField jt_Correo_PuntoVenta;
+    private javax.swing.JTable jt_Detalle;
     private javax.swing.JTextField jt_Direccion_Empleado;
     private javax.swing.JTextField jt_Direccion_PuntoVenta;
     private javax.swing.JTextField jt_Fecha_Empleado;
@@ -1487,7 +1584,7 @@ public class MobilesApp extends javax.swing.JFrame {
         }
     }
 
-    public void InsertarOrdenEnDB(int IDEmpleado, int IDPuntoDeVenta) {
+    public void InsertarOrdenEnDB(int IDEmpleado, int IDPuntoDeVenta, String Fecha) {
         CallableStatement CT = null;
         boolean Resp = true;
         try {
@@ -1744,18 +1841,18 @@ public class MobilesApp extends javax.swing.JFrame {
         }
         Lista.setModel(modelo);
     }
-    
-    public void LlenarInventario(){
+
+    public void LlenarInventario() {
         DefaultTableModel ModeloTabla = (DefaultTableModel) jt_Producto_Inventario.getModel();
-        while(ModeloTabla.getRowCount() > 0){
+        while (ModeloTabla.getRowCount() > 0) {
             ModeloTabla.removeRow(0);
         }
-        
+
         CallableStatement CT = null;
         ResultSet RS = null;
         Producto ProductoTemporal;
         try {
-            CT = Conect.prepareCall("{Call ListarProductos}");
+            CT = Conect.prepareCall("{Call stb_listarProductos}");
             RS = CT.executeQuery();
             while (RS.next()) {
                 ProductoTemporal = new Producto();
@@ -1766,30 +1863,31 @@ public class MobilesApp extends javax.swing.JFrame {
                 ProductoTemporal.setUnidades(RS.getInt("Unidades"));
                 ProductoTemporal.setDescripcion(RS.getString("Descripcion"));
                 ProductoTemporal.setIDProveedor(Integer.toString(RS.getInt("ID_Proveedor")));
-                
+
                 String[] Row = {ProductoTemporal.getID(), ProductoTemporal.getNombre(),
-                Double.toString(ProductoTemporal.getPrecioVenta()), Double.toString(ProductoTemporal.getPrecioCompra()),
-                Integer.toString(ProductoTemporal.getUnidades()), ProductoTemporal.getDescripcion(), 
-                ProductoTemporal.getIDProveedor()};
-                
+                    Double.toString(ProductoTemporal.getPrecioVenta()), Double.toString(ProductoTemporal.getPrecioCompra()),
+                    Integer.toString(ProductoTemporal.getUnidades()), ProductoTemporal.getDescripcion(),
+                    ProductoTemporal.getIDProveedor()};
+
                 ModeloTabla.addRow(Row);
             }
         } catch (Exception e) {
             e.printStackTrace();
         }
     }
-    
-    public void LlenarHistorialOrdenes(){
-        DefaultTableModel ModeloTabla = (DefaultTableModel) jt_Producto_Inventario.getModel();
-        while(ModeloTabla.getRowCount() > 0){
+
+    public void LlenarHistorialOrdenes(int id) {
+        DefaultTableModel ModeloTabla = (DefaultTableModel) jt_Detalle.getModel();
+        while (ModeloTabla.getRowCount() > 0) {
             ModeloTabla.removeRow(0);
         }
-        
+
         CallableStatement CT = null;
         ResultSet RS = null;
         Producto ProductoTemporal;
         try {
-            CT = Conect.prepareCall("{Call ListarDetalleOrden}");
+            CT = Conect.prepareCall("{Call stb_listarDetalle(?)}");
+            CT.setInt(1, id);
             RS = CT.executeQuery();
             while (RS.next()) {
                 int ID_Orden = RS.getInt("ID_Orden");
@@ -1797,12 +1895,12 @@ public class MobilesApp extends javax.swing.JFrame {
                 double Descuento = RS.getDouble("Descuento");
                 double Subtotal = RS.getDouble("Subtotal");
                 double Total = RS.getDouble("Total");
-                
-                String[] Row = {Integer.toString(ID_Orden), Integer.toString(ID_Producto), 
+                String[] Row = {Integer.toString(ID_Orden), Integer.toString(ID_Producto),
                     Double.toString(Subtotal), Double.toString(Total), Double.toString(Descuento)};
-                
+
                 ModeloTabla.addRow(Row);
             }
+            jt_Detalle.setModel(ModeloTabla);
         } catch (Exception e) {
             e.printStackTrace();
         }

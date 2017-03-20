@@ -1,6 +1,6 @@
 -------------------------------------------AGREGADO----------------------------------------
 go
-create procedure stb_insertOrden
+alter procedure stb_insertOrden
 @idEmpleado int,
 @idPuntoVenta int
 as
@@ -10,7 +10,7 @@ begin
 			from dbo.Punto_venta Pv
 			where Pv.ID = @idPuntoVenta)
 	begin 
-		insert  dbo.Orden values (GETDATE(), @idEmpleado, @idPuntoVenta)
+		insert  dbo.Orden values (getdate(),@idEmpleado, @idPuntoVenta)
 	end
 end
 
@@ -346,6 +346,15 @@ if exists(select* from dbo.Orden O where O.ID = @idOrden )
 begin
 	select*
 	from dbo.Orden O inner join dbo.Detalle_Orden Od on O.ID = Od.ID_Orden 
+end
+
+create procedure stb_listarDetalle
+@idOrden int
+as
+if exists(select* from dbo.Detalle_Orden OD where Od.ID_Orden = @idOrden)
+begin
+	select*
+	from dbo.Detalle_Orden
 end
 
 create procedure stb_listarOrdenes
