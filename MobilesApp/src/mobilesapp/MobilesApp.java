@@ -1916,7 +1916,83 @@ public class MobilesApp extends javax.swing.JFrame {
                 String direct = RS.getString(4);
                 Date fecha = RS.getDate(5);
                 double sueldo = ((Double) RS.getDouble(6)).doubleValue();
-                System.out.println(rtn + "-" + nombre + "-" + tele + "-" + direct + "-" + fecha+"-"+sueldo);
+            } else {
+            }
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+    }
+
+    public void VerProducto(int id) {
+        CallableStatement CT = null;
+        ResultSet RS = null;
+        try {
+            CT = Conect.prepareCall("{Call stb_listarProductoID(?)}");
+            CT.setInt(1, id);
+            RS = CT.executeQuery();
+            if (RS.next()) {
+                String Nombre = RS.getString(1);
+                double PrecioVenta = ((Double)RS.getDouble(2)).doubleValue();
+                double PrecioCompra = ((Double)RS.getDouble(3)).doubleValue();
+                int Unidades = RS.getInt(4);
+                String Descripcion = RS.getString(5);
+                String IDProveedor = RS.getString(6);
+                
+                jt_IDProveedor_Producto.setText(IDProveedor);
+                jt_Nombre_Producto.setText(Nombre);
+                jt_PrecioVenta_Producto.setText(Double.toString(PrecioVenta));
+                jt_PrecioCompra_Producto.setText(Double.toString(PrecioCompra));
+                jt_Unidades_Producto.setText(Integer.toHexString(Unidades));
+                jta_Descripcion_Producto.setText(Descripcion);
+                
+            } else {
+            }
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+    }
+
+    public void VerPuntosVenta(int id) {
+        CallableStatement CT = null;
+        ResultSet RS = null;
+        try {
+            CT = Conect.prepareCall("{Call stb_ListarPuntosVenta(?)}");
+            CT.setInt(1, id);
+            RS = CT.executeQuery();
+            if (RS.next()) {
+                String Direccion = RS.getString(1);
+                String Ciudad = RS.getString(2);
+                String Telefono = RS.getString(3);
+                String Correo = RS.getString(4);
+                
+                jt_Direccion_PuntoVenta.setText(Direccion);
+                jt_Ciudad_PuntoVenta.setText(Ciudad);
+                jt_Correo_PuntoVenta.setText(Correo);
+                jt_Telefono_PuntoVenta.setText(Telefono);
+                
+            } else {
+            }
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+    }
+
+    public void VerProveedor(int id) {
+        CallableStatement CT = null;
+        ResultSet RS = null;
+        try {
+            CT = Conect.prepareCall("{Call stb_ListarProveedores(?)}");
+            CT.setInt(1, id);
+            RS = CT.executeQuery();
+            if (RS.next()) {
+                String Nombre = RS.getString(1);
+                String Telefono = RS.getString(2);
+                String Correo = RS.getString(3);
+                
+                jt_Nombre_Proveedor.setText(Nombre);
+                jt_Telefono_Proveedor.setText(Telefono);
+                jt_Correo_Proveedor.setText(Correo);
+                
             } else {
             }
         } catch (Exception e) {
