@@ -13,6 +13,7 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.util.Calendar;
 import java.util.Date;
+import javax.swing.DefaultComboBoxModel;
 import javax.swing.DefaultListModel;
 import javax.swing.JList;
 import javax.swing.JOptionPane;
@@ -119,6 +120,21 @@ public class MobilesApp extends javax.swing.JFrame {
         jScrollPane9 = new javax.swing.JScrollPane();
         jl_IDOrden = new javax.swing.JList();
         jd_Detalle = new javax.swing.JDialog();
+        jLabel2 = new javax.swing.JLabel();
+        jLabel6 = new javax.swing.JLabel();
+        jLabel7 = new javax.swing.JLabel();
+        jcb_IDProducto = new javax.swing.JComboBox();
+        jlb_Producto = new javax.swing.JLabel();
+        sp_solicitados = new javax.swing.JSpinner();
+        jScrollPane10 = new javax.swing.JScrollPane();
+        jt_DetalleIngresado = new javax.swing.JTable();
+        jButton4 = new javax.swing.JButton();
+        tf_descuentoAplicado = new javax.swing.JTextField();
+        jlb_precioD = new javax.swing.JLabel();
+        jlb_CantidadI = new javax.swing.JLabel();
+        jLabel9 = new javax.swing.JLabel();
+        jLabel17 = new javax.swing.JLabel();
+        jLabel25 = new javax.swing.JLabel();
         jTabbedPane1 = new javax.swing.JTabbedPane();
         jPanel1 = new javax.swing.JPanel();
         jLabel1 = new javax.swing.JLabel();
@@ -319,6 +335,11 @@ public class MobilesApp extends javax.swing.JFrame {
             }
         });
 
+        jl_Productos_Producto.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                jl_Productos_ProductoMouseClicked(evt);
+            }
+        });
         jScrollPane4.setViewportView(jl_Productos_Producto);
 
         javax.swing.GroupLayout jd_ProductoLayout = new javax.swing.GroupLayout(jd_Producto.getContentPane());
@@ -442,6 +463,11 @@ public class MobilesApp extends javax.swing.JFrame {
             }
         });
 
+        jl_Proveedores_Proveedor.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                jl_Proveedores_ProveedorMouseClicked(evt);
+            }
+        });
         jScrollPane2.setViewportView(jl_Proveedores_Proveedor);
 
         javax.swing.GroupLayout jd_ProveedorLayout = new javax.swing.GroupLayout(jd_Proveedor.getContentPane());
@@ -549,6 +575,11 @@ public class MobilesApp extends javax.swing.JFrame {
             }
         });
 
+        jl_Puntos_PuntoVenta.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                jl_Puntos_PuntoVentaMouseClicked(evt);
+            }
+        });
         jScrollPane5.setViewportView(jl_Puntos_PuntoVenta);
 
         javax.swing.GroupLayout jd_puntos_ventasLayout = new javax.swing.GroupLayout(jd_puntos_ventas.getContentPane());
@@ -681,7 +712,7 @@ public class MobilesApp extends javax.swing.JFrame {
             }
         ) {
             Class[] types = new Class [] {
-                java.lang.Integer.class, java.lang.Integer.class, java.lang.Double.class, java.lang.Double.class, java.lang.Double.class
+                java.lang.String.class, java.lang.String.class, java.lang.String.class, java.lang.String.class, java.lang.String.class
             };
             boolean[] canEdit = new boolean [] {
                 false, false, false, false, false
@@ -727,15 +758,127 @@ public class MobilesApp extends javax.swing.JFrame {
                 .addContainerGap())
         );
 
+        jLabel2.setText("Producto ");
+
+        jLabel6.setText("Cantidad");
+
+        jLabel7.setText("Descuento");
+
+        jcb_IDProducto.addItemListener(new java.awt.event.ItemListener() {
+            public void itemStateChanged(java.awt.event.ItemEvent evt) {
+                jcb_IDProductoItemStateChanged(evt);
+            }
+        });
+
+        jlb_Producto.setText("NOMBRE");
+
+        sp_solicitados.setModel(new javax.swing.SpinnerNumberModel(Integer.valueOf(1), Integer.valueOf(1), null, Integer.valueOf(1)));
+
+        jt_DetalleIngresado.setModel(new javax.swing.table.DefaultTableModel(
+            new Object [][] {
+
+            },
+            new String [] {
+                "#Orden", "Producto", "Subtotal", "Descuento", "Total"
+            }
+        ) {
+            Class[] types = new Class [] {
+                java.lang.String.class, java.lang.String.class, java.lang.String.class, java.lang.String.class, java.lang.String.class
+            };
+
+            public Class getColumnClass(int columnIndex) {
+                return types [columnIndex];
+            }
+        });
+        jScrollPane10.setViewportView(jt_DetalleIngresado);
+
+        jButton4.setText("AGREGAR");
+        jButton4.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                jButton4MouseClicked(evt);
+            }
+        });
+
+        jlb_precioD.setText("PRECIO");
+
+        jlb_CantidadI.setText("Cantidad");
+
+        jLabel9.setText("NOMBRE:");
+
+        jLabel17.setText("Precio:");
+
+        jLabel25.setText("Cantidad disponible");
+
         javax.swing.GroupLayout jd_DetalleLayout = new javax.swing.GroupLayout(jd_Detalle.getContentPane());
         jd_Detalle.getContentPane().setLayout(jd_DetalleLayout);
         jd_DetalleLayout.setHorizontalGroup(
             jd_DetalleLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 400, Short.MAX_VALUE)
+            .addGroup(jd_DetalleLayout.createSequentialGroup()
+                .addGroup(jd_DetalleLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(jd_DetalleLayout.createSequentialGroup()
+                        .addGap(23, 23, 23)
+                        .addGroup(jd_DetalleLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addGroup(jd_DetalleLayout.createSequentialGroup()
+                                .addGroup(jd_DetalleLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                                    .addComponent(jLabel7, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                    .addComponent(jLabel6, javax.swing.GroupLayout.PREFERRED_SIZE, 51, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                .addGap(18, 18, 18)
+                                .addGroup(jd_DetalleLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
+                                    .addComponent(tf_descuentoAplicado, javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addComponent(sp_solicitados, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.PREFERRED_SIZE, 61, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                            .addGroup(jd_DetalleLayout.createSequentialGroup()
+                                .addComponent(jLabel2, javax.swing.GroupLayout.PREFERRED_SIZE, 59, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                                .addComponent(jcb_IDProducto, javax.swing.GroupLayout.PREFERRED_SIZE, 107, javax.swing.GroupLayout.PREFERRED_SIZE))))
+                    .addGroup(jd_DetalleLayout.createSequentialGroup()
+                        .addGap(41, 41, 41)
+                        .addComponent(jButton4)))
+                .addGap(18, 18, 18)
+                .addGroup(jd_DetalleLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(jd_DetalleLayout.createSequentialGroup()
+                        .addComponent(jScrollPane10, javax.swing.GroupLayout.PREFERRED_SIZE, 452, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                    .addGroup(jd_DetalleLayout.createSequentialGroup()
+                        .addComponent(jLabel9, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(jlb_Producto, javax.swing.GroupLayout.PREFERRED_SIZE, 76, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(18, 18, 18)
+                        .addComponent(jLabel17, javax.swing.GroupLayout.PREFERRED_SIZE, 41, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                        .addComponent(jlb_precioD, javax.swing.GroupLayout.PREFERRED_SIZE, 60, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                        .addComponent(jLabel25, javax.swing.GroupLayout.PREFERRED_SIZE, 98, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                        .addComponent(jlb_CantidadI)
+                        .addGap(55, 55, 55))))
         );
         jd_DetalleLayout.setVerticalGroup(
             jd_DetalleLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 300, Short.MAX_VALUE)
+            .addGroup(jd_DetalleLayout.createSequentialGroup()
+                .addGap(35, 35, 35)
+                .addGroup(jd_DetalleLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jLabel2)
+                    .addComponent(jcb_IDProducto, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jlb_Producto, javax.swing.GroupLayout.PREFERRED_SIZE, 20, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jlb_precioD)
+                    .addComponent(jlb_CantidadI)
+                    .addComponent(jLabel9, javax.swing.GroupLayout.PREFERRED_SIZE, 20, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jLabel17, javax.swing.GroupLayout.PREFERRED_SIZE, 20, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jLabel25, javax.swing.GroupLayout.PREFERRED_SIZE, 20, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(24, 24, 24)
+                .addGroup(jd_DetalleLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(jd_DetalleLayout.createSequentialGroup()
+                        .addGroup(jd_DetalleLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(jLabel6)
+                            .addComponent(sp_solicitados, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addGap(24, 24, 24)
+                        .addGroup(jd_DetalleLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(jLabel7)
+                            .addComponent(tf_descuentoAplicado, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addGap(29, 29, 29)
+                        .addComponent(jButton4))
+                    .addComponent(jScrollPane10, javax.swing.GroupLayout.PREFERRED_SIZE, 287, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
@@ -980,14 +1123,42 @@ public class MobilesApp extends javax.swing.JFrame {
     private void jb_AgregarOrden_OrdenMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jb_AgregarOrden_OrdenMouseClicked
         // TODO add your handling code here:
         if (CampoLleno(jt_IDEmpleado_Orden) && CampoLleno(jt_IDPuntoVenta_Orden)) {
+            int antes = jl_Ordenes_Orden.getModel().getSize();
             int IDEmpleado, IDPuntoVenta;
             IDEmpleado = Integer.parseInt(jt_IDEmpleado_Orden.getText());
             IDPuntoVenta = Integer.parseInt(jt_IDPuntoVenta_Orden.getText());
             String Fecha = jl_Fecha_Orden.getText();
             InsertarOrdenEnDB(IDEmpleado, IDPuntoVenta, Fecha);
             LlenarListas(jl_Ordenes_Orden, "stb_listarOrdenes");
-            JOptionPane.showMessageDialog(this, "Orden agregada con exito", "OPERACION EXITOSA", JOptionPane.INFORMATION_MESSAGE);
+            int ahora = jl_Ordenes_Orden.getModel().getSize();
+            System.out.println(ahora + "-" + antes);
+            if (ahora > antes) {
+                JOptionPane.showMessageDialog(this, "Orden agregada con exito", "OPERACION EXITOSA", JOptionPane.INFORMATION_MESSAGE);
+                jd_Detalle.setModal(false);
+                jd_Detalle.pack();
+                jd_Detalle.setLocationRelativeTo(this);
+                jd_Detalle.setVisible(true);
 
+                DefaultComboBoxModel modelo = new DefaultComboBoxModel();
+                CallableStatement CT = null;
+                ResultSet RS = null;
+                try {
+                    CT = Conect.prepareCall("{Call stb_listarProductos}");
+                    RS = CT.executeQuery();
+                    while (RS.next()) {
+                        int ID = 0;
+                        ID = RS.getInt("ID");
+                        modelo.addElement(ID);
+                    }
+                    jcb_IDProducto.setModel(modelo);
+                    int last = jl_Ordenes_Orden.getModel().getSize() - 1;
+                    Object temp = jl_Ordenes_Orden.getModel().getElementAt(last);
+                    IDOrden = (int) temp;
+                    System.out.println(temp);
+                } catch (Exception e) {
+                    e.printStackTrace();
+                }
+            }
         } else {
             JOptionPane.showMessageDialog(this, "Los campos no estan llenos", "ERROR", JOptionPane.ERROR_MESSAGE);
         }
@@ -1032,7 +1203,6 @@ public class MobilesApp extends javax.swing.JFrame {
             InsertarEmpleadoEnDB(RTN, Sueldo, Direccion, Fecha, Telefono, Nombre);
             LlenarListas(jl_Ordenes_Orden, "stb_listartodosEmpleados");
             LlenarListas(jl_Empleados_Empleado, "stb_listartodosEmpleados");
-            int ahora = jl_Empleados_Empleado.getComponentCount();
             JOptionPane.showMessageDialog(this, "Empleado agregado con exito", "OPERACION EXITOSA", JOptionPane.INFORMATION_MESSAGE);
         } else {
             JOptionPane.showMessageDialog(this, "Los campos no estan llenos", "ERROR", JOptionPane.ERROR_MESSAGE);
@@ -1074,7 +1244,6 @@ public class MobilesApp extends javax.swing.JFrame {
 
     private void btn_borrarEmpleadoMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btn_borrarEmpleadoMouseClicked
         if (jl_Empleados_Empleado.getSelectedIndex() != -1) {
-            int hay = jl_Empleados_Empleado.getComponentCount();
             int IDEmpleado = -1;
             Object i = jl_Empleados_Empleado.getSelectedValue();
             if (i instanceof Integer) {
@@ -1084,12 +1253,7 @@ public class MobilesApp extends javax.swing.JFrame {
                 BorrarEmpleadoPorID(IDEmpleado);
                 LlenarListas(jl_Empleados_Empleado, "stb_listartodosEmpleados");
             }
-            int ahora = jl_Empleados_Empleado.getComponentCount();
-            if ((hay - 1) == ahora) {
-                JOptionPane.showMessageDialog(this, "Empleado eliminadao con exito", "OPERACION EXITOSA", JOptionPane.INFORMATION_MESSAGE);
-            } else {
-                JOptionPane.showMessageDialog(this, "Se ha producido un error", "SELECCIONE UN DATO DE LA LISTA", JOptionPane.INFORMATION_MESSAGE);
-            }
+            JOptionPane.showMessageDialog(this, "Empleado eliminadao con exito", "OPERACION EXITOSA", JOptionPane.INFORMATION_MESSAGE);
         } else {
             JOptionPane.showMessageDialog(this, "Seleccione un empleado", "ERROR", JOptionPane.ERROR_MESSAGE);
         }
@@ -1135,7 +1299,7 @@ public class MobilesApp extends javax.swing.JFrame {
             Descripcion = jta_Descripcion_Producto.getText();
             Nombre = jt_Nombre_Producto.getText();
 
-            ActualizarProductoEnDB(ID, Nombre, PrecioVenta, PrecioCompra, Unidades, Descripcion, Nombre);
+            ActualizarProductoEnDB(ID, Nombre, PrecioVenta, PrecioCompra, Unidades, Descripcion, IDProveedor);
             LlenarListas(jl_Productos_Producto, "stb_listarProductos");
 
             JOptionPane.showMessageDialog(this, "Producto actualizado con exito", "OPERACION EXITOSA", JOptionPane.INFORMATION_MESSAGE);
@@ -1330,6 +1494,7 @@ public class MobilesApp extends javax.swing.JFrame {
         jd_Inventario.pack();
         jd_Inventario.setLocationRelativeTo(this);
         jd_Inventario.setVisible(true);
+        LlenarInventario();
     }//GEN-LAST:event_jButton7MouseClicked
 
     private void jButton3MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jButton3MouseClicked
@@ -1376,6 +1541,63 @@ public class MobilesApp extends javax.swing.JFrame {
             System.out.println("WTF");
         }
     }//GEN-LAST:event_jl_IDOrdenMouseClicked
+
+    private void jl_Productos_ProductoMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jl_Productos_ProductoMouseClicked
+        if (jl_Productos_Producto.getSelectedIndex() != -1) {
+            Object intermedio = jl_Productos_Producto.getSelectedValue();
+            int id = ((int) intermedio);
+            VerProducto(id);
+        }
+    }//GEN-LAST:event_jl_Productos_ProductoMouseClicked
+
+    private void jl_Proveedores_ProveedorMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jl_Proveedores_ProveedorMouseClicked
+        if (jl_Proveedores_Proveedor.getSelectedIndex() != -1) {
+            Object intermedio = jl_Proveedores_Proveedor.getSelectedValue();
+            int id = ((int) intermedio);
+            VerProveedor(id);
+        }
+    }//GEN-LAST:event_jl_Proveedores_ProveedorMouseClicked
+
+    private void jl_Puntos_PuntoVentaMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jl_Puntos_PuntoVentaMouseClicked
+        if (jl_Puntos_PuntoVenta.getSelectedIndex() != -1) {
+            Object intermedio = jl_Puntos_PuntoVenta.getSelectedValue();
+            int id = ((int) intermedio);
+            VerPuntosVenta(id);
+        }
+    }//GEN-LAST:event_jl_Puntos_PuntoVentaMouseClicked
+
+    private void jcb_IDProductoItemStateChanged(java.awt.event.ItemEvent evt) {//GEN-FIRST:event_jcb_IDProductoItemStateChanged
+        if (jcb_IDProducto.getSelectedIndex() != -1) {
+            int id = ((int) jcb_IDProducto.getSelectedItem());
+            NombreProducto(id);
+        }
+    }//GEN-LAST:event_jcb_IDProductoItemStateChanged
+
+    private void jButton4MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jButton4MouseClicked
+        try {
+            if (jcb_IDProducto.getSelectedIndex() != -1) {
+                int id = (int) jcb_IDProducto.getSelectedItem();
+                int solicitados = (int) sp_solicitados.getValue();
+                int inventario = Integer.parseInt(jlb_CantidadI.getText());
+                double descuento = Double.parseDouble(tf_descuentoAplicado.getText());
+                double precio = Double.parseDouble(jlb_precioD.getText());
+                if (solicitados <= inventario && descuento <= precio && descuento >= 0) {
+                    double subtotal = precio * solicitados;
+                    descuento *= solicitados;
+                    double total = subtotal - descuento;
+                    InsertarDetalleOrdenEnDB(IDOrden, id, subtotal, total, descuento);
+                    
+                } else {
+                    JOptionPane.showMessageDialog(jd_Detalle, "No hay la suficiente cantidad en inventario\n"
+                            + "O el descuento es inválido");
+                }
+            }
+        } catch (Exception e) {
+            e.printStackTrace();
+            //JOptionPane.showMessageDialog(jd_Detalle, "Error en los datos ingresados, favor revisar.");
+        }
+
+    }//GEN-LAST:event_jButton4MouseClicked
 
     /**
      * @param args the command line arguments
@@ -1428,6 +1650,7 @@ public class MobilesApp extends javax.swing.JFrame {
     private javax.swing.JButton jButton24;
     private javax.swing.JButton jButton25;
     private javax.swing.JButton jButton3;
+    private javax.swing.JButton jButton4;
     private javax.swing.JButton jButton5;
     private javax.swing.JButton jButton7;
     private javax.swing.JButton jButton8;
@@ -1440,13 +1663,16 @@ public class MobilesApp extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel14;
     private javax.swing.JLabel jLabel15;
     private javax.swing.JLabel jLabel16;
+    private javax.swing.JLabel jLabel17;
     private javax.swing.JLabel jLabel18;
     private javax.swing.JLabel jLabel19;
+    private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel20;
     private javax.swing.JLabel jLabel21;
     private javax.swing.JLabel jLabel22;
     private javax.swing.JLabel jLabel23;
     private javax.swing.JLabel jLabel24;
+    private javax.swing.JLabel jLabel25;
     private javax.swing.JLabel jLabel26;
     private javax.swing.JLabel jLabel27;
     private javax.swing.JLabel jLabel28;
@@ -1458,12 +1684,16 @@ public class MobilesApp extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel34;
     private javax.swing.JLabel jLabel4;
     private javax.swing.JLabel jLabel5;
+    private javax.swing.JLabel jLabel6;
+    private javax.swing.JLabel jLabel7;
     private javax.swing.JLabel jLabel8;
+    private javax.swing.JLabel jLabel9;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel jPanel2;
     private javax.swing.JPanel jPanel4;
     private javax.swing.JPanel jPanel5;
     private javax.swing.JScrollPane jScrollPane1;
+    private javax.swing.JScrollPane jScrollPane10;
     private javax.swing.JScrollPane jScrollPane2;
     private javax.swing.JScrollPane jScrollPane3;
     private javax.swing.JScrollPane jScrollPane4;
@@ -1475,6 +1705,7 @@ public class MobilesApp extends javax.swing.JFrame {
     private javax.swing.JTabbedPane jTabbedPane1;
     private javax.swing.JTabbedPane jTabbedPane2;
     private javax.swing.JButton jb_AgregarOrden_Orden;
+    private javax.swing.JComboBox jcb_IDProducto;
     private javax.swing.JDialog jd_Detalle;
     private javax.swing.JDialog jd_Empleado;
     private javax.swing.JDialog jd_HistorialOrdenes;
@@ -1489,10 +1720,14 @@ public class MobilesApp extends javax.swing.JFrame {
     private javax.swing.JList<String> jl_Productos_Producto;
     private javax.swing.JList<String> jl_Proveedores_Proveedor;
     private javax.swing.JList<String> jl_Puntos_PuntoVenta;
+    private javax.swing.JLabel jlb_CantidadI;
+    private javax.swing.JLabel jlb_Producto;
+    private javax.swing.JLabel jlb_precioD;
     private javax.swing.JTextField jt_Ciudad_PuntoVenta;
     private javax.swing.JTextField jt_Correo_Proveedor;
     private javax.swing.JTextField jt_Correo_PuntoVenta;
     private javax.swing.JTable jt_Detalle;
+    private javax.swing.JTable jt_DetalleIngresado;
     private javax.swing.JTextField jt_Direccion_Empleado;
     private javax.swing.JTextField jt_Direccion_PuntoVenta;
     private javax.swing.JTextField jt_Fecha_Empleado;
@@ -1512,8 +1747,11 @@ public class MobilesApp extends javax.swing.JFrame {
     private javax.swing.JTextField jt_Telefono_PuntoVenta;
     private javax.swing.JTextField jt_Unidades_Producto;
     private javax.swing.JTextArea jta_Descripcion_Producto;
+    private javax.swing.JSpinner sp_solicitados;
+    private javax.swing.JTextField tf_descuentoAplicado;
     // End of variables declaration//GEN-END:variables
     Connection Conect;
+    int IDOrden;
 
     public void Conectar() {
         try {
@@ -1542,21 +1780,25 @@ public class MobilesApp extends javax.swing.JFrame {
         }
     }
 
-    public void InsertarDetalleOrdenEnDB(String IDOrden, String IDProducto, double Subtotal, double Total, double Descuento) {
+    public void InsertarDetalleOrdenEnDB(int IDOrden, int IDProducto, double Subtotal, double Total, double Descuento) {
         CallableStatement CT = null;
         boolean Resp = true;
         try {
             Conect.setAutoCommit(false);
             CT = Conect.prepareCall("{Call stb_insertDetalle(?, ?, ?, ?, ?)}");
-            CT.setString("ID_Orden", IDOrden);
-            CT.setString("ID_Producto", IDProducto);
-            CT.setString("Subtotal", Double.toString(Subtotal));
-            CT.setString("Total", Double.toString(Total));
-            CT.setString("Descuento", Double.toString(Descuento));
+            CT.setInt(1, IDOrden);
+            CT.setInt(2, IDProducto);
+            CT.setString(3, Double.toString(Subtotal));
+            CT.setString(4, Double.toString(Total));
+            CT.setString(5, Double.toString(Descuento));
             Resp = CT.execute();
             Conect.commit();
+            DefaultTableModel modelo = (DefaultTableModel)jt_DetalleIngresado.getModel();
+            String[] row = {IDOrden+"",jlb_Producto.getText(),Subtotal+"",Descuento+"",Total+""};
+            modelo.addRow(row);
+            jt_DetalleIngresado.setModel(modelo);
         } catch (Exception e) {
-            e.printStackTrace();
+            JOptionPane.showMessageDialog(jd_Detalle,"Producto ya ingresado");
         }
     }
 
@@ -1591,7 +1833,6 @@ public class MobilesApp extends javax.swing.JFrame {
             Resp = CT.execute();
             Conect.commit();
         } catch (Exception e) {
-            e.printStackTrace();
         }
     }
 
@@ -1686,7 +1927,7 @@ public class MobilesApp extends javax.swing.JFrame {
         }
     }
 
-    public void ActualizarProductoEnDB(int ID, String Nombre, double PrecioVenta, double PrecioCompra, int Unidades, String Descripcion, String IDProveedor) {
+    public void ActualizarProductoEnDB(int ID, String Nombre, double PrecioVenta, double PrecioCompra, int Unidades, String Descripcion, int IDProveedor) {
         CallableStatement CT = null;
         boolean Resp = true;
         try {
@@ -1694,11 +1935,11 @@ public class MobilesApp extends javax.swing.JFrame {
             CT = Conect.prepareCall("{Call stb_ActualizarProducto(?, ?, ?, ?, ?, ?, ?)}");
             CT.setInt(1, ID);
             CT.setString(2, Nombre);
-            CT.setString(3, Double.toString(PrecioVenta));
-            CT.setString(4, Double.toString(PrecioCompra));
+            CT.setDouble(3, PrecioVenta);
+            CT.setDouble(4, PrecioCompra);
             CT.setInt(5, Unidades);
             CT.setString(6, Descripcion);
-            CT.setString(7, IDProveedor);
+            CT.setInt(7, IDProveedor);
             Resp = CT.execute();
             Conect.commit();
         } catch (Exception e) {
@@ -1790,7 +2031,7 @@ public class MobilesApp extends javax.swing.JFrame {
         try {
             Conect.setAutoCommit(false);
             CT = Conect.prepareCall("{Call stb_deleteProveedorbyID(?)}");
-            CT.setInt("ID", ID);
+            CT.setInt(1, ID);
             Resp = CT.execute();
             Conect.commit();
         } catch (Exception e) {
@@ -1898,7 +2139,7 @@ public class MobilesApp extends javax.swing.JFrame {
             }
             jt_Detalle.setModel(ModeloTabla);
         } catch (Exception e) {
-            e.printStackTrace();
+            JOptionPane.showMessageDialog(this, "No hay detalle que mostrar");
         }
     }
 
@@ -1910,12 +2151,18 @@ public class MobilesApp extends javax.swing.JFrame {
             CT.setInt(1, id);
             RS = CT.executeQuery();
             if (RS.next()) {
-                String rtn = RS.getString(1);
-                String nombre = RS.getString(2);
-                String tele = RS.getString(3);
-                String direct = RS.getString(4);
-                Date fecha = RS.getDate(5);
-                double sueldo = ((Double) RS.getDouble(6)).doubleValue();
+                String rtn = RS.getString("RTN");
+                String nombre = RS.getString("Nombre");
+                String tele = RS.getString("Telefono");
+                String direct = RS.getString("Direccion");
+                Date fecha = RS.getDate("Fecha_inicio");
+                double sueldo = RS.getDouble("Sueldo");
+                jt_RTN_Empleado.setText(rtn);
+                jt_Nombre_Empleado.setText(nombre);
+                jt_Telefono_Empleado.setText(tele);
+                jt_Direccion_Empleado.setText(direct);
+                jt_Fecha_Empleado.setText(fecha.toString());
+                jt_Sueldo_Empleado.setText(sueldo + "");
             } else {
             }
         } catch (Exception e) {
@@ -1931,20 +2178,21 @@ public class MobilesApp extends javax.swing.JFrame {
             CT.setInt(1, id);
             RS = CT.executeQuery();
             if (RS.next()) {
-                String Nombre = RS.getString(1);
-                double PrecioVenta = ((Double)RS.getDouble(2)).doubleValue();
-                double PrecioCompra = ((Double)RS.getDouble(3)).doubleValue();
-                int Unidades = RS.getInt(4);
-                String Descripcion = RS.getString(5);
-                String IDProveedor = RS.getString(6);
-                
-                jt_IDProveedor_Producto.setText(IDProveedor);
+                String Nombre = RS.getString("Nombre");
+                double PrecioVenta = RS.getDouble("Precio_Venta");
+                double PrecioCompra = RS.getDouble("Precio_Compra");
+                int Unidades = RS.getInt("Unidades");
+                System.out.println(Unidades);
+                String Descripcion = RS.getString("Descripcion");
+                int IDProveedor = RS.getInt("ID_Proveedor");
+
+                jt_IDProveedor_Producto.setText(IDProveedor + "");
                 jt_Nombre_Producto.setText(Nombre);
                 jt_PrecioVenta_Producto.setText(Double.toString(PrecioVenta));
                 jt_PrecioCompra_Producto.setText(Double.toString(PrecioCompra));
-                jt_Unidades_Producto.setText(Integer.toHexString(Unidades));
+                jt_Unidades_Producto.setText(Unidades + "");
                 jta_Descripcion_Producto.setText(Descripcion);
-                
+
             } else {
             }
         } catch (Exception e) {
@@ -1956,20 +2204,20 @@ public class MobilesApp extends javax.swing.JFrame {
         CallableStatement CT = null;
         ResultSet RS = null;
         try {
-            CT = Conect.prepareCall("{Call stb_ListarPuntosVenta(?)}");
+            CT = Conect.prepareCall("{Call stb_ListarPuntosVentaID(?)}");
             CT.setInt(1, id);
             RS = CT.executeQuery();
             if (RS.next()) {
-                String Direccion = RS.getString(1);
-                String Ciudad = RS.getString(2);
-                String Telefono = RS.getString(3);
-                String Correo = RS.getString(4);
-                
+                String Direccion = RS.getString("Direccion");
+                String Ciudad = RS.getString("Ciudad");
+                String Telefono = RS.getString("Telefono");
+                String Correo = RS.getString("Correo");
+
                 jt_Direccion_PuntoVenta.setText(Direccion);
                 jt_Ciudad_PuntoVenta.setText(Ciudad);
                 jt_Correo_PuntoVenta.setText(Correo);
                 jt_Telefono_PuntoVenta.setText(Telefono);
-                
+
             } else {
             }
         } catch (Exception e) {
@@ -1981,22 +2229,47 @@ public class MobilesApp extends javax.swing.JFrame {
         CallableStatement CT = null;
         ResultSet RS = null;
         try {
-            CT = Conect.prepareCall("{Call stb_ListarProveedores(?)}");
+            CT = Conect.prepareCall("{Call stb_ListarProveedoresID(?)}");
             CT.setInt(1, id);
             RS = CT.executeQuery();
             if (RS.next()) {
-                String Nombre = RS.getString(1);
-                String Telefono = RS.getString(2);
-                String Correo = RS.getString(3);
-                
+                String Nombre = RS.getString("Nombre");
+                String Telefono = RS.getString("Telefono");
+                String Correo = RS.getString("Correo");
+
                 jt_Nombre_Proveedor.setText(Nombre);
                 jt_Telefono_Proveedor.setText(Telefono);
                 jt_Correo_Proveedor.setText(Correo);
-                
+
             } else {
             }
         } catch (Exception e) {
             e.printStackTrace();
         }
     }
+
+    public void NombreProducto(int id) {
+        CallableStatement CT = null;
+        ResultSet RS = null;
+        try {
+            CT = Conect.prepareCall("{Call stb_listarProductoID(?)}");
+            CT.setInt(1, id);
+            RS = CT.executeQuery();
+            if (RS.next()) {
+                String Nombre = RS.getString("Nombre");
+                double Precio = RS.getDouble("Precio_Venta");
+                int unidades = RS.getInt("Unidades");
+                /*jlb_Producto.setText("Nombre: " + Nombre);
+                 jlb_precioD.setText("Precio: " + Precio);
+                 jlb_CantidadI.setText("Cantidad en inventario: " + unidades);*/
+                jlb_Producto.setText(Nombre);
+                jlb_precioD.setText(Precio+"");
+                jlb_CantidadI.setText(""+unidades);
+            } else {
+            }
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+    }
+
 }

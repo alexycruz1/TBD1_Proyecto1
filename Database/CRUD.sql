@@ -53,7 +53,6 @@ alter procedure stb_insertEmpleado
 @fecha_inicio Date,
 @telefono varchar(9),
 @nombre varchar(50)
-
 as
 if exists(select* from dbo.Empleado E where E.RTN = @RTN)
 begin 
@@ -65,7 +64,8 @@ else
 		print 'El teléfono no debería ser el mismo'
 	end
 	else
-		insert dbo.Empleado values (@RTN, @sueldo, @direccion, @fecha_inicio, @telefono, @nombre)
+		insert dbo.Empleado values (@RTN, @sueldo, @direccion, GETDATE(), @telefono, @nombre,1)
+
 
 -------------------------------------------------------------------------------------------------------------------------
 alter trigger trg_InsertarProducto
@@ -358,13 +358,14 @@ begin
 	from dbo.Orden O inner join dbo.Detalle_Orden Od on O.ID = Od.ID_Orden 
 end
 
-create procedure stb_listarDetalle
+ALTER procedure stb_listarDetalle
 @idOrden int
 as
 if exists(select* from dbo.Detalle_Orden OD where Od.ID_Orden = @idOrden)
 begin
 	select*
-	from dbo.Detalle_Orden
+	from dbo.Detalle_Orden Od
+	where ID_Orden = @idOrden
 end
 
 create procedure stb_listarOrdenes
@@ -404,3 +405,8 @@ create procedure stb_ListarPuntosVentaID
 @idPunto int
 as
 select* from dbo.Punto_venta PV where PV.ID = @idPunto
+
+exec stb_ListarProveedoresID 1
+
+select*
+from dbo.Detalle_Orden
