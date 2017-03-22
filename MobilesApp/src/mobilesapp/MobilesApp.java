@@ -1588,7 +1588,6 @@ public class MobilesApp extends javax.swing.JFrame {
                 double precio = Double.parseDouble(jlb_precioD.getText());
                 if (solicitados <= inventario && descuento <= precio && descuento >= 0) {
                     double subtotal = precio * solicitados;
-                    descuento *= solicitados;
                     double total = subtotal - descuento;
                     InsertarDetalleOrdenEnDB(IDOrden, id, subtotal, total, descuento);
                     
